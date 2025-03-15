@@ -83,7 +83,7 @@ public class rogersWebScraping {
             });
 
             // Write data to a CSV file
-            String filePath = "rogersData.csv";
+            String filePath = "rogers.csv";
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
                 for (String[] row : csvData) {
                     writer.write(String.join(",", row));
