@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Login</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+  <link rel="stylesheet" href="assets/css/templatemo.css">
+  <link rel="stylesheet" href="assets/css/custom.css">
+  <link rel="icon" href="images/favicon.png" type="image/x-icon"/>
+  <style>
+    .navbar-nav .nav-item:not(:last-child) .nav-link {
+border-right: 2.2px solid #ccc; /* Adjust the color and thickness as needed */
+padding-right: 20px; /* Add some padding for spacing */
+ padding-left: 20px;
+}
+  </style>
+</head>
+<body>
+
+<header>
+  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff; padding-top: 20px; padding-bottom: 20px;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/">
+        <img th:src="@{/images/logo.png}" src="../static/images/logo2.png" width="200" height="80" class="d-inline-block align-top" alt=""/>
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto"></ul>
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" th:href="@{/}" href="#" style="font-size: 18px;">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" th:href="@{/shop}" href="#" style="font-size: 18px;">Shop</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" sec:authorize="hasRole('ADMIN')" th:href="@{/admin}" href="#" style="font-size: 18px;">Admin-Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="font-size: 18px;">Logout</a>
+          </li>
+          <!--					<li class="nav-item active">-->
+          <!--						<a class="nav-link" th:href="@{/cart}" href="#" style="font-size: 18px;">Cart</a>-->
+          <!--					</li>-->
+          <li class="nav-item active">
+            <a class="nav-icon nav-link position-relative text-decoration-none" th:href="@{/cart}">
+              <i class="fa fa-fw fa-cart-arrow-down text-dark mr-2"></i>
+              <span class="position-absolute top-0 left-100 translate-middle  rounded-pill bg-light text-dark" style="font-size: 15px;">
+          						  <span class="nav-link" th:text="${cartCount}" style="font-size: 10px;"></span>
+        					</span>
+            </a>
+          </li>
+
+          <!--					<li class="nav-item active">-->
+          <!--						<span class="nav-link" th:text="${cartCount}" style="font-size: 18px;">( 0 )</span>-->
+          <!--					</li>-->
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+
+<!--	&lt;!&ndash; create navigation bar ( header) &ndash;&gt;-->
+<!--	<nav class="navbar navbar-inverse navbar-fixed-top">-->
+<!--		<div class="container">-->
+<!--			<div class="navbar-header">-->
+<!--				<button type="button" class="navbar-toggle collapsed"-->
+<!--					data-toggle="collapse" data-target="#navbar" aria-expanded="false"-->
+<!--					aria-controls="navbar">-->
+<!--					<span class="sr-only">Toggle navigation</span> <span-->
+<!--						class="icon-bar"></span> <span class="icon-bar"></span> <span-->
+<!--						class="icon-bar"></span>-->
+<!--				</button>-->
+<!--				<a class="navbar-brand" href="#" th:href="@{/}">Registration and-->
+<!--					Login Module</a>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</nav>-->
+
+<br>
+<br>
+<div class = "container">
+  <div class = "row">
+    <div class = "col-md-6 col-md-offset-3">
+
+      <h1> User Login Page </h1>
+      <br>
+      <form th:action="@{/login}" method="post">
+
+        <!-- error message -->
+        <div th:if="${param.error}">
+          <div class="alert alert-danger">Invalid username or
+            password.</div>
+        </div>
+
+        <!-- logout message -->
+        <div th:if="${param.logout}">
+          <div class="alert alert-info">You have been logged out.</div>
+        </div>
+
+        <div class = "form-group">
+          <label for ="username"> Username </label> :
+          <input type="text" class = "form-control" id ="username" name = "username" placeholder="Enter Email ID" autofocus="autofocus">
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>: <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" />
+        </div>
+
+        <div class="form-group">
+          <div class="row">
+            <div class="col-sm-6 col-sm-offset-3">
+              <input type="submit" name="login-submit" id="login-submit"
+                     class="form-control btn btn-primary" value="Log In" />
+            </div>
+          </div>
+        </div>
+      </form>
+      <div class="form-group">
+        <span>New user? <a href="/" th:href="@{/registration}">Register here</a></span>
+      </div>
+
+      <!--				<h5>or</h5>-->
+      <!--				<a href="/login/oauth2/code/google" class="btn btn-primary">Sign-In with Google </a>-->
+      <!--				<h5>or</h5>-->
+      <!--				<a href="/login/oauth2/code/github" class="btn btn-primary">Sign-In with GitHub </a>-->
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+</body>
+</html>
