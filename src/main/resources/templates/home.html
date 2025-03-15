@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Internet Providers</title>
+
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -84,6 +85,48 @@
             font-size: 14px;
             text-align: center;
         }
+        .provider-links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+    }
+
+    .provider-card {
+        background: rgba(255, 255, 255, 0.1);
+        color: white;
+        padding: 25px;
+        width: 220px;
+        height: 220px;  /* Make sure the card has a fixed height */
+        border-radius: 15px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        text-align: center;
+        transition: 0.3s ease-in-out;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .provider-card img {
+        width: 100%;  /* Fill the card width */
+        height: 100%;  /* Fill the card height */
+        object-fit: contain;  /* Ensure the logo scales correctly without distortion */
+        margin-bottom: 15px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .provider-card:hover img {
+        transform: scale(1.1);
+    }
+
+    .provider-card:hover {
+        background: rgba(255, 255, 255, 0.3);
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(255, 255, 255, 0.4);
+    }
     </style>
 </head>
 <body>
@@ -100,11 +143,11 @@
 
         </a>
         <a href="/bellData" class="provider-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/AT%26T_logo_2016.svg" alt="Bell Logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Bell_logo.svg" alt="Bell Logo">
 
         </a>
         <a href="/attData" class="provider-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Bell_logo.svg" alt="AT&T Logo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/AT%26T_logo_2016.svg" alt="AT&T Logo">
 
         </a>
         <a href="/koodoData" class="provider-card">
