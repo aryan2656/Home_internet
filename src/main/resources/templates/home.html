@@ -1,10 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Internet Providers</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            padding: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background: rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .provider-links {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .provider-card {
+            background: white;
+            color: black;
+            padding: 20px;
+            width: 180px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            transition: 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .provider-card:hover {
+            background: #007bff;
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            margin-top: 40px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-home page html
+
+<header>
+    Internet Service Providers
+</header>
+
+<div class="container">
+    <h2>Select a Provider</h2>
+    <div class="provider-links">
+        <a href="/rogersData" class="provider-card">Rogers</a>
+        <a href="/bellData" class="provider-card">Bell</a>
+        <a href="/attData" class="provider-card">AT&T</a>
+        <a href="/koodoData" class="provider-card">Koodo</a>
+        <a href="/fidoData" class="provider-card">Fido</a>
+    </div>
+</div>
+
+<footer>
+    &copy; 2025 Internet Plans. All Rights Reserved.
+</footer>
+
 </body>
 </html>
