@@ -1,38 +1,31 @@
 package org.example.home_internet_hero;
 
 public class plans {
+    private String name;
+    private String price;
+    private String speed;
+    private String offer;
 
-    private String plan;
-    private int price;
-    private int id;
-
-    public plans(String plan, int price,int id) {
-        this.plan = plan;
+    public plans(String name, String price, String speed, String offer) {
+        this.name = name;
         this.price = price;
-        this.id = id;
+        this.speed = speed;
+        this.offer = offer;
     }
 
-    public int getPrice() {
+    public String getName() {
+        return name;
+    }
+
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
-        this.price = price;
+    public String getSpeed() {
+        return speed;
     }
 
-    public int getID(int id) {
-        return id;
-    }
-
-    public void setID(int id) {
-        this.id = id;
-    }
-
-    public String getPlan() {
-        return plan;
-    }
-
-    public void setPlan(String plan) {
-        this.plan = plan;
+    public String getOffer() {
+        return offer;
     }
 }
