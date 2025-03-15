@@ -5,32 +5,35 @@
     <title>Internet Providers</title>
     <style>
         body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(to right, #007bff, #00c6ff);
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1E2A78, #6A0DAD);
             color: white;
-            text-align: center;
             margin: 0;
             padding: 0;
         }
 
         header {
+            text-align: center;
             padding: 20px;
-            font-size: 28px;
+            font-size: 32px;
             font-weight: bold;
-            text-transform: uppercase;
-            background: rgba(0, 0, 0, 0.2);
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0.6);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
         }
 
         .container {
-            max-width: 900px;
-            margin: auto;
-            padding: 40px 20px;
+            max-width: 1000px;
+            margin: 50px auto;
+            text-align: center;
         }
 
         h2 {
-            margin-bottom: 20px;
-            font-size: 24px;
+            margin-bottom: 30px;
+            font-size: 26px;
+            background: rgba(0, 0, 0, 0.5);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
         }
 
         .provider-links {
@@ -41,53 +44,82 @@
         }
 
         .provider-card {
-            background: white;
-            color: black;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
             padding: 20px;
-            width: 180px;
-            border-radius: 10px;
+            width: 220px;
+            border-radius: 15px;
             text-decoration: none;
             font-size: 18px;
             font-weight: bold;
             text-align: center;
             transition: 0.3s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .provider-card img {
+            width: 120px;
+            height: auto;
+            margin-bottom: 15px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .provider-card:hover img {
+            transform: scale(1.1);
         }
 
         .provider-card:hover {
-            background: #007bff;
-            color: white;
+            background: rgba(255, 255, 255, 0.3);
             transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 6px 12px rgba(255, 255, 255, 0.4);
         }
 
         footer {
-            margin-top: 40px;
+            margin-top: 50px;
             padding: 15px;
-            background: rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.7);
             font-size: 14px;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
 <header>
-    Internet Service Providers
+    🌍 Internet Service Providers
 </header>
 
 <div class="container">
-    <h2>Select a Provider</h2>
+    <h2>Select Your Provider</h2>
     <div class="provider-links">
-        <a href="/rogersData" class="provider-card">Rogers</a>
-        <a href="/bellData" class="provider-card">Bell</a>
-        <a href="/attData" class="provider-card">AT&T</a>
-        <a href="/koodoData" class="provider-card">Koodo</a>
-        <a href="/fidoData" class="provider-card">Fido</a>
+        <a href="/rogersData" class="provider-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Rogers_logo.svg" alt="Rogers Logo">
+
+        </a>
+        <a href="/bellData" class="provider-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/AT%26T_logo_2016.svg" alt="Bell Logo">
+
+        </a>
+        <a href="/attData" class="provider-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Bell_logo.svg" alt="AT&T Logo">
+
+        </a>
+        <a href="/koodoData" class="provider-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Koodo_logo.svg" alt="Koodo Logo">
+
+        </a>
+        <a href="/fidoData" class="provider-card">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Fido_Solutions_logo.svg" alt="Fido Logo">
+
+        </a>
     </div>
 </div>
 
 <footer>
-    &copy; 2025 Internet Plans. All Rights Reserved.
+    &copy; 2025 Internet Plans | Designed for a seamless experience 🌐
 </footer>
 
 </body>
