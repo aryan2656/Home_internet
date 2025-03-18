@@ -133,6 +133,11 @@ footer {
 
 <div class="container">
     <h2>Select Your Provider</h2>
+
+    <div>
+        <input type="search" id="search-input">
+        <button onclick="search()">Search</button>
+    </div>
     <div class="provider-links">
         <a href="/rogersData" class="provider-card">
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Rogers_logo.svg" alt="Rogers Logo">
@@ -161,5 +166,30 @@ footer {
     &copy; 2025 Internet Plans
 </footer>
 
+<script>
+    function search(){
+        let query = document.getElementById("search-input").value;
+
+        // Send data to Spring Boot API
+        fetch("http://localhost:8080/api/search", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ query: query })
+        })
+            .then(response => response.json())
+            .then(data => {
+                let resultsList = document.getElementById("results");
+                resultsList.innerHTML = ""; // Clear previous results
+                data.forEach(item => {
+                    let li = document.createElement("li");
+                    li.textContent = item;
+                    resultsList.appendChild(li);
+                });
+            })
+            .catch(error => console.error("Error:", error));
+    }
+</script>
 </body>
 </html>
