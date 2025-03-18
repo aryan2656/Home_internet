@@ -1,6 +1,6 @@
 package org.example.home_internet_hero.controller;
 
-import org.example.home_internet_hero.plans;
+import org.example.home_internet_hero.koodo.model.KoodoPlans;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,10 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class controller {
+public class KoodoController {
 
-    private List<plans> readCSV() {
-        List<plans> plansList = new ArrayList<>();
+    private List<KoodoPlans> readCSV() {
+        List<KoodoPlans> plansList = new ArrayList<>();
         try (Reader reader = new InputStreamReader(getClass().getResourceAsStream("/koodoPlans.csv"));
              CSVReader csvReader = new CSVReader(reader)) {
 
@@ -23,7 +23,7 @@ public class controller {
             csvReader.readNext(); // Skip header row
             while ((data = csvReader.readNext()) != null) {
                 if (data.length == 4) {
-                    plansList.add(new plans(data[0], data[1], data[2], data[3]));
+                    plansList.add(new KoodoPlans(data[0], data[1], data[2], data[3]));
                 }
             }
         } catch (Exception e) {
@@ -32,15 +32,11 @@ public class controller {
         return plansList;
     }
 
-    @GetMapping("/")
-    public String home() {
-        return "home";
-    }
 
-    @GetMapping("/data")
+    @GetMapping("/koodoData")
     public String showData(Model model) {
-        List<plans> planList = readCSV();
-        model.addAttribute("plans", planList);
-        return "plans"; // Loads the Thymeleaf template
+        List<KoodoPlans> planList = readCSV();
+        model.addAttribute("KoodoPlans", planList);
+        return "koodoData"; // Loads the Thymeleaf template
     }
 }
