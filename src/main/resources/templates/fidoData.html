@@ -1,10 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Fido Internet Plans</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0078D4;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 32px;
+        }
+        .container {
+            padding: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        h2 {
+            text-align: center;
+            font-size: 26px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #0078D4;
+            color: white;
+        }
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
-fido
+
+<header>
+    Fido Internet Plans
+</header>
+
+<div class="container">
+    <h2>Choose Your Plan</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Plan Name</th>
+            <th>Price</th>
+            <th>Speed</th>
+            <th>Offer</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="plan : ${fidoPlans}">
+            <td th:text="${plan.planName}"></td>
+            <td th:text="${plan.price}"></td>
+            <td th:text="${plan.speed}"></td>
+            <td th:text="${plan.offer}"></td>
+        </tr>
+        </tbody>
+
+    </table>
+</div>
+
 </body>
 </html>
