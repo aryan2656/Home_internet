@@ -1,0 +1,1402 @@
+<!doctype html>
+<html lang="en" data-critters-container>
+ <head>
+  <meta charset="utf-8" name="google" content="notranslate"><base href="/">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+      @keyframes enter {
+        0% {
+          opacity: 0;
+        }
+        100% {
+          opacity: 1;
+        }
+      }
+      @keyframes exit {
+        0% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0;
+        }
+      }
+      #divAppLoading {
+        position: fixed;
+        z-index: 9999999;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+      }
+
+      .svgLoader {
+        animation: svgLoaderRotator 1.4s linear infinite;
+      }
+      @keyframes svgLoaderRotator {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(270deg);
+        }
+      }
+      .svgLoader circle {
+        stroke-dasharray: 187;
+        stroke-dashoffset: 0;
+        transform-origin: center;
+        stroke: #da291c;
+        animation: svgLoaderDash 1.4s ease-in-out infinite;
+      }
+      @keyframes svgLoaderDash {
+        0% {
+          stroke-dashoffset: 27;
+        }
+        50% {
+          stroke-dashoffset: 137;
+          transform: rotate(135deg);
+        }
+        100% {
+          stroke-dashoffset: 27;
+          transform: rotate(450deg);
+        }
+      }
+    </style>
+  <style>@charset "UTF-8";.ds-bg-body-default{background-color:var(--ds-bg-body-default)}.ds-bg-body-container{background-color:var(--ds-bg-body-container)}.ds-bg-interactive-neutral-default{background-color:var(--ds-bg-interactive-neutral-default)}.ds-bg-interactive-neutral-selected{background-color:var(--ds-bg-interactive-neutral-selected)}.ds-txt-body-default{color:var(--ds-txt-body-default)}.ds-txt-body-secondary{color:var(--ds-txt-body-secondary)}.ds-txt-body-highlight{color:var(--ds-txt-body-highlight)}.ds-txt-interactive-default{color:var(--ds-txt-interactive-default)}.ds-br-body-secondary{border-color:var(--ds-br-body-secondary)}.ds-br-body-tile{border-color:var(--ds-br-body-tile)}.ds-br-interactive-default-neutral{border-color:var(--ds-br-interactive-default-neutral)}.ds-title-1{text-transform:var(--ds-title-1-text-transform, initial);letter-spacing:var(--ds-title-1-letter-spacing, initial);line-height:var(--ds-title-1-line-height, initial);font-weight:var(--ds-title-1-font-weight, initial);font-size:var(--ds-title-1-font-size, initial)}@media (min-width: 900px){.ds-title-1{font-size:var(--ds-title-1-font-size-tablet, initial)}}@media (min-width: 1200px){.ds-title-1{font-size:var(--ds-title-1-font-size-desktop, initial)}}.ds-title-2{text-transform:var(--ds-title-2-text-transform, initial);letter-spacing:var(--ds-title-2-letter-spacing, initial);line-height:var(--ds-title-2-line-height, initial);font-weight:var(--ds-title-2-font-weight, initial);font-size:var(--ds-title-2-font-size, initial)}@media (min-width: 900px){.ds-title-2{font-size:var(--ds-title-2-font-size-tablet, initial)}}@media (min-width: 1200px){.ds-title-2{font-size:var(--ds-title-2-font-size-desktop, initial)}}.ds-title-4{text-transform:var(--ds-title-4-text-transform, initial);letter-spacing:var(--ds-title-4-letter-spacing, initial);line-height:var(--ds-title-4-line-height, initial);font-weight:var(--ds-title-4-font-weight, initial);font-size:var(--ds-title-4-font-size, initial)}@media (min-width: 900px){.ds-title-4{font-size:var(--ds-title-4-font-size-tablet, initial)}}@media (min-width: 1200px){.ds-title-4{font-size:var(--ds-title-4-font-size-desktop, initial)}}.ds-title-5{text-transform:var(--ds-title-5-text-transform, initial);letter-spacing:var(--ds-title-5-letter-spacing, initial);line-height:var(--ds-title-5-line-height, initial);font-weight:var(--ds-title-5-font-weight, initial);font-size:var(--ds-title-5-font-size, initial)}@media (min-width: 900px){.ds-title-5{font-size:var(--ds-title-5-font-size-tablet, initial)}}@media (min-width: 1200px){.ds-title-5{font-size:var(--ds-title-5-font-size-desktop, initial)}}.ds-body-l{text-transform:var(--ds-body-l-text-transform, initial);letter-spacing:var(--ds-body-l-letter-spacing, initial);line-height:var(--ds-body-l-line-height, initial);font-weight:var(--ds-body-l-font-weight, initial);font-size:var(--ds-body-l-font-size, initial)}.ds-body-r{text-transform:var(--ds-body-r-text-transform, initial);letter-spacing:var(--ds-body-r-letter-spacing, initial);line-height:var(--ds-body-r-line-height, initial);font-weight:var(--ds-body-r-font-weight, initial);font-size:var(--ds-body-r-font-size, initial)}.ds-legal{text-transform:var(--ds-legal-text-transform, initial);letter-spacing:var(--ds-legal-letter-spacing, initial);line-height:var(--ds-legal-line-height, initial);font-weight:var(--ds-legal-font-weight, initial);font-size:var(--ds-legal-font-size, initial)}.ds-overline{text-transform:var(--ds-overline-text-transform, initial);letter-spacing:var(--ds-overline-letter-spacing, initial);line-height:var(--ds-overline-line-height, initial);font-weight:var(--ds-overline-font-weight, initial);font-size:var(--ds-overline-font-size, initial)}.ds-txt-button{text-transform:var(--ds-txt-button-text-transform, initial);letter-spacing:var(--ds-txt-button-letter-spacing, initial);line-height:var(--ds-txt-button-line-height, initial);font-weight:var(--ds-txt-button-font-weight, initial);font-size:var(--ds-txt-button-font-size, initial)}html{box-sizing:border-box;-ms-overflow-style:scrollbar}html,body{height:100%}*,*:before,*:after{box-sizing:inherit}*{padding:0;margin:0}a{text-decoration:none}hr{height:1px;border:none;border-bottom:1px solid #cccccc}input::-ms-clear{display:none}@font-face{font-family:Ted Next Var;src:url(https://assets.rogers-assets.com/v3/fonts/TedNextVar-Regular.woff2?v=3.17.0) format("woff2 supports variations");src:url(https://assets.rogers-assets.com/v3/fonts/TedNextVar-Regular.woff2?v=3.17.0) format("woff2 supports variations"),url(https://assets.rogers-assets.com/v3/fonts/TedNextVar-Regular.woff2?v=3.17.0) format("woff2-variations");font-weight:100 900;font-style:normal;font-display:swap}@font-face{font-family:Ted Next Var;src:url(https://assets.rogers-assets.com/v3/fonts/TedNextVar-Italic.woff2?v=3.17.0) format("woff2 supports variations");src:url(https://assets.rogers-assets.com/v3/fonts/TedNextVar-Italic.woff2?v=3.17.0) format("woff2 supports variations"),url(https://assets.rogers-assets.com/v3/fonts/TedNextVar-Italic.woff2?v=3.17.0) format("woff2-variations");font-weight:100 900;font-style:italic;font-display:swap}@font-face{font-family:Ted Next;src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-Light.woff2?v=3.17.0) format("woff2");src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-Light.woff2?v=3.17.0) format("woff2"),url(https://assets.rogers-assets.com/v3/fonts/TedNext-Light.ttf?v=3.17.0) format("truetype");font-weight:100;font-style:normal;font-display:swap}@font-face{font-family:Ted Next;src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-LightItalic.woff2?v=3.17.0) format("woff2");src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-LightItalic.woff2?v=3.17.0) format("woff2"),url(https://assets.rogers-assets.com/v3/fonts/TedNext-LightItalic.ttf?v=3.17.0) format("truetype");font-weight:100;font-style:italic;font-display:swap}@font-face{font-family:Ted Next;src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-Regular.woff2?v=3.17.0) format("woff2");src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-Regular.woff2?v=3.17.0) format("woff2"),url(https://assets.rogers-assets.com/v3/fonts/TedNext-Regular.ttf?v=3.17.0) format("truetype");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:Ted Next;src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-Italic.woff2?v=3.17.0) format("woff2");src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-Italic.woff2?v=3.17.0) format("woff2"),url(https://assets.rogers-assets.com/v3/fonts/TedNext-Italic.ttf?v=3.17.0) format("truetype");font-weight:400;font-style:italic;font-display:swap}@font-face{font-family:Ted Next;src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-Medium.woff2?v=3.17.0) format("woff2");src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-Medium.woff2?v=3.17.0) format("woff2"),url(https://assets.rogers-assets.com/v3/fonts/TedNext-Medium.ttf?v=3.17.0) format("truetype");font-weight:500;font-style:normal;font-display:swap}@font-face{font-family:Ted Next;src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-SemiBold.woff2?v=3.17.0) format("woff2");src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-SemiBold.woff2?v=3.17.0) format("woff2"),url(https://assets.rogers-assets.com/v3/fonts/TedNext-SemiBold.ttf?v=3.17.0) format("truetype");font-weight:600;font-style:normal;font-display:swap}@font-face{font-family:Ted Next;src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-SemiBoldItalic.woff2?v=3.17.0) format("woff2");src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-SemiBoldItalic.woff2?v=3.17.0) format("woff2"),url(https://assets.rogers-assets.com/v3/fonts/TedNext-SemiBoldItalic.ttf?v=3.17.0) format("truetype");font-weight:600;font-style:italic;font-display:swap}@font-face{font-family:Ted Next;src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-DemiBold.woff2?v=3.17.0) format("woff2");src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-DemiBold.woff2?v=3.17.0) format("woff2"),url(https://assets.rogers-assets.com/v3/fonts/TedNext-DemiBold.ttf?v=3.17.0) format("truetype");font-weight:650;font-style:normal;font-display:swap}@font-face{font-family:Ted Next;src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-DemiBoldItalic.woff2?v=3.17.0) format("woff2");src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-DemiBoldItalic.woff2?v=3.17.0) format("woff2"),url(https://assets.rogers-assets.com/v3/fonts/TedNext-DemiBoldItalic.ttf?v=3.17.0) format("truetype");font-weight:650;font-style:italic;font-display:swap}@font-face{font-family:Ted Next;src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-Bold.woff2?v=3.17.0) format("woff2");src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-Bold.woff2?v=3.17.0) format("woff2"),url(https://assets.rogers-assets.com/v3/fonts/TedNext-Bold.ttf?v=3.17.0) format("truetype");font-weight:700;font-style:normal;font-display:swap}@font-face{font-family:Ted Next;src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-BoldItalic.woff2?v=3.17.0) format("woff2");src:url(https://assets.rogers-assets.com/v3/fonts/TedNext-BoldItalic.woff2?v=3.17.0) format("woff2"),url(https://assets.rogers-assets.com/v3/fonts/TedNext-BoldItalic.ttf?v=3.17.0) format("truetype");font-weight:700;font-style:italic;font-display:swap}*{font-family:Ted Next,sans-serif}@supports (font-variation-settings: normal){*{font-family:Ted Next Var,sans-serif}}html{font-size:62.5%}body{font-size:1.6rem;color:#1f1f1f}p{font-size:var(--ds-body-r-font-size, initial);text-transform:var(--ds-body-r-text-transform, initial);line-height:var(--ds-body-r-line-height, initial);letter-spacing:var(--ds-body-r-letter-spacing, initial);font-weight:var(--ds-body-r-font-weight, initial);margin-bottom:1.6rem;margin-bottom:0}ul,ol{padding-left:24px;margin-bottom:0}ul li,ol li{font-size:var(--ds-body-r-font-size, initial);text-transform:var(--ds-body-r-text-transform, initial);line-height:var(--ds-body-r-line-height, initial);letter-spacing:var(--ds-body-r-letter-spacing, initial);font-weight:var(--ds-body-r-font-weight, initial);margin-bottom:1.6rem;margin-bottom:8px;padding-left:16px}ul li:last-child,ol li:last-child{margin-bottom:0}a{color:var(--ds-txt-interactive-link);text-decoration:underline;-webkit-tap-highlight-color:transparent}a:hover,a:focus{text-decoration-thickness:3px}a:focus{outline:none;box-shadow:0 0 0 2px var(--ds-br-interactive-default),0 0 0 5px var(--ds-focus)}sup{font-size:50%;line-height:1}* h1{font-size:var(--ds-title-1-font-size, initial);text-transform:var(--ds-title-1-text-transform, initial);letter-spacing:var(--ds-title-1-letter-spacing, initial);line-height:var(--ds-title-1-line-height, initial);font-weight:var(--ds-title-1-font-weight, initial);margin-bottom:3.2rem}@media (min-width: 900px){* h1{font-size:var(--ds-title-1-font-size-tablet, initial)}}@media (min-width: 1200px){* h1{font-size:var(--ds-title-1-font-size-desktop, initial)}}@media (min-width: 900px){* h1{margin-bottom:4rem}}* h2{font-size:var(--ds-title-2-font-size, initial);text-transform:var(--ds-title-2-text-transform, initial);letter-spacing:var(--ds-title-2-letter-spacing, initial);line-height:var(--ds-title-2-line-height, initial);font-weight:var(--ds-title-2-font-weight, initial);margin-bottom:1.6rem}@media (min-width: 900px){* h2{font-size:var(--ds-title-2-font-size-tablet, initial)}}@media (min-width: 1200px){* h2{font-size:var(--ds-title-2-font-size-desktop, initial)}}@media (min-width: 900px){* h2{margin-bottom:2.4rem}}*.text-bold{font-weight:700!important}*.text-semi{font-weight:600!important}[mode=dark],[mode=light]{color:var(--ds-txt-body-default)}.rds-icon-right:before{content:"\e906"}.rds-icon-chevron-down:before{content:"\e904"}.rds-icon-info:before{content:"\e941"}.rds-pictogram-family:before{content:"\e91b"}.rds-pictogram-money-back:before{content:"\e938"}.rds-pictogram-device-financing:before{content:"\e945"}.rds-pictogram-canada-usa:before{content:"\e954"}.rds-pictogram-mix-match-devices:before{content:"\e967"}.rds-pictogram-monitoring:before{content:"\e969"}.rds-pictogram-reliable:before{content:"\e97a"}.rds-pictogram-travel:before{content:"\e982"}.position-relative{position:relative!important}.position-absolute{position:absolute!important}@media (min-width: 900px){.position-md-absolute{position:absolute!important}.left-md-0{left:0!important}.top-md-0{top:0!important}.right-md-0{right:0!important}.bottom-md-0{bottom:0!important}}.d-none{display:none!important}.d-inline-block{display:inline-block!important}.d-block{display:block!important}.d-flex{display:flex!important}.d-inline-flex{display:inline-flex!important}@media (min-width: 900px){.d-md-none{display:none!important}.d-md-block{display:block!important}}.m-0{margin:0!important}.mt-8{margin-top:8px!important}.mt-16{margin-top:16px!important}.-mt-32{margin-top:-32px!important}@media (min-width: 900px){.mt-md-0{margin-top:0!important}}.mb-0{margin-bottom:0!important}.mb-4{margin-bottom:4px!important}.mb-8{margin-bottom:8px!important}.mb-12{margin-bottom:12px!important}.mb-16{margin-bottom:16px!important}.mb-24{margin-bottom:24px!important}@media (min-width: 900px){.mb-md-0{margin-bottom:0!important}.mb-md-24{margin-bottom:24px!important}}@media (min-width: 600px){.mr-sm-16{margin-right:16px!important}.mr-sm-24{margin-right:24px!important}}.ml-8{margin-left:8px!important}.ml-16{margin-left:16px!important}.ml-24{margin-left:24px!important}.mx-0{margin-left:0!important;margin-right:0!important}.mx-6{margin-left:6px!important;margin-right:6px!important}.my-12{margin-top:12px!important;margin-bottom:12px!important}.w-100{width:100%!important}.h-100{height:100%!important}.h-272{height:272px!important}.h-336{height:336px!important}.w-48{width:48px!important}@media (min-width: 600px){.w-sm-auto{width:auto!important}}@media (min-width: 900px){.w-md-auto{width:auto!important}.h-md-414{height:414px!important}.h-md-564{height:564px!important}}@media (min-width: 1200px){.h-lg-564{height:564px!important}}.mw-100{max-width:100%!important}.p-0{padding:0!important}.p-24{padding:24px!important}.pt-16{padding-top:16px!important}.pt-24{padding-top:24px!important}.pt-40{padding-top:40px!important}@media (min-width: 900px){.pt-md-0{padding-top:0!important}.pt-md-56{padding-top:56px!important}}.pb-16{padding-bottom:16px!important}.pb-24{padding-bottom:24px!important}.pb-40{padding-bottom:40px!important}@media (min-width: 900px){.pb-md-0{padding-bottom:0!important}.pb-md-16{padding-bottom:16px!important}.pb-md-56{padding-bottom:56px!important}}.pr-0{padding-right:0!important}.pr-48{padding-right:48px!important}@media (min-width: 900px){.pr-md-0{padding-right:0!important}.pr-md-12{padding-right:12px!important}.pr-md-24{padding-right:24px!important}}.pl-0{padding-left:0!important}@media (min-width: 900px){.pl-md-0{padding-left:0!important}.pl-md-12{padding-left:12px!important}.pl-md-24{padding-left:24px!important}}.px-0{padding-left:0!important;padding-right:0!important}.px-8{padding-left:8px!important;padding-right:8px!important}.px-16{padding-left:16px!important;padding-right:16px!important}.px-24{padding-left:24px!important;padding-right:24px!important}@media (min-width: 600px){.px-sm-32{padding-left:32px!important;padding-right:32px!important}}@media (min-width: 900px){.px-md-12{padding-left:12px!important;padding-right:12px!important}.px-md-24{padding-left:24px!important;padding-right:24px!important}.px-md-32{padding-left:32px!important;padding-right:32px!important}}.py-16{padding-top:16px!important;padding-bottom:16px!important}.py-24{padding-top:24px!important;padding-bottom:24px!important}.py-32{padding-top:32px!important;padding-bottom:32px!important}.py-40{padding-top:40px!important;padding-bottom:40px!important}@media (min-width: 600px){.py-sm-32{padding-top:32px!important;padding-bottom:32px!important}}@media (min-width: 900px){.py-md-56{padding-top:56px!important;padding-bottom:56px!important}}.full-screen{position:absolute!important;inset:0!important}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.outline-none:focus{outline:none}.ds-moz-focus-inner::-moz-focus-inner{border:0}.ds-pointer{cursor:pointer}.ds-shadow{box-shadow:0 1px 2px #1f1f1f33}.ds-no-overflow{overflow:hidden}.ds-trim-last>*:last-child{margin-bottom:0!important}[mode=dark]{--ds-overlay-color: 255, 255, 255;--ds-overlay-reverse-color: 0, 0, 0}[mode=light]{--ds-overlay-color: 0, 0, 0;--ds-overlay-reverse-color: 255, 255, 255}@media (min-width: 900px){.no-shadow-md{box-shadow:none!important}}.container{width:100%;padding-right:24px;padding-left:24px;margin-right:auto;margin-left:auto}@media (min-width: 1200px){.container{max-width:1200px}}.row{display:flex;flex-wrap:wrap;margin-right:-12px;margin-left:-12px}.col-md-8,.col-md-6,.col-sm-6,.col-12{position:relative;width:100%;min-height:1px;padding-right:12px;padding-left:12px}.col-12{flex:0 0 100%;max-width:100%}@media (min-width: 600px){.col-sm-6{flex:0 0 50%;max-width:50%}.offset-sm-3{margin-left:25%}}@media (min-width: 900px){.col-md-6{flex:0 0 50%;max-width:50%}.col-md-8{flex:0 0 66.6666666667%;max-width:66.6666666667%}}.flex-row{flex-direction:row!important}.flex-column{flex-direction:column!important}.flex-row-reverse{flex-direction:row-reverse!important}.flex-column-reverse{flex-direction:column-reverse!important}.flex-wrap{flex-wrap:wrap!important}.flex-shrink-0{flex-shrink:0!important}.justify-content-start{justify-content:flex-start!important}.justify-content-center{justify-content:center!important}.justify-content-between{justify-content:space-between!important}.align-items-start{align-items:flex-start!important}.align-items-center{align-items:center!important}@media (min-width: 900px){.flex-md-row{flex-direction:row!important}.flex-md-row-reverse{flex-direction:row-reverse!important}.justify-content-md-start{justify-content:flex-start!important}.justify-content-md-center{justify-content:center!important}.justify-content-md-between{justify-content:space-between!important}.align-items-md-center{align-items:center!important}.align-self-md-center{align-self:center!important}}.gap-8{gap:8px}.gap-12{gap:12px}.gap-16{gap:16px}.gap-24{gap:24px}@media (min-width: 900px){.gap-md-12{gap:12px}.gap-md-24{gap:24px}.gap-md-32{gap:32px}}.text-left{text-align:left!important}.text-center{text-align:center!important}@media (min-width: 900px){.text-md-left{text-align:left!important}}.text-no-decoration{text-decoration:none;text-decoration-thickness:auto!important}.text-nowrap{white-space:nowrap!important}.ds-border-bottom{border-style:solid;border-color:var(--ds-br-body-default)!important;border-width:0px;border-bottom-width:1px}@media (min-width: 900px){.ds-border-md-right{border-style:solid;border-color:var(--ds-br-body-default)!important;border-width:0px;border-right-width:1px}}.b-0{border-width:0px!important}.b-1{border-width:1px!important}@media (min-width: 900px){.bb-md-0{border-bottom-width:0px!important}}.by-1{border-top-width:1px!important;border-bottom-width:1px!important}.ds-corners{border-radius:4px}@media (min-width: 900px){.bradius-md-0{border-radius:0!important}}.b-solid{border-style:solid}.ratio-16by9{padding-top:56.25%}.ratio-1by1{padding-top:100%}.ratio-auto{padding-top:0}@media (min-width: 900px){.ratio-md-1by1{padding-top:100%}}.group:hover .group-hover\:text-bold{font-weight:700!important}.z-2{z-index:2}@-ms-viewport{width:device-width}.ds-bgcolor-transparent{background-color:#0000!important}@media (min-width: 900px){.ds-bgcolor-md-transparent{background-color:#0000!important}}.ds-formField__autoComplete{z-index:3;top:45px;margin:0}.ds-formField__inputContainer{height:48px;padding:0 16px}.ds-formField__inputContainer input::placeholder{color:var(--ds-txt-interactive-disabled)}.ds-formField__inputContainer.-hideLabelVisually .ds-input{padding-top:0!important;height:auto;opacity:1}.ds-formField__labelWrapper{font-size:var(--ds-body-r-font-size, initial);text-transform:var(--ds-body-r-text-transform, initial);line-height:var(--ds-body-r-line-height, initial);letter-spacing:var(--ds-body-r-letter-spacing, initial);font-weight:var(--ds-body-r-font-weight, initial);margin-bottom:1.6rem;left:16px;display:block;width:calc(100% - 32px);pointer-events:none;top:12px}.ds-formField__labelWrapper .ds-inputLabel{white-space:nowrap;text-overflow:ellipsis}.ds-formField__suffix{align-self:center;height:44px;min-width:48px;margin-right:-16px;display:none}.ds-formField.-float .ds-formField__labelWrapper{font-size:12px;top:0;padding-top:7px;z-index:auto;padding-bottom:0}.ds-formField.-float .ds-formField__suffix{z-index:1}.ds-formField.-float .ds-formField__inputContainer:hover{border-width:2px!important;padding:0 15px}.ds-formField.-float .ds-formField__inputContainer:hover .ds-formField__labelWrapper{padding-top:6px;left:15px}.ds-input{color:var(--ds-txt-interactive-default-neutral);-webkit-appearance:none;-moz-appearance:none;border:none;text-overflow:ellipsis;outline:none;cursor:text;min-width:0px}.ds-input::-ms-reveal{display:none}.ds-checkbox{display:inline-block}.ds-checkboxLabel{min-height:48px}.ds-checkbox__input:hover:not(:disabled)~.ds-checkboxLabel__container{cursor:pointer}.ds-checkbox__input:hover:not(:disabled)~.ds-checkbox__box{border-width:2px;cursor:pointer}.ds-checkbox__input:checked+.ds-checkbox__box,.ds-checkbox__input:indeterminate+.ds-checkbox__box{border-width:2px}.ds-checkbox__box{width:24px;min-width:24px;height:24px;border:1px solid;background-color:var(--ds-bg-interactive-neutral-default);position:relative;display:flex;justify-content:center;align-items:center;flex-wrap:initial;border-color:var(--ds-br-interactive-default-neutral);font-size:1.6rem;font-weight:700;color:var(--ds-icon-interactive-highlight);border-radius:4px}.ds-checkbox__input{pointer-events:none}.ds-checkbox__input:disabled~.ds-checkboxLabel__container{color:var(--ds-txt-interactive-disabled)}.ds-checkbox__input:disabled+.ds-checkbox__box{border-color:var(--ds-br-interactive-disabled);color:var(--ds-icon-interactive-disabled);background-color:var(--ds-bg-interactive-disabled)}.ds-picture{position:relative}.ds-picture:not(.ratio-auto) picture{position:absolute;inset:0}.ds-picture.-product img{object-fit:contain}.ds-picture img{width:100%;height:100%;object-fit:cover;display:block}@media all and (-ms-high-contrast: none),(-ms-high-contrast: active){.ds-picture.-product img{max-height:100%!important;max-width:100%!important;width:auto!important}.ds-picture:not(.ratio-auto) picture{overflow:hidden}.ds-picture:not(.ratio-auto) picture img{position:absolute;height:auto;width:100%;top:50%;left:50%;transform:translate(-50%,-50%)}}.ds-label-el__wrapper{vertical-align:top}span.ds-label-el{display:inline-block}.ds-popover{width:48px;height:48px}.ds-popover::-moz-focus-inner{border:0}.ds-popover.-inline{height:inherit;width:inherit;font-size:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit;text-align:inherit;color:inherit}.ds-popover.-inline .ds-popover-host-wrapper{margin-left:4px}.ds-popover.-inline .ds-popover__icon{top:2px}.ds-popover ds-icon.ds-popover__icon{position:relative;width:20px;min-width:20px;height:20px;border:2px solid var(--ds-icon-interactive-link);border-radius:50%;color:var(--ds-icon-interactive-link);transition:all .3s;box-sizing:content-box}.ds-popover ds-icon.ds-popover__icon .ds-icon{line-height:20px}.ds-popover:hover .ds-popover__icon{color:var(--ds-icon-interactive-default);background-color:var(--ds-icon-interactive-link);transform:scale(1.4)}.ds-popover .ds-popover-host-wrapper{width:24px;height:24px}ds-price{display:inline-block}.ds-price{display:inline-block}.ds-price__amount{display:grid;grid-template-columns:auto auto auto auto;grid-template-rows:20px 20px}.ds-price__amount.-en{grid-template-areas:"sign currency dollars cents" ". . dollars frequency"}.ds-price__amountCurrency{grid-area:currency}.ds-price__amountDollars{grid-area:dollars;font-size:4.2rem;line-height:4.2rem;height:42px;letter-spacing:-.3px}.ds-price__amountCentsWrapper{grid-area:cents}.ds-price.-inline .ds-price__amount{display:flex}.ds-price.-inline .ds-price__amount,.ds-price.-inline .ds-price__amount *{font-size:inherit;font-weight:inherit;height:inherit;line-height:inherit}.cdk-visually-hidden{border:0;clip:rect(0 0 0 0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;white-space:nowrap;outline:0;-webkit-appearance:none;-moz-appearance:none;left:0}.ds-button.-primary:disabled,.ds-button.-secondary:disabled{pointer-events:none;color:var(--ds-txt-interactive-disabled)!important;border-color:var(--ds-br-interactive-disabled)!important;background-color:var(--ds-bg-interactive-disabled)!important}@media (hover: hover) and (pointer: fine){.ds-button:hover{outline:none;text-decoration:none;box-shadow:none}.ds-button:hover:not(.-icon):not([disabled]) .ds-button__copy{text-decoration:underline}.ds-button:hover.-primary{background-color:var(--ds-bg-interactive-hover);border-color:var(--ds-bg-interactive-hover);color:var(--ds-txt-interactive-hover)}.ds-button:hover.-secondary{background-color:var(--ds-bg-interactive-neutral-default);border-color:var(--ds-br-interactive-highlight-hover);color:var(--ds-txt-interactive-highlight-hover)}}.ds-button{height:48px;border:1px solid transparent;background-color:transparent;transition:all .1s linear;padding:0 16px}.ds-button::-moz-focus-inner{border:0}.ds-button:focus{outline:none;text-decoration:none;box-shadow:none}.ds-button__wrapper{height:100%;width:100%}.ds-button__copy{text-overflow:ellipsis}.ds-button.-primary{background-color:var(--ds-bg-interactive-default);border-color:var(--ds-bg-interactive-default);color:var(--ds-txt-interactive-default)}.ds-button.-primary:active{background-color:var(--ds-bg-interactive-hover);border-color:var(--ds-bg-interactive-hover);color:var(--ds-txt-interactive-hover)}.ds-button.-secondary{background:var(--ds-bg-interactive-neutral-default);border-color:var(--ds-br-interactive-highlight);color:var(--ds-txt-interactive-highlight)}.ds-button.-secondary:active{background-color:var(--ds-bg-interactive-neutral-default);border-color:var(--ds-br-interactive-highlight-hover);color:var(--ds-txt-interactive-highlight-hover)}.ds-button.-primary:active,.ds-button.-secondary:active{box-shadow:inset 4px 4px 4px #0000004d}@media (hover: hover) and (pointer: fine){.ds-link:hover{text-decoration:none;outline:none;box-shadow:none}.ds-link:hover .ds-link__copy{text-decoration:underline}.ds-link:hover.-cta .ds-link__copy{text-decoration-thickness:3px!important}}.ds-link:focus{text-decoration:none;outline:none;box-shadow:none}.ds-link__container{min-height:48px}.ds-link ds-icon{vertical-align:sub}@media all and (-ms-high-contrast: none),(-ms-high-contrast: active){.ds-link ds-icon{vertical-align:top}}.ds-link ds-icon.right{margin-left:4px}.ds-link.-cta .ds-link__copy{text-decoration:underline}@-webkit-keyframes sk-rotate{to{-webkit-transform:rotate(360deg)}}@-webkit-keyframes sk-bounce{0%,to{-webkit-transform:scale(0)}50%{-webkit-transform:scale(1)}}.dsa-layout>.row>*{display:block}ds-icon{display:inline-flex;justify-content:center}ds-icon.-size-24{min-width:24px;width:24px;height:24px}ds-icon.-size-24 .ds-icon{font-size:2.4rem;line-height:24px}main{margin-top:80px}@media (min-width: 1200px){main{margin-top:128px}}.rich-text-wrapper>*:not(:last-child){margin-bottom:16px!important}.rich-text-wrapper ul li>p{display:inline!important}
+</style>
+  <link rel="stylesheet" href="styles-QPKVK6JF.css" media="print" onload="this.media='all'">
+  <noscript>
+   <link rel="stylesheet" href="styles-QPKVK6JF.css">
+  </noscript>
+  <script type="application/ld+json" id="homepage-schema">{"@context":"https://schema.org","@type":"Corporation","name":"Rogers Bank","url":"https://www.rogersbank.com/en","logo":"https://www.rogers-assets.com/global-elements/rogers/rb/logo_en.png","description":"Rogers Bank has been delivering innovative credit cards to Canadians for more than a decade. Rogers Bank’s products and services help customers get more out of Rogers, rewarding customers for their everyday spending and offering more flexible financing options for new devices."}</script>
+  <title>Rogers Red Mastercard | Rogers Bank</title>
+  <meta property="og:title" content="Rogers Red Mastercard | Rogers Bank">
+  <meta name="description" content="Everything you need to know about the Rogers Red Mastercard.">
+  <meta property="og:description" content="Everything you need to know about the Rogers Red Mastercard.">
+  <link rel="canonical" href="https://www.rogersbank.com/en/rogers_red_mastercard_details">
+  <meta property="og:url" content="https://www.rogersbank.com/en/rogers_red_mastercard_details">
+  <meta name="google-site-verification" content="X6irj5jrViJHqXfRiLMx503F2u4TwN42Ygd2ZIe_e_c">
+  <link rel="alternate" hreflang="en" href="https://www.rogersbank.com/en/rogers_red_mastercard_details">
+  <link rel="alternate" hreflang="fr" href="https://www.rogersbank.com/fr/rogers_red_mastercard_details">
+  <link rel="alternate" hreflang="x-default" href="https://www.rogersbank.com/en/rogers_red_mastercard_details">
+  <meta property="og:image" content="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png">
+  <style ng-app-id="ng">.cookie-popup[_ngcontent-ng-c1507547615]{position:fixed;bottom:0;left:50%;transform:translate(-50%);background-color:#f1fdff;padding:15px;box-shadow:0 0 10px #0003;width:100%;z-index:99}.cookie-popup[_ngcontent-ng-c1507547615]   p[_ngcontent-ng-c1507547615]{margin:0;font-size:16px}.cookie-popup[_ngcontent-ng-c1507547615]   .head_cookie[_ngcontent-ng-c1507547615]{font-weight:700;color:#003d46}.cookie-popup[_ngcontent-ng-c1507547615]   button[_ngcontent-ng-c1507547615]{background-color:#f1fdff;color:#003d46;border:none;padding:10px 20px;cursor:pointer;border-radius:5px}.cookie-popup[_ngcontent-ng-c1507547615]   button[_ngcontent-ng-c1507547615]:hover{color:#003d46}.icon_cookie[_ngcontent-ng-c1507547615]{padding-right:1rem}.rds-icon-close[_ngcontent-ng-c1507547615]:before{content:"\e901";color:#003d46!important}  .rds-icon-info-filled:before{content:"\e99a";color:#003d46!important}</style>
+  <style ng-app-id="ng">.inspect-mode{margin:8px;padding:4px 8px 8px;border:rgb(71,11,71) 3px solid;border-radius:4px;height:auto!important}.inspect-mode-link{display:block;color:#470b47;cursor:pointer;padding-bottom:8px}[mode=dark] .inspect-mode{border-color:silver}[mode=dark] .inspect-mode-link{color:#fff!important}
+</style>
+  <style ng-app-id="ng">.dsa-hero-billboard__content:empty{display:none}
+</style>
+  <style ng-app-id="ng">.title-style[_ngcontent-ng-c2002089166]{font-size:2.4rem;font-weight:700}ds-tile[_ngcontent-ng-c2002089166]{background-color:#fafafa}.new-comer-btn[_ngcontent-ng-c2002089166]{padding:10px}.new-comer-btn[_ngcontent-ng-c2002089166]   a[_ngcontent-ng-c2002089166]{width:100%}@media screen and (max-width: 768px){img[_ngcontent-ng-c2002089166]{height:370px}}[_nghost-ng-c2002089166]     ui-block-cta ds-cta{width:100%}  ds-cta{width:100%!important;display:block}.width100[_ngcontent-ng-c2002089166]{width:100%}</style>
+  <link as="image" href="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png" rel="preload" fetchpriority="high" imagesizes="(max-width: 319.9px) 480px, (min-width: 320px) and (max-width: 383.9px) 576px, (min-width: 384px) and (max-width: 449.9px) 675px, (min-width: 450px) and (max-width: 514.9px) 773px, (min-width: 515px) and (max-width: 563.9px) 846px, (min-width: 564px) and (max-width: 599.9px) 900px, (min-width: 600px) and (max-width: 639.9px) 960px, (min-width: 640px) and (max-width: 749.9px) 1125px, (min-width: 750px) and (max-width: 827.9px) 1242px, (min-width: 828px) and (max-width: 899.9px) 1350px, (min-width: 900px) and (max-width: 909.9px) 1365px, (min-width: 910px) and (max-width: 1079.9px) 1620px, (min-width: 1080px) and (max-width: 1199.9px) 1800px, (min-width: 1200px) and (max-width: 1209.9px) 1815px, (min-width: 1210px) 100vw" imagesrcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=480&amp;h=408&amp;fm=avif&amp;q=100 480w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=576&amp;h=408&amp;fm=avif&amp;q=100 576w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=675&amp;h=408&amp;fm=avif&amp;q=100 675w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=773&amp;h=408&amp;fm=avif&amp;q=100 773w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=846&amp;h=408&amp;fm=avif&amp;q=100 846w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=900&amp;h=408&amp;fm=avif&amp;q=100 900w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=960&amp;h=408&amp;fm=avif&amp;q=100 960w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1125&amp;h=408&amp;fm=avif&amp;q=100 1125w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1242&amp;h=408&amp;fm=avif&amp;q=100 1242w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1350&amp;h=408&amp;fm=avif&amp;q=100 1350w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1365&amp;h=621&amp;fm=avif&amp;q=100 1365w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1620&amp;h=621&amp;fm=avif&amp;q=100 1620w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1800&amp;h=621&amp;fm=avif&amp;q=100 1800w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1815&amp;h=846&amp;fm=avif&amp;q=100 1815w, //images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?h=846&amp;fm=avif&amp;q=100 ">
+  <style ng-app-id="ng">#features[_ngcontent-ng-c3247708919]   .disabled[_ngcontent-ng-c3247708919]{opacity:40%}</style>
+  <style ng-app-id="ng">.ds-expander__expansionArea[_ngcontent-ng-c476109515]{opacity:0}.-collapsed[_ngcontent-ng-c476109515]{visibility:hidden;opacity:0;transition:all .4s cubic-bezier(.4,0,.2,1)}.-semiExpanded[_ngcontent-ng-c476109515]{visibility:visible;opacity:1;transition:opacity .4s cubic-bezier(.4,0,.2,1),max-height .4s cubic-bezier(.4,0,.2,1)}.-expanded[_ngcontent-ng-c476109515]{visibility:visible;opacity:1;transition:opacity .4s cubic-bezier(.4,0,.2,1),max-height cubic-bezier(.4,0,.2,1)}ds-filter[_nghost-ng-c476109515]   .-collapsed[_ngcontent-ng-c476109515], ds-filter   [_nghost-ng-c476109515]   .-collapsed[_ngcontent-ng-c476109515]{transition:none}</style>
+ </head>
+ <body>
+  <!--Do NOT remove hidden <p> and <a> tags. Needed for Analytics. Especially if main content loads slowly-->
+  <p hidden></p><a hidden></a> <!--    https://reqcentral.com/browse/CU-45887--> <!--    <div id="divAppLoading">--> <!--      <svg--> <!--        class="svgLoader"--> <!--        width="65px"--> <!--        height="65px"--> <!--        viewBox="0 0 66 66"--> <!--        xmlns="http://www.w3.org/2000/svg"--> <!--      >--> <!--        <circle--> <!--          fill="none"--> <!--          stroke-width="6"--> <!--          stroke-linecap="round"--> <!--          cx="33"--> <!--          cy="33"--> <!--          r="30"--> <!--        ></circle>--> <!--      </svg>--> <!--    </div>--> <ge-header config="{&quot;isHeaderEnabled&quot;:true}"></ge-header> <app-root _nghost-ng-c2219046469 ng-version="17.2.2" ng-server-context="ssg">
+   <main _ngcontent-ng-c2219046469 id="mainContent" tabindex="-1">
+    <router-outlet _ngcontent-ng-c2219046469></router-outlet><ng-component class="ng-star-inserted">
+     <div id="divDynamicPage" class="ng-star-inserted">
+      <div class="ng-star-inserted">
+       <!----><credit-card-page class="ng-star-inserted">
+        <ui-block-hero-billboard class="ng-star-inserted">
+         <ui-block-inspector data-testid="hero-billboard-6SYmUXxMSSwOUWc3jGiTIs" class="ng-star-inserted">
+          <div class="ng-star-inserted">
+           <!----><a aria-hidden="false" tabindex="-1" id="6SYmUXxMSSwOUWc3jGiTIs"></a><!---->
+           <div class="ds-bg-body-default" mode="light">
+            <dsa-hero-billboard>
+             <div class="dsa-hero-billboard position-relative">
+              <div class="position-relative">
+               <!---->
+               <div class="ds-bg-transparent dsa-hero-billboard__bgColor h-336 h-md-564 ng-star-inserted"></div><!---->
+               <div class="dsa-hero-billboard__fgImage d-md-none full-screen mx-0 row align-items-center ng-star-inserted">
+                <div class="col-12 col-sm-6 offset-sm-3 d-flex justify-content-center px-24 -mt-32">
+                 <ds-picture ratio="auto" height="272" heightmd="414" heightlg="564" variant="product" class="w-100 ng-star-inserted">
+                  <span class="ds-picture d-block ds-no-overflow ratio-auto h-272 h-md-414 h-lg-564 -product"><picture>
+                    <source dspicturesource media="(max-width: 319.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=480&amp;h=408&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 320px) and (max-width: 383.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=576&amp;h=408&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 384px) and (max-width: 449.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=675&amp;h=408&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 450px) and (max-width: 514.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=773&amp;h=408&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 515px) and (max-width: 563.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=846&amp;h=408&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 564px) and (max-width: 599.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=900&amp;h=408&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 600px) and (max-width: 639.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=960&amp;h=408&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 640px) and (max-width: 749.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1125&amp;h=408&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 750px) and (max-width: 827.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1242&amp;h=408&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 828px) and (max-width: 899.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1350&amp;h=408&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 900px) and (max-width: 909.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1365&amp;h=621&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 910px) and (max-width: 1079.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1620&amp;h=621&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 1080px) and (max-width: 1199.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1800&amp;h=621&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 1200px) and (max-width: 1209.9px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?w=1815&amp;h=846&amp;fm=avif&amp;q=100" class="ng-star-inserted">
+                    <source dspicturesource media="(min-width: 1210px)" srcset="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png?h=846&amp;fm=avif&amp;q=100" class="ng-star-inserted"><!---->
+                    <img src="//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png" alt="Rogers Mastercard image." loading="eager" fetchpriority="high" class="ng-star-inserted"><!---->
+                   </picture></span><!----><!---->
+                 </ds-picture><!---->
+                </div>
+               </div><!---->
+              </div>
+              <div class="position-md-absolute top-md-0 left-md-0 right-md-0 bottom-md-0 m-0 d-flex align-items-md-center">
+               <div class="container">
+                <div class="row w-100 align-items-md-center mx-0">
+                 <div class="dsa-hero-billboard__fgImage d-none d-md-block col-md-6 ng-star-inserted">
+                  <!---->
+                 </div><!---->
+                 <div class="col-12 px-0 px-md-12 ds-txt-body-default col-md-6">
+                  <div class="px-16 py-24 px-sm-32 py-sm-32 -mt-32 mt-md-0 position-relative">
+                   <div class="ds-bg-body-default ds-corners bradius-md-0 ds-shadow no-shadow-md full-screen ds-bgcolor-md-transparent"></div>
+                   <div class="position-relative z-2 text-center text-md-left">
+                    <!----><!----><!---->
+                    <h1 class="dsa-hero-billboard__headingH1 ds-title-1 mb-16 mb-md-24 ng-star-inserted">Rogers Red Mastercard®</h1><!----><!----><!----><!----><!---->
+                    <div class="dsa-hero-billboard__content mt-16 ng-star-inserted">
+                     <ngx-dynamic-hooks class="ng-star-inserted">
+                      <div class="rich-text-wrapper">
+                       <p>3% cash back value when you redeem with Rogers.</p>
+                       <p><b class="text-bold">Exclusively for Rogers customers.</b></p>
+                       <p><b class="text-bold"><br></b></p>
+                      </div>
+                     </ngx-dynamic-hooks><!---->
+                    </div>
+                    <div class="d-flex flex-column-reverse ng-star-inserted">
+                     <!---->
+                     <div class="dsa-hero-billboard__ctas d-flex flex-wrap justify-content-center justify-content-md-start mt-8 ng-star-inserted">
+                      <dsa-cta class="w-100 w-sm-auto mt-16 mr-sm-16 d-inline-flex mw-100 ng-star-inserted">
+                       <!----><!----><!---->
+                       <a ds-button class="w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large text-no-decoration ng-star-inserted" href="void(0);" aria-label="Apply Now" tabindex="0"><span role="text" class="ds-button__wrapper d-flex justify-content-center align-items-center"><!----><span class="ds-button__copy ds-txt-button text-nowrap ds-no-overflow mw-100"><span>Apply Now</span><!----></span><!----><!----><!----></span></a><!---->
+                      </dsa-cta><dsa-cta class="w-100 w-sm-auto mt-16 d-inline-flex mw-100 ng-star-inserted">
+                       <!----><!----><!---->
+                       <a ds-button class="w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -secondary -large text-no-decoration ng-star-inserted" href="/rogers_red_mastercard_details#5nj1asvLbivw7CbhdeoiPC" aria-label="Learn More" tabindex="0"><span role="text" class="ds-button__wrapper d-flex justify-content-center align-items-center"><!----><span class="ds-button__copy ds-txt-button text-nowrap ds-no-overflow mw-100"><span>Learn More</span><!----></span><!----><!----><!----></span></a><!---->
+                      </dsa-cta><!---->
+                     </div><!---->
+                    </div><!---->
+                   </div>
+                  </div>
+                 </div>
+                </div>
+               </div>
+              </div>
+             </div><!----><!---->
+            </dsa-hero-billboard><ui-block-tile _nghost-ng-c2002089166>
+             <ui-block-inspector _ngcontent-ng-c2002089166 data-testid="legal-undefined" class="ng-star-inserted">
+              <div class="ng-star-inserted">
+               <!----><a aria-hidden="false" tabindex="-1" id="undefined"></a><!---->
+               <div _ngcontent-ng-c2002089166 class="container p-24">
+                <ds-tile _ngcontent-ng-c2002089166 class="ng-star-inserted">
+                 <div class="ds-tile h-100 b-solid b-1 ds-no-overflow ds-corners ds-bg-body-default ds-shadow ds-br-body-tile">
+                  <div _ngcontent-ng-c2002089166 class="d-flex flex-md-row flex-column ds-bg-body-container align-items-center justify-content-center justify-content-md-between">
+                   <img _ngcontent-ng-c2002089166 class="mb-4 mb-md-0" src="//images.ctfassets.net/q52gnekwj7nu/136DGFSbw0tSu2565gX51Z/c638e8452cbc7ab7c1a8cf88ceeb820f/459d673bbdc090532b634f930fb003d3__1_.jfif" alt="New to Canada" height="200">
+                   <div _ngcontent-ng-c2002089166 class="d-flex flex-column" style="padding: 12px;">
+                    <p _ngcontent-ng-c2002089166 class="ds-title-4">New to Canada?</p>
+                    <p _ngcontent-ng-c2002089166 class="ds-body-r"></p>
+                    <div class="rich-text-wrapper">
+                     <p>Help build your credit from day one. With Rogers Bank, you can utilize your credit history from select countries which can help you qualify for higher credit limits.</p>
+                    </div>
+                    <p></p>
+                   </div>
+                   <div _ngcontent-ng-c2002089166 class="d-flex pt-24 pt-md-0 w-100 w-md-auto align-items-md-center text-center ng-star-inserted" style="margin: 0px 10px 0px 10px;">
+                    <ui-block-cta _ngcontent-ng-c2002089166 class="w-100" style="width: 100%;">
+                     <ui-block-inspector data-testid="cta-69ZPgMPNbgUWyR8lbFlOCu" class="ng-star-inserted">
+                      <div class="ng-star-inserted">
+                       <!----><a aria-hidden="false" tabindex="-1" id="69ZPgMPNbgUWyR8lbFlOCu"></a><!----><dsa-cta class="d-inline-flex mw-100">
+                        <!----><!----><!---->
+                        <a ds-button class="w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large text-no-decoration ng-star-inserted" href="void(0);" aria-label="Apply Now" tabindex="0"><span role="text" class="ds-button__wrapper d-flex justify-content-center align-items-center"><!----><span class="ds-button__copy ds-txt-button text-nowrap ds-no-overflow mw-100"><span>Apply Now</span><!----></span><!----><!----><!----></span></a><!---->
+                       </dsa-cta>
+                      </div><!---->
+                     </ui-block-inspector><!---->
+                    </ui-block-cta>
+                   </div>
+                   <div _ngcontent-ng-c2002089166 class="d-flex pt-24 pt-md-0 w-100 w-md-auto align-items-md-center text-center ng-star-inserted" style="margin: 0px 10px 0px 10px;">
+                    <ui-block-cta _ngcontent-ng-c2002089166 class="w-100" style="width: 100%;">
+                     <ui-block-inspector data-testid="cta-66jzLcTU2k1COp3LyFKZfu" class="ng-star-inserted">
+                      <div class="ng-star-inserted">
+                       <!----><a aria-hidden="false" tabindex="-1" id="66jzLcTU2k1COp3LyFKZfu"></a><!----><dsa-cta class="d-inline-flex mw-100">
+                        <!----><!----><!---->
+                        <a ds-button class="w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -secondary -large text-no-decoration ng-star-inserted" href="/credit-card-for-newcomers" aria-label="Learn More" tabindex="0"><span role="text" class="ds-button__wrapper d-flex justify-content-center align-items-center"><!----><span class="ds-button__copy ds-txt-button text-nowrap ds-no-overflow mw-100"><span>Learn More</span><!----></span><!----><!----><!----></span></a><!---->
+                       </dsa-cta>
+                      </div><!---->
+                     </ui-block-inspector><!---->
+                    </ui-block-cta>
+                   </div><!---->
+                  </div>
+                 </div>
+                </ds-tile><!---->
+               </div><!---->
+              </div><!---->
+             </ui-block-inspector><!---->
+            </ui-block-tile>
+           </div>
+          </div><!---->
+         </ui-block-inspector><!---->
+        </ui-block-hero-billboard><!----><!---->
+        <ui-block-layout-container class="ng-star-inserted">
+         <ui-block-inspector data-testid="layout-container-1fsveq0u6WboGLV0W04qvU" class="ng-star-inserted">
+          <div class="ng-star-inserted">
+           <!----><a aria-hidden="false" tabindex="-1" id="1fsveq0u6WboGLV0W04qvU"></a><!---->
+           <div data-testid="ui-block-layout-container-div" class="ds-bg-body-container pb-40 pb-md-56 pt-40 pt-md-56" mode="light">
+            <div class="d-flex flex-column gap-24 gap-md-32 container">
+             <ui-block-content-block class="ng-star-inserted">
+              <ui-block-inspector data-testid="content-block-2yb0bIUln9WIzNzroXjsXD" class="ng-star-inserted">
+               <div class="ng-star-inserted">
+                <!----><a aria-hidden="false" tabindex="-1" id="2yb0bIUln9WIzNzroXjsXD"></a><!---->
+                <div class="d-flex flex-column gap-24 gap-md-32">
+                 <h2 class="ui-block-content__heading ds-title-2 mb-0 text-center ng-star-inserted">Welcome Bonus</h2><!---->
+                 <div class="ui-block-content__copy text-center ng-star-inserted">
+                  <div class="rich-text-wrapper">
+                   <p>As a welcome bonus for signing up, earn $60 cash back when you make a mobile wallet purchase within the first 90 days and 6 automatic payments within the first 8 months for your Rogers, Fido or Shaw postpaid service<sup>4</sup></p>
+                  </div>
+                 </div><!----><!----><!----><!---->
+                </div>
+               </div><!---->
+              </ui-block-inspector><!---->
+             </ui-block-content-block><!---->
+            </div>
+           </div>
+          </div><!---->
+         </ui-block-inspector><!---->
+        </ui-block-layout-container>
+        <ui-block-layout-container class="ng-star-inserted">
+         <ui-block-inspector data-testid="layout-container-5nj1asvLbivw7CbhdeoiPC" class="ng-star-inserted">
+          <div class="ng-star-inserted">
+           <!----><a aria-hidden="false" tabindex="-1" id="5nj1asvLbivw7CbhdeoiPC"></a><!---->
+           <div data-testid="ui-block-layout-container-div" class="ds-bg-body-default pb-40 pb-md-56 pt-40 pt-md-56" mode="light">
+            <div class="d-flex flex-column gap-24 gap-md-32 container">
+             <ui-block-content-block class="ng-star-inserted">
+              <ui-block-inspector data-testid="content-block-4iOe66wQHCeKOTKt1cMNdE" class="ng-star-inserted">
+               <div class="ng-star-inserted">
+                <!----><a aria-hidden="false" tabindex="-1" id="4iOe66wQHCeKOTKt1cMNdE"></a><!---->
+                <div class="d-flex flex-column gap-24 gap-md-32">
+                 <h2 class="ui-block-content__heading ds-title-2 mb-0 text-center ng-star-inserted">Being a Rogers customer has never been more rewarding</h2><!---->
+                 <div class="ui-block-content__copy text-center ng-star-inserted">
+                  <div class="rich-text-wrapper"></div>
+                 </div><!---->
+                 <div class="ui-block-content__components d-flex flex-column gap-24 gap-md-32 ng-star-inserted">
+                  <ui-block-layout-container-element class="ng-star-inserted">
+                   <ui-block-inspector data-testid="layout-container-element5smmmrMFTV6DFnxhhOcSAL" class="ng-star-inserted">
+                    <div class="ng-star-inserted">
+                     <!----><a aria-hidden="false" tabindex="-1" id="5smmmrMFTV6DFnxhhOcSAL"></a><!----><dsa-layout class="w-100">
+                      <div class="dsa-layout">
+                       <div class="row justify-content-center">
+                        <ui-block-featured-element class="ng-star-inserted">
+                         <ui-block-inspector data-testid="featured-element-4WrsxEyCUpqzXZfrPuIjUM" class="ng-star-inserted">
+                          <div class="h-100 ng-star-inserted">
+                           <!----><a aria-hidden="false" tabindex="-1" id="4WrsxEyCUpqzXZfrPuIjUM"></a><!---->
+                           <div class="h-100">
+                            <!----><!----><dsa-value-prop class="dsa-valueProp d-flex flex-column align-items-center text-center -primary ng-star-inserted">
+                             <!---->
+                             <div class="dsa-value-prop__pictogram ng-star-inserted">
+                              <ds-pictogram class="ds-pictogram">
+                              <span role="img" class="ds-icon d-inline-flex rds-pictogram-money-back" aria-hidden="true"><!----></span>
+                              </ds-pictogram>
+                             </div><!---->
+                             <p class="dsa-valueProp__heading mt-16 mb-0 w-100 ds-title-4 ng-star-inserted">Earn 2% cash back</p><!---->
+                             <p class="dsa-valueProp__body ds-body-r mb-0 w-100 mt-16 ng-star-inserted"></p>
+                             <div class="rich-text-wrapper">
+                              <p>Earn 2% unlimited cash back on all eligible non-U.S. dollar purchases if you have 1 qualifying service with Rogers, Fido or Shaw.<sup>1</sup></p>
+                              <p><b class="text-bold">Otherwise</b></p>
+                              <p>Earn 1% unlimited cash back on eligible non-U.S. dollar purchases<sup>1</sup></p>
+                             </div>
+                             <p></p><!----><!---->
+                            </dsa-value-prop><!----><!----><!---->
+                           </div>
+                          </div><!---->
+                         </ui-block-inspector><!---->
+                        </ui-block-featured-element><ui-block-featured-element class="ng-star-inserted">
+                         <ui-block-inspector data-testid="featured-element-3801DgfKntF8GzpJ3VDNSz" class="ng-star-inserted">
+                          <div class="h-100 ng-star-inserted">
+                           <!----><a aria-hidden="false" tabindex="-1" id="3801DgfKntF8GzpJ3VDNSz"></a><!---->
+                           <div class="h-100">
+                            <!----><!----><dsa-value-prop class="dsa-valueProp d-flex flex-column align-items-center text-center -primary ng-star-inserted">
+                             <!---->
+                             <div class="dsa-value-prop__pictogram ng-star-inserted">
+                              <ds-pictogram class="ds-pictogram">
+                              <span role="img" class="ds-icon d-inline-flex rds-pictogram-canada-usa" aria-hidden="true"><!----></span>
+                              </ds-pictogram>
+                             </div><!---->
+                             <p class="dsa-valueProp__heading mt-16 mb-0 w-100 ds-title-4 ng-star-inserted">Earn 2% cash back on U.S. purchases</p><!---->
+                             <p class="dsa-valueProp__body ds-body-r mb-0 w-100 mt-16 ng-star-inserted"></p>
+                             <div class="rich-text-wrapper">
+                              <p>Earn 2% unlimited cash back on all eligible purchases made in U.S. dollars.<sup>1</sup></p>
+                             </div>
+                             <p></p><!----><!---->
+                            </dsa-value-prop><!----><!----><!---->
+                           </div>
+                          </div><!---->
+                         </ui-block-inspector><!---->
+                        </ui-block-featured-element><ui-block-featured-element class="ng-star-inserted">
+                         <ui-block-inspector data-testid="featured-element-qvQ1aKunD1sWfYAkgtLee" class="ng-star-inserted">
+                          <div class="h-100 ng-star-inserted">
+                           <!----><a aria-hidden="false" tabindex="-1" id="qvQ1aKunD1sWfYAkgtLee"></a><!---->
+                           <div class="h-100">
+                            <!----><!----><dsa-value-prop class="dsa-valueProp d-flex flex-column align-items-center text-center -primary ng-star-inserted">
+                             <!---->
+                             <div class="dsa-value-prop__pictogram ng-star-inserted">
+                              <ds-pictogram class="ds-pictogram">
+                              <span role="img" class="ds-icon d-inline-flex rds-pictogram-device-financing" aria-hidden="true"><!----></span>
+                              </ds-pictogram>
+                             </div><!---->
+                             <p class="dsa-valueProp__heading mt-16 mb-0 w-100 ds-title-4 ng-star-inserted">1.5x cash back</p><!---->
+                             <p class="dsa-valueProp__body ds-body-r mb-0 w-100 mt-16 ng-star-inserted"></p>
+                             <div class="rich-text-wrapper">
+                              <p>Get 1.5x more cash back every time you redeem for Rogers, Fido or Shaw purchases<sup>2</sup></p>
+                             </div>
+                             <p></p><!----><!---->
+                            </dsa-value-prop><!----><!----><!---->
+                           </div>
+                          </div><!---->
+                         </ui-block-inspector><!---->
+                        </ui-block-featured-element><ui-block-featured-element class="ng-star-inserted">
+                         <ui-block-inspector data-testid="featured-element-Bw1yKvIJ6azCmSLPLQhx5" class="ng-star-inserted">
+                          <div class="h-100 ng-star-inserted">
+                           <!----><a aria-hidden="false" tabindex="-1" id="Bw1yKvIJ6azCmSLPLQhx5"></a><!---->
+                           <div class="h-100">
+                            <!----><!----><dsa-value-prop class="dsa-valueProp d-flex flex-column align-items-center text-center -primary ng-star-inserted">
+                             <!---->
+                             <div class="dsa-value-prop__pictogram ng-star-inserted">
+                              <ds-pictogram class="ds-pictogram">
+                              <span role="img" class="ds-icon d-inline-flex rds-pictogram-travel" aria-hidden="true"><!----></span>
+                              </ds-pictogram>
+                             </div><!---->
+                             <p class="dsa-valueProp__heading mt-16 mb-0 w-100 ds-title-4 ng-star-inserted">5 Roam Like Home days</p><!---->
+                             <p class="dsa-valueProp__body ds-body-r mb-0 w-100 mt-16 ng-star-inserted"></p>
+                             <div class="rich-text-wrapper">
+                              <p>Get 5 <b class="text-bold">Roam Like Home</b> days at no cost every year for Rogers mobile plans (up to $80 value).<sup>3,*</sup></p>
+                             </div>
+                             <p></p><!----><!---->
+                            </dsa-value-prop><!----><!----><!---->
+                           </div>
+                          </div><!---->
+                         </ui-block-inspector><!---->
+                        </ui-block-featured-element><!---->
+                       </div>
+                      </div>
+                     </dsa-layout>
+                    </div><!---->
+                   </ui-block-inspector><!---->
+                  </ui-block-layout-container-element><!---->
+                 </div><!---->
+                 <div class="ui-block-content__ctas ng-star-inserted">
+                  <div class="d-flex flex-column flex-md-row gap-16 align-items-center justify-content-md-center">
+                   <ui-block-cta class="mw-100 ng-star-inserted">
+                    <ui-block-inspector data-testid="cta-50oqBLQN2llv2DlPLXBD0d" class="ng-star-inserted">
+                     <div class="ng-star-inserted">
+                      <!----><a aria-hidden="false" tabindex="-1" id="50oqBLQN2llv2DlPLXBD0d"></a><!----><dsa-cta class="d-inline-flex mw-100">
+                       <!---->
+                       <button ds-button class="w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -secondary -large -iconLeft text-no-decoration ng-star-inserted" aria-label="Check Eligibility" tabindex="0"><span role="text" class="ds-button__wrapper d-flex justify-content-center align-items-center flex-row-reverse"><!----><span class="ds-button__copy ds-txt-button text-nowrap ds-no-overflow mw-100"><span>Check Eligibility</span><!----></span><!----><!----><!----></span></button><!----><!----><!---->
+                      </dsa-cta>
+                     </div><!---->
+                    </ui-block-inspector><!---->
+                   </ui-block-cta><!---->
+                  </div>
+                 </div><!----><!---->
+                </div>
+               </div><!---->
+              </ui-block-inspector><!---->
+             </ui-block-content-block><ui-block-rich-text class="ng-star-inserted">
+              <ui-block-inspector data-testid="rich-text-2TEbC8hn2CzWWkDniGv8Yv" class="ng-star-inserted">
+               <div class="ng-star-inserted">
+                <!----><a aria-hidden="false" tabindex="-1" id="2TEbC8hn2CzWWkDniGv8Yv"></a><!---->
+                <div>
+                 <ngx-dynamic-hooks class="text-center">
+                  <div class="rich-text-wrapper">
+                   <p><sup>*</sup>Access your Roam Like Home days when your Rogers account is linked to your Rogers Red Mastercard. Only one Rogers Red Mastercard can be linked to one eligible Rogers mobile account. You must be the primary account holder or a Level 1 Authorized user for the eligible service. Most eligible cardholders are linked automatically shortly after approval.</p>
+                  </div>
+                 </ngx-dynamic-hooks>
+                </div>
+               </div><!---->
+              </ui-block-inspector><!---->
+             </ui-block-rich-text><!---->
+            </div>
+           </div>
+          </div><!---->
+         </ui-block-inspector><!---->
+        </ui-block-layout-container>
+        <ui-block-layout-container class="ng-star-inserted">
+         <ui-block-inspector data-testid="layout-container-5Dt4khoDtG9qOfxMsMCPrq" class="ng-star-inserted">
+          <div class="ng-star-inserted">
+           <!----><a aria-hidden="false" tabindex="-1" id="5Dt4khoDtG9qOfxMsMCPrq"></a><!---->
+           <div data-testid="ui-block-layout-container-div" class="ds-bg-body-default pb-40 pb-md-56 pt-40 pt-md-56" mode="dark">
+            <div class="d-flex flex-column gap-24 gap-md-32 container">
+             <ui-block-section class="ng-star-inserted">
+              <ui-block-inspector data-testid="section-5L1QTQ059A9wXxpc9qMZFc" class="ng-star-inserted">
+               <div class="ng-star-inserted">
+                <!----><a aria-hidden="false" tabindex="-1" id="5L1QTQ059A9wXxpc9qMZFc"></a><!----><dsa-section>
+                 <div class="dsa-section d-flex flex-column flex-md-row">
+                  <!---->
+                  <div class="dsa-section__image col-12 pl-0 pr-0 align-self-md-center -product col-md-6 pl-md-0 pr-md-12">
+                   <!----><ds-picture ratio="16by9" class="ng-star-inserted">
+                    <span class="ds-picture d-block ds-no-overflow ratio-16by9 ratio-md-1by1 -product"><picture>
+                      <source media="(max-width: 599.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                      <source media="(min-width: 600px) and (max-width: 899.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                      <source media="(min-width: 900px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Rogers Mastercard image" class="ng-star-inserted"><!---->
+                     </picture></span><!----><!---->
+                   </ds-picture><!---->
+                  </div>
+                  <div class="dsa-section__copy col-12 pl-0 pr-0 pt-16 d-flex flex-column justify-content-center ds-bgcolor-transparent col-md-6 pb-md-16 pr-md-0 pl-md-12">
+                   <div class="dsa-section__copyWrapper pl-md-24">
+                    <!----><!---->
+                    <h2 class="dsa-section__copyHeading2 ds-title-4 mb-16 mb-md-24 ng-star-inserted">Apply today and start earning cash back</h2><!----><!----><!----><!----><!----><!----><!----><!----><!----><ngx-dynamic-hooks class="ng-star-inserted">
+                     <div class="rich-text-wrapper">
+                      <ul>
+                       <li>
+                        <p>Annual fee: <b class="text-bold">Free</b></p></li>
+                       <li>
+                        <p>Interest rates for purchases: <b class="text-bold">20.99% - 25.99%</b></p></li>
+                       <li>
+                        <p>Interest rates for cash advances: <b class="text-bold">22.99% - 27.99%</b></p></li>
+                       <li>
+                        <p>Additional cardholders: <b class="text-bold">Free</b></p></li>
+                      </ul>
+                      <p><br></p>
+                     </div>
+                    </ngx-dynamic-hooks><!---->
+                    <div class="d-flex flex-column-reverse">
+                     <!---->
+                     <div class="d-flex flex-wrap ng-star-inserted">
+                      <dsa-cta class="w-100 w-sm-auto mt-16 mr-sm-24 d-inline-flex mw-100 ng-star-inserted">
+                       <!----><!----><!---->
+                       <a ds-button class="w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large text-no-decoration ng-star-inserted" href="void(0);" aria-label="Get Started" tabindex="0"><span role="text" class="ds-button__wrapper d-flex justify-content-center align-items-center"><!----><span class="ds-button__copy ds-txt-button text-nowrap ds-no-overflow mw-100"><span>Get Started</span><!----></span><!----><!----><!----></span></a><!---->
+                      </dsa-cta><dsa-cta class="w-100 w-sm-auto mt-16 d-inline-flex mw-100 ng-star-inserted">
+                       <!----><!----><!---->
+                       <a ds-button class="w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -secondary -large text-no-decoration ng-star-inserted" href="/compare_cards" aria-label="Learn More" tabindex="0"><span role="text" class="ds-button__wrapper d-flex justify-content-center align-items-center"><!----><span class="ds-button__copy ds-txt-button text-nowrap ds-no-overflow mw-100"><span>Learn More</span><!----></span><!----><!----><!----></span></a><!---->
+                      </dsa-cta><!---->
+                     </div><!---->
+                    </div>
+                   </div>
+                  </div>
+                 </div><!---->
+                </dsa-section>
+               </div><!---->
+              </ui-block-inspector><!---->
+             </ui-block-section><!---->
+            </div>
+           </div>
+          </div><!---->
+         </ui-block-inspector><!---->
+        </ui-block-layout-container>
+        <ui-block-layout-container class="ng-star-inserted">
+         <ui-block-inspector data-testid="layout-container-5lT1qhWlI1yerl836oMdHM" class="ng-star-inserted">
+          <div class="ng-star-inserted">
+           <!----><a aria-hidden="false" tabindex="-1" id="5lT1qhWlI1yerl836oMdHM"></a><!---->
+           <div data-testid="ui-block-layout-container-div" class="ds-bg-body-default pb-40 pb-md-56 pt-40 pt-md-56" mode="light">
+            <div class="d-flex flex-column gap-24 gap-md-32 container">
+             <ui-block-rich-text class="ng-star-inserted">
+              <ui-block-inspector data-testid="rich-text-7nViSZJLxB45ygMaEqzwSd" class="ng-star-inserted">
+               <div class="ng-star-inserted">
+                <!----><a aria-hidden="false" tabindex="-1" id="7nViSZJLxB45ygMaEqzwSd"></a><!---->
+                <div>
+                 <ngx-dynamic-hooks class="text-center">
+                  <div class="rich-text-wrapper">
+                   <h2 class="ds-title-2">Estimate your earnings with the<br>
+                    Rogers Red Mastercard</h2>
+                   <p><br></p>
+                  </div>
+                 </ngx-dynamic-hooks>
+                </div>
+               </div><!---->
+              </ui-block-inspector><!---->
+             </ui-block-rich-text><ui-block-cash-back-calculator _nghost-ng-c3247708919 class="ng-star-inserted">
+              <ui-block-inspector _ngcontent-ng-c3247708919 data-testid="cash-back-calculator-1KEeyNeWXLwUgQTbf3ehm6" class="ng-star-inserted">
+               <div class="ng-star-inserted">
+                <!----><a aria-hidden="false" tabindex="-1" id="1KEeyNeWXLwUgQTbf3ehm6"></a><!----><ds-tile _ngcontent-ng-c3247708919 class="ng-star-inserted">
+                 <div class="ds-tile h-100 b-solid b-1 ds-no-overflow ds-corners ds-bg-body-default ds-shadow ds-br-body-tile">
+                  <div _ngcontent-ng-c3247708919 class="py-32 px-16 px-md-32">
+                   <div _ngcontent-ng-c3247708919 class="row">
+                    <div _ngcontent-ng-c3247708919 class="col-12 col-md-6 d-flex flex-column justify-content-center ds-border-md-right pr-md-24">
+                     <div _ngcontent-ng-c3247708919 class="ds-border-bottom bb-md-0 pb-24 mb-24 pb-md-0 mb-md-0">
+                      <div _ngcontent-ng-c3247708919 class="d-flex flex-column gap-16 gap-md-24 ng-pristine ng-valid ng-touched">
+                       <div _ngcontent-ng-c3247708919 formgroupname="services" class="d-flex flex-column gap-8 ng-pristine ng-valid ng-touched">
+                        <ds-form-group _ngcontent-ng-c3247708919 id="service-checkboxes">
+                         <fieldset class="b-0">
+                          <legend class="ds-body-r mb-0">
+                           <p _ngcontent-ng-c3247708919 legend class="ds-body-l text-semi mb-12 text-center text-md-left ng-star-inserted">Select the services you currently have</p><!----></legend>
+                          <div _ngcontent-ng-c3247708919 class="d-flex flex-column">
+                           <ds-checkbox _ngcontent-ng-c3247708919 formcontrolname="isRogers" class="ds-checkbox ng-pristine ng-valid ng-touched">
+                            <label class="ds-checkboxLabel d-inline-flex align-items-start" for="ds-checkbox-id-2" aria-labelledby="ds-checkbox-id-2-label-container"><input type="checkbox" class="ds-checkbox__input cdk-visually-hidden" id="ds-checkbox-id-2" tabindex="0" aria-labelledby="ds-checkbox-id-2-label-container" aria-checked="false">
+                             <div aria-hidden="true" class="ds-checkbox__box my-12"></div>
+                             <div class="ds-checkboxLabel__container ml-8 ds-body-r my-12 text-semi" id="ds-checkbox-id-2-label-container">
+                              <span style="display: none;">&nbsp;</span> Rogers Mobile*
+                             </div></label>
+                           </ds-checkbox><ds-checkbox _ngcontent-ng-c3247708919 formcontrolname="isFido" class="ds-checkbox ng-pristine ng-valid ng-touched">
+                            <label class="ds-checkboxLabel d-inline-flex align-items-start" for="ds-checkbox-id-3" aria-labelledby="ds-checkbox-id-3-label-container"><input type="checkbox" class="ds-checkbox__input cdk-visually-hidden" id="ds-checkbox-id-3" tabindex="0" aria-labelledby="ds-checkbox-id-3-label-container" aria-checked="false">
+                             <div aria-hidden="true" class="ds-checkbox__box my-12"></div>
+                             <div class="ds-checkboxLabel__container ml-8 ds-body-r my-12 text-semi" id="ds-checkbox-id-3-label-container">
+                              <span style="display: none;">&nbsp;</span> Fido Mobile*
+                             </div></label>
+                           </ds-checkbox><ds-checkbox _ngcontent-ng-c3247708919 formcontrolname="isCombo" class="ds-checkbox ng-pristine ng-valid ng-touched">
+                            <label class="ds-checkboxLabel d-inline-flex align-items-start" for="ds-checkbox-id-4" aria-labelledby="ds-checkbox-id-4-label-container"><input type="checkbox" class="ds-checkbox__input cdk-visually-hidden" id="ds-checkbox-id-4" tabindex="0" aria-labelledby="ds-checkbox-id-4-label-container" aria-checked="false">
+                             <div aria-hidden="true" class="ds-checkbox__box my-12"></div>
+                             <div class="ds-checkboxLabel__container ml-8 ds-body-r my-12 text-semi" id="ds-checkbox-id-4-label-container">
+                              <span style="display: none;">&nbsp;</span> Rogers, Fido, or Shaw Home (Internet, TV, home phone, home monitoring, or satellite)
+                             </div></label>
+                           </ds-checkbox>
+                          </div>
+                         </fieldset><!---->
+                        </ds-form-group>
+                        <div _ngcontent-ng-c3247708919 class="d-flex flex-column gap-16 text-center text-md-left">
+                         <p _ngcontent-ng-c3247708919>Get 2% unlimited cash back on all eligible purchases if you have 1 qualifying service with Rogers, Fido or Shaw<sup>1</sup>.</p>
+                         <p _ngcontent-ng-c3247708919 class="ds-legal">*Rogers and Fido mobile plans must be postpaid to qualify. Business/corporate plans do not qualify. Mobile plans with Chatr do not qualify.</p>
+                        </div>
+                       </div>
+                       <hr _ngcontent-ng-c3247708919>
+                       <div _ngcontent-ng-c3247708919>
+                        <p _ngcontent-ng-c3247708919 class="ds-body-l text-semi text-center text-md-left mb-12 ng-star-inserted">Estimate your monthly spending:</p><!---->
+                        <div _ngcontent-ng-c3247708919 class="d-flex flex-column gap-24">
+                         <div _ngcontent-ng-c3247708919 class="d-flex flex-column gap-8 gap-md-24 ng-star-inserted">
+                          <p _ngcontent-ng-c3247708919 aria-live="polite" class="d-flex flex-column flex-md-row gap-8 gap-md-12" id="purchaseCAD"><span _ngcontent-ng-c3247708919>Non-US dollar purchases</span><span _ngcontent-ng-c3247708919 class="d-flex gap-8 ng-star-inserted"><span _ngcontent-ng-c3247708919 ds-label variant="custom" class="ds-bg-interactive-neutral-selected ds-txt-interactive-default ds-label-el px-8 mw-100 ng-star-inserted"><span class="ds-label-el__wrapper d-inline-flex align-items-start"><span class="ds-overline mb-0 mw-100"> 1% <span _ngcontent-ng-c3247708919 class="sr-only">cash back</span></span></span></span><span _ngcontent-ng-c3247708919 ds-label variant="custom" class="ds-bg-body-container ds-txt-body-default ds-label-el px-8 mw-100 ng-star-inserted"><span class="ds-label-el__wrapper d-inline-flex align-items-start"><span class="ds-overline mb-0 mw-100"> 2% <span _ngcontent-ng-c3247708919 class="sr-only">cash back</span></span></span></span><!----></span><!----></p>
+                          <div _ngcontent-ng-c3247708919 class="d-flex flex-row align-items-center">
+                           <!---->
+                           <div _ngcontent-ng-c3247708919 class="d-flex flex-row align-items-center">
+                            <div _ngcontent-ng-c3247708919 class="ds-title-5 mx-6 ng-star-inserted">
+                             $
+                            </div><!----><ds-form-field _ngcontent-ng-c3247708919 class="ds-formField ng-tns-c1031449949-0 ds-formField__typeds-input d-block position-relative -float ng-untouched ng-pristine ng-valid ng-star-inserted">
+                             <div class="ds-formField__wrapper ng-tns-c1031449949-0">
+                              <div class="ds-formField__inputContainer d-flex position-relative ds-bg-interactive-neutral-default b-solid b-1 ng-tns-c1031449949-0 ds-corners ds-br-interactive-default-neutral -hideLabelVisually">
+                              <span class="ds-formField__labelWrapper position-absolute mb-0 ng-tns-c1031449949-0 ng-trigger ng-trigger-floatAnimation sr-only"><label class="ds-formField_label ng-tns-c1031449949-0" for="ds-form-input-id-0"><ds-input-label _ngcontent-ng-c3247708919 class="ng-tns-c1031449949-0">
+                              <span class="ds-inputLabel d-block ds-no-overflow">$<!----></span>
+                              </ds-input-label></label></span><input _ngcontent-ng-c3247708919 dsinput type="number" class="ds-input w-100 ds-body-r mb-0 pt-16 ds-bgcolor-transparent ng-tns-c1031449949-0 ng-untouched ng-pristine ng-valid" data-testid="cad-slider-input" aria-labelledby="purchaseCAD" value="900" id="ds-form-input-id-0" aria-invalid="false" min="0" max="10000">
+                              <div class="ds-formField__suffix justify-content-center align-items-center ng-tns-c1031449949-0">
+                              <!----><!----><!----><!---->
+                              </div>
+                              </div>
+                              <div class="ds-formField__autoComplete position-absolute w-100 ng-tns-c1031449949-0"></div>
+                              <div class="ds-formFields__messages ng-tns-c1031449949-0" id="formfield-0-messages">
+                              <!----><!----><!----><!----><!---->
+                              </div>
+                             </div><!---->
+                            </ds-form-field><!----><!---->
+                           </div>
+                          </div>
+                         </div><!---->
+                         <div _ngcontent-ng-c3247708919 class="d-flex flex-column gap-8 gap-md-24 ng-star-inserted">
+                          <p _ngcontent-ng-c3247708919 aria-live="polite" class="d-flex flex-column flex-md-row gap-8 gap-md-12" id="purchaseUSD"><span _ngcontent-ng-c3247708919>U.S. dollar purchases</span><span _ngcontent-ng-c3247708919 class="d-flex gap-8 ng-star-inserted"><span _ngcontent-ng-c3247708919 ds-label variant="custom" class="ds-label-el px-8 mw-100 ng-star-inserted ds-bg-interactive-neutral-selected ds-txt-interactive-default"><span class="ds-label-el__wrapper d-inline-flex align-items-start"><span class="ds-overline mb-0 mw-100"> 2% <span _ngcontent-ng-c3247708919 class="sr-only">cash back</span></span></span></span><!----></span><!----></p>
+                          <div _ngcontent-ng-c3247708919 class="d-flex flex-row align-items-center">
+                           <!---->
+                           <div _ngcontent-ng-c3247708919 class="d-flex flex-row align-items-center">
+                            <div _ngcontent-ng-c3247708919 class="ds-title-5 mx-6 ng-star-inserted">
+                             $
+                            </div><!----><ds-form-field _ngcontent-ng-c3247708919 class="ds-formField ng-tns-c1031449949-1 ds-formField__typeds-input d-block position-relative -float ng-untouched ng-pristine ng-valid ng-star-inserted">
+                             <div class="ds-formField__wrapper ng-tns-c1031449949-1">
+                              <div class="ds-formField__inputContainer d-flex position-relative ds-bg-interactive-neutral-default b-solid b-1 ng-tns-c1031449949-1 ds-corners ds-br-interactive-default-neutral -hideLabelVisually">
+                              <span class="ds-formField__labelWrapper position-absolute mb-0 ng-tns-c1031449949-1 ng-trigger ng-trigger-floatAnimation sr-only"><label class="ds-formField_label ng-tns-c1031449949-1" for="ds-form-input-id-1"><ds-input-label _ngcontent-ng-c3247708919 class="ng-tns-c1031449949-1">
+                              <span class="ds-inputLabel d-block ds-no-overflow">$<!----></span>
+                              </ds-input-label></label></span><input _ngcontent-ng-c3247708919 dsinput type="number" class="ds-input w-100 ds-body-r mb-0 pt-16 ds-bgcolor-transparent ng-tns-c1031449949-1 ng-untouched ng-pristine ng-valid" data-testid="usd-slider-input" aria-labelledby="purchaseUSD" value="100" id="ds-form-input-id-1" aria-invalid="false" min="0" max="10000">
+                              <div class="ds-formField__suffix justify-content-center align-items-center ng-tns-c1031449949-1">
+                              <!----><!----><!----><!---->
+                              </div>
+                              </div>
+                              <div class="ds-formField__autoComplete position-absolute w-100 ng-tns-c1031449949-1"></div>
+                              <div class="ds-formFields__messages ng-tns-c1031449949-1" id="formfield-1-messages">
+                              <!----><!----><!----><!----><!---->
+                              </div>
+                             </div><!---->
+                            </ds-form-field><!----><!---->
+                           </div>
+                          </div>
+                         </div><!----><!----><!----><!---->
+                        </div>
+                       </div>
+                      </div>
+                     </div>
+                    </div>
+                    <div _ngcontent-ng-c3247708919 class="col-12 col-md-6 d-flex flex-column justify-content-center pl-md-24 ng-star-inserted">
+                     <div _ngcontent-ng-c3247708919 class="d-flex flex-column gap-24">
+                      <ds-picture _ngcontent-ng-c3247708919 variant="product" ratio="16by9" class="ng-star-inserted">
+                       <span class="ds-picture d-block ds-no-overflow ratio-16by9 -product"><picture>
+                         <source media="(max-width: 599.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                         <source media="(min-width: 600px) and (max-width: 899.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                         <source media="(min-width: 900px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                         <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Rogers Mastercard image" class="ng-star-inserted"><!---->
+                        </picture></span><!----><!---->
+                      </ds-picture><!---->
+                      <div _ngcontent-ng-c3247708919 class="d-flex flex-column gap-24 gap-md-32">
+                       <div _ngcontent-ng-c3247708919 class="d-flex flex-column gap-12 text-center">
+                        <p _ngcontent-ng-c3247708919 aria-hidden="true" class="ds-body-l text-semi ng-star-inserted">Estimated yearly value</p><!---->
+                        <p _ngcontent-ng-c3247708919 data-testid="estimated-yearly-value" class="ds-title-2 ds-txt-body-highlight"><ds-price _ngcontent-ng-c3247708919 variant="inline"></ds-price></p>
+                        <div class="ds-price -inline" aria-live="polite">
+                         <span class="sr-only"></span>
+                         <div aria-hidden="true" class="ds-price__amount justify-content-start align-items-center -en">
+                          <!---->
+                          <div class="ds-price__amountCurrency ds-body-r mb-0 ng-star-inserted">
+                           $
+                          </div><!---->
+                          <div class="ds-price__amountDollars -animate ng-star-inserted">
+                           258
+                          </div><!----><!---->
+                          <div class="ds-price__amountCentsWrapper">
+                           <!----><!---->
+                          </div><!---->
+                         </div>
+                        </div>
+                        <p></p>
+                        <p _ngcontent-ng-c3247708919 dspopover class="ng-tns-c3876460568-2 ng-star-inserted">
+                         <button type="button" cdkmonitorsubtreefocus class="ds-popover outline-none ds-pointer ds-bgcolor-transparent b-0 ng-tns-c3876460568-2 -inline" title aria-label="Average value in the 1st year - Cash back breakdown"><span class="ng-tns-c3876460568-2"> Average value in the 1st year </span>
+                          <div class="ds-popover-host-wrapper position-relative d-inline-flex ng-tns-c3876460568-2">
+                           <ds-icon tabindex="-1" name="info" class="ds-popover__icon outline-none ng-tns-c3876460568-2 -size-24">
+                            <span role="img" class="ds-icon d-inline-flex rds-icon-info" aria-hidden="true"><!----><!----></span>
+                           </ds-icon>
+                          </div></button><!----><!----></p><!---->
+                        <div _ngcontent-ng-c3247708919 class="d-flex flex-column gap-16 cdk-visually-hidden d-none" tabindex="-1" aria-hidden="true">
+                         <p _ngcontent-ng-c3247708919 class="text-bold">Cash back breakdown</p>
+                         <div _ngcontent-ng-c3247708919 class="d-flex gap-8 justify-content-between ng-star-inserted">
+                          <div _ngcontent-ng-c3247708919>
+                           <p _ngcontent-ng-c3247708919 class="ds-legal">Non-U.S dollar purchases</p><!---->
+                          </div>
+                          <p _ngcontent-ng-c3247708919 class="ds-legal text-semi" data-testid="tooltip-purchase-cad"><ds-price _ngcontent-ng-c3247708919 variant="inline"></ds-price></p>
+                          <div class="ds-price -inline" aria-live="polite">
+                           <span class="sr-only"></span>
+                           <div aria-hidden="true" class="ds-price__amount justify-content-start align-items-center -en">
+                            <!---->
+                            <div class="ds-price__amountCurrency ds-body-r mb-0 ng-star-inserted">
+                             $
+                            </div><!----><!---->
+                            <div class="ds-price__amountDollars ng-star-inserted">
+                             108
+                            </div><!---->
+                            <div class="ds-price__amountCentsWrapper">
+                             <!----><!---->
+                            </div><!---->
+                           </div>
+                          </div>
+                          <p></p>
+                         </div><!---->
+                         <div _ngcontent-ng-c3247708919 class="d-flex gap-8 justify-content-between ng-star-inserted">
+                          <div _ngcontent-ng-c3247708919>
+                           <p _ngcontent-ng-c3247708919 class="ds-legal">U.S dollar purchases</p><!---->
+                          </div>
+                          <p _ngcontent-ng-c3247708919 class="ds-legal text-semi" data-testid="tooltip-purchase-usd"><ds-price _ngcontent-ng-c3247708919 variant="inline"></ds-price></p>
+                          <div class="ds-price -inline" aria-live="polite">
+                           <span class="sr-only"></span>
+                           <div aria-hidden="true" class="ds-price__amount justify-content-start align-items-center -en">
+                            <!---->
+                            <div class="ds-price__amountCurrency ds-body-r mb-0 ng-star-inserted">
+                             $
+                            </div><!----><!---->
+                            <div class="ds-price__amountDollars ng-star-inserted">
+                             24
+                            </div><!---->
+                            <div class="ds-price__amountCentsWrapper">
+                             <!----><!---->
+                            </div><!---->
+                           </div>
+                          </div>
+                          <p></p>
+                         </div><!---->
+                         <hr _ngcontent-ng-c3247708919>
+                         <div _ngcontent-ng-c3247708919 class="d-flex gap-8 justify-content-between ng-star-inserted">
+                          <div _ngcontent-ng-c3247708919>
+                           <p _ngcontent-ng-c3247708919 class="ds-legal text-bold">Total cash back value</p><!---->
+                          </div>
+                          <p _ngcontent-ng-c3247708919 class="ds-legal text-bold" data-testid="tooltip-total-cash-back"><ds-price _ngcontent-ng-c3247708919 variant="inline"></ds-price></p>
+                          <div class="ds-price -inline" aria-live="polite">
+                           <span class="sr-only"></span>
+                           <div aria-hidden="true" class="ds-price__amount justify-content-start align-items-center -en">
+                            <!---->
+                            <div class="ds-price__amountCurrency ds-body-r mb-0 ng-star-inserted">
+                             $
+                            </div><!----><!---->
+                            <div class="ds-price__amountDollars ng-star-inserted">
+                             132
+                            </div><!---->
+                            <div class="ds-price__amountCentsWrapper">
+                             <!----><!---->
+                            </div><!---->
+                           </div>
+                          </div>
+                          <p></p>
+                         </div><!---->
+                         <div _ngcontent-ng-c3247708919 class="d-flex gap-8 justify-content-between ng-star-inserted">
+                          <div _ngcontent-ng-c3247708919>
+                           <p _ngcontent-ng-c3247708919 class="ds-legal">Get $60 cash back in the 8 months</p><!---->
+                          </div>
+                          <p _ngcontent-ng-c3247708919 class="ds-legal text-semi" data-testid="tooltip-welcome-bonus"><ds-price _ngcontent-ng-c3247708919 variant="inline"></ds-price></p>
+                          <div class="ds-price -inline" aria-live="polite">
+                           <span class="sr-only"></span>
+                           <div aria-hidden="true" class="ds-price__amount justify-content-start align-items-center -en">
+                            <!---->
+                            <div class="ds-price__amountCurrency ds-body-r mb-0 ng-star-inserted">
+                             $
+                            </div><!----><!---->
+                            <div class="ds-price__amountDollars ng-star-inserted">
+                             60
+                            </div><!---->
+                            <div class="ds-price__amountCentsWrapper">
+                             <!----><!---->
+                            </div><!---->
+                           </div>
+                          </div>
+                          <p></p>
+                         </div><!----><!----><!---->
+                         <div _ngcontent-ng-c3247708919 class="d-flex gap-8 justify-content-between">
+                          <div _ngcontent-ng-c3247708919>
+                           <p _ngcontent-ng-c3247708919 class="ds-legal">1.5x bonus on your earned cash back value when redeemed for Rogers purchases</p>
+                           <p _ngcontent-ng-c3247708919 class="ds-legal ds-txt-body-secondary">( <ds-price _ngcontent-ng-c3247708919 variant="inline"></ds-price></p>
+                           <div class="ds-price -inline" aria-live="polite">
+                            <span class="sr-only"></span>
+                            <div aria-hidden="true" class="ds-price__amount justify-content-start align-items-center -en">
+                             <!---->
+                             <div class="ds-price__amountCurrency ds-body-r mb-0 ng-star-inserted">
+                              $
+                             </div><!----><!---->
+                             <div class="ds-price__amountDollars ng-star-inserted">
+                              132
+                             </div><!---->
+                             <div class="ds-price__amountCentsWrapper">
+                              <!----><!---->
+                             </div><!---->
+                            </div>
+                           </div> x 50% = <ds-price _ngcontent-ng-c3247708919 variant="inline">
+                            <div class="ds-price -inline" aria-live="polite">
+                             <span class="sr-only"></span>
+                             <div aria-hidden="true" class="ds-price__amount justify-content-start align-items-center -en">
+                              <!---->
+                              <div class="ds-price__amountCurrency ds-body-r mb-0 ng-star-inserted">
+                              $
+                              </div><!----><!---->
+                              <div class="ds-price__amountDollars ng-star-inserted">
+                              66
+                              </div><!---->
+                              <div class="ds-price__amountCentsWrapper">
+                              <!----><!---->
+                              </div><!---->
+                             </div>
+                            </div>
+                           </ds-price> ) 
+                           <p></p>
+                          </div>
+                          <p _ngcontent-ng-c3247708919 data-testid="tooltip-bonus-cash-back" class="ds-legal text-semi"><ds-price _ngcontent-ng-c3247708919 variant="inline"></ds-price></p>
+                          <div class="ds-price -inline" aria-live="polite">
+                           <span class="sr-only"></span>
+                           <div aria-hidden="true" class="ds-price__amount justify-content-start align-items-center -en">
+                            <!---->
+                            <div class="ds-price__amountCurrency ds-body-r mb-0 ng-star-inserted">
+                             $
+                            </div><!----><!---->
+                            <div class="ds-price__amountDollars ng-star-inserted">
+                             66
+                            </div><!---->
+                            <div class="ds-price__amountCentsWrapper">
+                             <!----><!---->
+                            </div><!---->
+                           </div>
+                          </div>
+                          <p></p>
+                         </div><!---->
+                         <hr _ngcontent-ng-c3247708919>
+                         <div _ngcontent-ng-c3247708919 class="d-flex gap-8 justify-content-between ng-star-inserted">
+                          <div _ngcontent-ng-c3247708919>
+                           <p _ngcontent-ng-c3247708919 class="ds-legal text-bold">Yearly value</p><!---->
+                          </div>
+                          <p _ngcontent-ng-c3247708919 class="ds-legal text-bold" data-testid="tooltip-yearly-value"><ds-price _ngcontent-ng-c3247708919 variant="inline"></ds-price></p>
+                          <div class="ds-price -inline" aria-live="polite">
+                           <span class="sr-only"></span>
+                           <div aria-hidden="true" class="ds-price__amount justify-content-start align-items-center -en">
+                            <!---->
+                            <div class="ds-price__amountCurrency ds-body-r mb-0 ng-star-inserted">
+                             $
+                            </div><!----><!---->
+                            <div class="ds-price__amountDollars ng-star-inserted">
+                             258
+                            </div><!---->
+                            <div class="ds-price__amountCentsWrapper">
+                             <!----><!---->
+                            </div><!---->
+                           </div>
+                          </div>
+                          <p></p>
+                         </div><!---->
+                        </div>
+                       </div>
+                       <div _ngcontent-ng-c3247708919 id="features" class="d-flex flex-column gap-16 ng-star-inserted">
+                        <p _ngcontent-ng-c3247708919 class="text-semi">Includes:</p><dsa-value-prop _ngcontent-ng-c3247708919 variant="secondary" aria-hidden="false" class="dsa-valueProp d-flex -secondary ng-star-inserted">
+                         <div class="dsa-value-prop__image w-48 flex-shrink-0 ng-star-inserted">
+                          <ds-picture>
+                           <span class="ds-picture d-block ds-no-overflow ratio-1by1 -product"><picture>
+                             <source media="(max-width: 599.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <source media="(min-width: 600px) and (max-width: 899.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <source media="(min-width: 900px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt class="ng-star-inserted"><!---->
+                            </picture></span><!----><!---->
+                          </ds-picture>
+                         </div><!----><!----><!---->
+                         <p class="dsa-valueProp__body ds-body-r mb-0 w-100 ml-16 d-flex align-items-center ng-star-inserted"></p>
+                         <div class="rich-text-wrapper">
+                          <p>Get $60 cash back in the first 8 months<sup>4</sup></p>
+                         </div>
+                         <p></p><!----><!---->
+                        </dsa-value-prop><dsa-value-prop _ngcontent-ng-c3247708919 variant="secondary" aria-hidden="false" class="dsa-valueProp d-flex -secondary ng-star-inserted">
+                         <div class="dsa-value-prop__image w-48 flex-shrink-0 ng-star-inserted">
+                          <ds-picture>
+                           <span class="ds-picture d-block ds-no-overflow ratio-1by1 -product"><picture>
+                             <source media="(max-width: 599.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <source media="(min-width: 600px) and (max-width: 899.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <source media="(min-width: 900px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt class="ng-star-inserted"><!---->
+                            </picture></span><!----><!---->
+                          </ds-picture>
+                         </div><!----><!----><!---->
+                         <p class="dsa-valueProp__body ds-body-r mb-0 w-100 ml-16 d-flex align-items-center ng-star-inserted"></p>
+                         <div class="rich-text-wrapper">
+                          <p>Up to 2% on all your estimated spend thereafter<sup>1</sup></p>
+                         </div>
+                         <p></p><!----><!---->
+                        </dsa-value-prop><dsa-value-prop _ngcontent-ng-c3247708919 variant="secondary" aria-hidden="true" class="disabled dsa-valueProp d-flex -secondary ng-star-inserted">
+                         <div class="dsa-value-prop__image w-48 flex-shrink-0 ng-star-inserted">
+                          <ds-picture>
+                           <span class="ds-picture d-block ds-no-overflow ratio-1by1 -product"><picture>
+                             <source media="(max-width: 599.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <source media="(min-width: 600px) and (max-width: 899.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <source media="(min-width: 900px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt class="ng-star-inserted"><!---->
+                            </picture></span><!----><!---->
+                          </ds-picture>
+                         </div><!----><!----><!---->
+                         <p class="dsa-valueProp__body ds-body-r mb-0 w-100 ml-16 d-flex align-items-center ng-star-inserted"></p>
+                         <div class="rich-text-wrapper">
+                          <p>5 Roam Like Home days at no cost (up to $80 value)<sup>3</sup></p>
+                         </div>
+                         <p></p><!----><!---->
+                        </dsa-value-prop><dsa-value-prop _ngcontent-ng-c3247708919 variant="secondary" aria-hidden="false" class="dsa-valueProp d-flex -secondary ng-star-inserted">
+                         <div class="dsa-value-prop__image w-48 flex-shrink-0 ng-star-inserted">
+                          <ds-picture>
+                           <span class="ds-picture d-block ds-no-overflow ratio-1by1 -product"><picture>
+                             <source media="(max-width: 599.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <source media="(min-width: 600px) and (max-width: 899.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <source media="(min-width: 900px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt class="ng-star-inserted"><!---->
+                            </picture></span><!----><!---->
+                          </ds-picture>
+                         </div><!----><!----><!---->
+                         <p class="dsa-valueProp__body ds-body-r mb-0 w-100 ml-16 d-flex align-items-center ng-star-inserted"></p>
+                         <div class="rich-text-wrapper">
+                          <p>1.5 times more cash back every time you redeem for Rogers, Fido or Shaw purchases<sup>2</sup></p>
+                         </div>
+                         <p></p><!----><!---->
+                        </dsa-value-prop><dsa-value-prop _ngcontent-ng-c3247708919 variant="secondary" aria-hidden="false" class="dsa-valueProp d-flex -secondary ng-star-inserted">
+                         <div class="dsa-value-prop__image w-48 flex-shrink-0 ng-star-inserted">
+                          <ds-picture>
+                           <span class="ds-picture d-block ds-no-overflow ratio-1by1 -product"><picture>
+                             <source media="(max-width: 599.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <source media="(min-width: 600px) and (max-width: 899.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <source media="(min-width: 900px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                             <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt class="ng-star-inserted"><!---->
+                            </picture></span><!----><!---->
+                          </ds-picture>
+                         </div><!----><!----><!---->
+                         <p class="dsa-valueProp__body ds-body-r mb-0 w-100 ml-16 d-flex align-items-center ng-star-inserted"></p>
+                         <div class="rich-text-wrapper">
+                          <p>No Annual Fee</p>
+                         </div>
+                         <p></p><!----><!---->
+                        </dsa-value-prop><!---->
+                       </div><!---->
+                      </div>
+                     </div>
+                    </div><!---->
+                   </div>
+                  </div>
+                 </div>
+                </ds-tile><!---->
+               </div><!---->
+              </ui-block-inspector><!----><!----><!---->
+             </ui-block-cash-back-calculator><!---->
+            </div>
+           </div>
+          </div><!---->
+         </ui-block-inspector><!---->
+        </ui-block-layout-container>
+        <ui-block-layout-container class="ng-star-inserted">
+         <ui-block-inspector data-testid="layout-container-4rqDFk4kC9QfMLNSaBq9iX" class="ng-star-inserted">
+          <div class="ng-star-inserted">
+           <!----><a aria-hidden="false" tabindex="-1" id="4rqDFk4kC9QfMLNSaBq9iX"></a><!---->
+           <div data-testid="ui-block-layout-container-div" class="ds-bg-body-container pb-40 pb-md-56 pt-40 pt-md-56" mode="light">
+            <div class="d-flex flex-column gap-24 gap-md-32 container">
+             <ui-block-content-block class="ng-star-inserted">
+              <ui-block-inspector data-testid="content-block-1MG9m1mu7lWJEuFILQPIHX" class="ng-star-inserted">
+               <div class="ng-star-inserted">
+                <!----><a aria-hidden="false" tabindex="-1" id="1MG9m1mu7lWJEuFILQPIHX"></a><!---->
+                <div class="d-flex flex-column gap-24 gap-md-32">
+                 <h2 class="ui-block-content__heading ds-title-2 mb-0 text-center ng-star-inserted">Exclusive benefits for Rogers customers</h2><!---->
+                 <div class="ui-block-content__copy text-center ng-star-inserted">
+                  <div class="rich-text-wrapper"></div>
+                 </div><!---->
+                 <div class="ui-block-content__components d-flex flex-column gap-24 gap-md-32 ng-star-inserted">
+                  <ui-block-layout-container-element class="ng-star-inserted">
+                   <ui-block-inspector data-testid="layout-container-element5MLqSUsgOnVf7FvYt4O3Og" class="ng-star-inserted">
+                    <div class="ng-star-inserted">
+                     <!----><a aria-hidden="false" tabindex="-1" id="5MLqSUsgOnVf7FvYt4O3Og"></a><!----><dsa-layout class="w-100">
+                      <div class="dsa-layout">
+                       <div class="row">
+                        <ui-block-featured-element class="ng-star-inserted">
+                         <ui-block-inspector data-testid="featured-element-16SFCpm0wSgVpHJZ8uCtjx" class="ng-star-inserted">
+                          <div class="h-100 ng-star-inserted">
+                           <!----><a aria-hidden="false" tabindex="-1" id="16SFCpm0wSgVpHJZ8uCtjx"></a><!---->
+                           <div class="h-100">
+                            <!----><!----><dsa-value-prop class="dsa-valueProp d-flex flex-column align-items-center text-center -primary ng-star-inserted">
+                             <!---->
+                             <div class="dsa-value-prop__pictogram ng-star-inserted">
+                              <ds-pictogram class="ds-pictogram">
+                              <span role="img" class="ds-icon d-inline-flex rds-pictogram-money-back" aria-hidden="true"><!----></span>
+                              </ds-pictogram>
+                             </div><!---->
+                             <p class="dsa-valueProp__heading mt-16 mb-0 w-100 ds-title-4 ng-star-inserted">The most cash back for Rogers customers</p><!---->
+                             <p class="dsa-valueProp__body ds-body-r mb-0 w-100 mt-16 ng-star-inserted"></p>
+                             <div class="rich-text-wrapper">
+                              <p>Earn 2% unlimited cash back on all eligible non-U.S. dollar purchases if you have 1 qualifying service with Rogers, Fido or Shaw.<sup>1</sup></p>
+                             </div>
+                             <p></p><!----><!---->
+                            </dsa-value-prop><!----><!----><!---->
+                           </div>
+                          </div><!---->
+                         </ui-block-inspector><!---->
+                        </ui-block-featured-element><ui-block-featured-element class="ng-star-inserted">
+                         <ui-block-inspector data-testid="featured-element-2yaPE2PtNtXffkXEdgp7Jr" class="ng-star-inserted">
+                          <div class="h-100 ng-star-inserted">
+                           <!----><a aria-hidden="false" tabindex="-1" id="2yaPE2PtNtXffkXEdgp7Jr"></a><!---->
+                           <div class="h-100">
+                            <!----><!----><dsa-value-prop class="dsa-valueProp d-flex flex-column align-items-center text-center -primary ng-star-inserted">
+                             <!---->
+                             <div class="dsa-value-prop__pictogram ng-star-inserted">
+                              <ds-pictogram class="ds-pictogram">
+                              <span role="img" class="ds-icon d-inline-flex rds-pictogram-travel" aria-hidden="true"><!----></span>
+                              </ds-pictogram>
+                             </div><!---->
+                             <p class="dsa-valueProp__heading mt-16 mb-0 w-100 ds-title-4 ng-star-inserted">5 Roam Like Home days every year</p><!---->
+                             <p class="dsa-valueProp__body ds-body-r mb-0 w-100 mt-16 ng-star-inserted"></p>
+                             <div class="rich-text-wrapper">
+                              <p>Rogers mobile customers get to roam at no cost for 5 days every year with Roam Like Home in up to 185 destinations.<sup>3</sup></p>
+                             </div>
+                             <p></p><!----><!---->
+                            </dsa-value-prop><!----><!----><!---->
+                           </div>
+                          </div><!---->
+                         </ui-block-inspector><!---->
+                        </ui-block-featured-element><ui-block-featured-element class="ng-star-inserted">
+                         <ui-block-inspector data-testid="featured-element-7Gag7TjRbTeWWlMaMetOoi" class="ng-star-inserted">
+                          <div class="h-100 ng-star-inserted">
+                           <!----><a aria-hidden="false" tabindex="-1" id="7Gag7TjRbTeWWlMaMetOoi"></a><!---->
+                           <div class="h-100">
+                            <!----><!----><dsa-value-prop class="dsa-valueProp d-flex flex-column align-items-center text-center -primary ng-star-inserted">
+                             <!---->
+                             <div class="dsa-value-prop__pictogram ng-star-inserted">
+                              <ds-pictogram class="ds-pictogram">
+                              <span role="img" class="ds-icon d-inline-flex rds-pictogram-mix-match-devices" aria-hidden="true"><!----></span>
+                              </ds-pictogram>
+                             </div><!---->
+                             <p class="dsa-valueProp__heading mt-16 mb-0 w-100 ds-title-4 ng-star-inserted">Rogers Redemption Bonus</p><!---->
+                             <p class="dsa-valueProp__body ds-body-r mb-0 w-100 mt-16 ng-star-inserted"></p>
+                             <div class="rich-text-wrapper">
+                              <p>Get 1.5 times more cash back every time you redeem for Rogers, Fido or Shaw purchases.<sup>2</sup></p>
+                             </div>
+                             <p></p><!----><!---->
+                            </dsa-value-prop><!----><!----><!---->
+                           </div>
+                          </div><!---->
+                         </ui-block-inspector><!---->
+                        </ui-block-featured-element><!---->
+                       </div>
+                      </div>
+                     </dsa-layout>
+                    </div><!---->
+                   </ui-block-inspector><!---->
+                  </ui-block-layout-container-element><!---->
+                 </div><!---->
+                 <div class="ui-block-content__ctas ng-star-inserted">
+                  <div class="d-flex flex-column flex-md-row gap-16 align-items-center justify-content-md-center">
+                   <ui-block-cta class="mw-100 ng-star-inserted">
+                    <ui-block-inspector data-testid="cta-2Q0NXrB4FYFmZjscIHnYxL" class="ng-star-inserted">
+                     <div class="ng-star-inserted">
+                      <!----><a aria-hidden="false" tabindex="-1" id="2Q0NXrB4FYFmZjscIHnYxL"></a><!----><dsa-cta class="d-inline-flex mw-100">
+                       <!----><!----><!---->
+                       <a ds-button class="w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -secondary -large text-no-decoration ng-star-inserted" href="/rogers_benefits" aria-label="Explore All Rogers Benefits" tabindex="0"><span role="text" class="ds-button__wrapper d-flex justify-content-center align-items-center"><!----><span class="ds-button__copy ds-txt-button text-nowrap ds-no-overflow mw-100"><span>Explore All Rogers Benefits</span><!----></span><!----><!----><!----></span></a><!---->
+                      </dsa-cta>
+                     </div><!---->
+                    </ui-block-inspector><!---->
+                   </ui-block-cta><!---->
+                  </div>
+                 </div><!----><!---->
+                </div>
+               </div><!---->
+              </ui-block-inspector><!---->
+             </ui-block-content-block><!---->
+            </div>
+           </div>
+          </div><!---->
+         </ui-block-inspector><!---->
+        </ui-block-layout-container>
+        <ui-block-layout-container class="ng-star-inserted">
+         <ui-block-inspector data-testid="layout-container-2DwAv5rzZFDlHM2waa4pdA" class="ng-star-inserted">
+          <div class="ng-star-inserted">
+           <!----><a aria-hidden="false" tabindex="-1" id="2DwAv5rzZFDlHM2waa4pdA"></a><!---->
+           <div data-testid="ui-block-layout-container-div" class="ds-bg-body-default pb-40 pb-md-56 pt-40 pt-md-56" mode="dark">
+            <div class="d-flex flex-column gap-24 gap-md-32 container">
+             <ui-block-section class="ng-star-inserted">
+              <ui-block-inspector data-testid="section-7lXUUpXRlxnfN9LxFJrhkE" class="ng-star-inserted">
+               <div class="ng-star-inserted">
+                <!----><a aria-hidden="false" tabindex="-1" id="7lXUUpXRlxnfN9LxFJrhkE"></a><!----><dsa-section>
+                 <div class="dsa-section d-flex flex-column flex-md-row">
+                  <!---->
+                  <div class="dsa-section__image col-12 pl-0 pr-0 align-self-md-center col-md-6 pl-md-0 pr-md-12">
+                   <!----><ds-picture ratio="16by9" class="ng-star-inserted">
+                    <span class="ds-picture d-block ds-no-overflow ratio-16by9 ratio-md-1by1 -lifestyle"><picture>
+                      <source media="(max-width: 599.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                      <source media="(min-width: 600px) and (max-width: 899.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                      <source media="(min-width: 900px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Happy Family New" class="ng-star-inserted"><!---->
+                     </picture></span><!----><!---->
+                   </ds-picture><!---->
+                  </div>
+                  <div class="dsa-section__copy col-12 pl-0 pr-0 pt-16 d-flex flex-column justify-content-center ds-bgcolor-transparent col-md-6 pb-md-16 pr-md-0 pl-md-12">
+                   <div class="dsa-section__copyWrapper pl-md-24">
+                    <!----><!---->
+                    <h2 class="dsa-section__copyHeading2 ds-title-4 mb-16 mb-md-24 ng-star-inserted">Freedom to redeem your way</h2><!----><!----><!----><!----><!----><!----><!----><!----><!----><ngx-dynamic-hooks class="ng-star-inserted">
+                     <div class="rich-text-wrapper">
+                      <p>Earn unlimited cash back rewards on eligible purchases anywhere Mastercard is accepted. Get 1.5 times more cash back every time you redeem for Rogers, Fido or Shaw purchases.<sup>1,2</sup></p>
+                      <p>Redeem your rewards easily with the Rogers Bank app.</p>
+                     </div>
+                    </ngx-dynamic-hooks><!---->
+                    <div class="d-flex flex-column-reverse">
+                     <!---->
+                     <div class="d-flex flex-wrap ng-star-inserted">
+                      <dsa-cta class="w-100 w-sm-auto mt-16 d-inline-flex mw-100 ng-star-inserted">
+                       <!----><!----><!---->
+                       <a ds-button class="w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large text-no-decoration ng-star-inserted" href="/rewards" aria-label="Learn More" tabindex="0"><span role="text" class="ds-button__wrapper d-flex justify-content-center align-items-center"><!----><span class="ds-button__copy ds-txt-button text-nowrap ds-no-overflow mw-100"><span>Learn More</span><!----></span><!----><!----><!----></span></a><!---->
+                      </dsa-cta><!---->
+                     </div><!---->
+                    </div>
+                   </div>
+                  </div>
+                 </div><!---->
+                </dsa-section>
+               </div><!---->
+              </ui-block-inspector><!---->
+             </ui-block-section><!---->
+            </div>
+           </div>
+          </div><!---->
+         </ui-block-inspector><!---->
+        </ui-block-layout-container>
+        <ui-block-layout-container class="ng-star-inserted">
+         <ui-block-inspector data-testid="layout-container-7ybTZgaDO8wLAagpHAOvNN" class="ng-star-inserted">
+          <div class="ng-star-inserted">
+           <!----><a aria-hidden="false" tabindex="-1" id="7ybTZgaDO8wLAagpHAOvNN"></a><!---->
+           <div data-testid="ui-block-layout-container-div" class="ds-bg-body-default pb-40 pb-md-56 pt-40 pt-md-56" mode="light">
+            <div class="d-flex flex-column gap-24 gap-md-32 container">
+             <ui-block-rich-text class="ng-star-inserted">
+              <ui-block-inspector data-testid="rich-text-RzQzhd9CAJ2meCNQRYQHI" class="ng-star-inserted">
+               <div class="ng-star-inserted">
+                <!----><a aria-hidden="false" tabindex="-1" id="RzQzhd9CAJ2meCNQRYQHI"></a><!---->
+                <div>
+                 <ngx-dynamic-hooks class="text-center">
+                  <div class="rich-text-wrapper">
+                   <h2 class="ds-title-2">Manage your Rogers Red Mastercard anywhere</h2>
+                   <p><br></p>
+                  </div>
+                 </ngx-dynamic-hooks>
+                </div>
+               </div><!---->
+              </ui-block-inspector><!---->
+             </ui-block-rich-text><ui-block-section class="ng-star-inserted">
+              <ui-block-inspector data-testid="section-60XXljMvK5InNJ0Gd33Rss" class="ng-star-inserted">
+               <div class="ng-star-inserted">
+                <!----><a aria-hidden="false" tabindex="-1" id="60XXljMvK5InNJ0Gd33Rss"></a><!----><dsa-section>
+                 <div class="dsa-section d-flex flex-column flex-md-row">
+                  <!---->
+                  <div class="dsa-section__image col-12 pl-0 pr-0 align-self-md-center -product col-md-6 pl-md-0 pr-md-12">
+                   <!----><ds-picture ratio="16by9" class="ng-star-inserted">
+                    <span class="ds-picture d-block ds-no-overflow ratio-16by9 ratio-md-1by1 -product"><picture>
+                      <source media="(max-width: 599.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                      <source media="(min-width: 600px) and (max-width: 899.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                      <source media="(min-width: 900px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Rogers Bank Mobile App" class="ng-star-inserted"><!---->
+                     </picture></span><!----><!---->
+                   </ds-picture><!---->
+                  </div>
+                  <div class="dsa-section__copy col-12 pl-0 pr-0 pt-16 d-flex flex-column justify-content-center ds-bgcolor-transparent col-md-6 pb-md-16 pr-md-0 pl-md-12">
+                   <div class="dsa-section__copyWrapper pl-md-24">
+                    <!----><!---->
+                    <h2 class="dsa-section__copyHeading2 ds-title-4 mb-16 mb-md-24 ng-star-inserted">Simplified banking,<br>
+                      now available anywhere.</h2><!----><!----><!----><!----><!----><!----><!----><!----><!----><ngx-dynamic-hooks class="ng-star-inserted">
+                     <div class="rich-text-wrapper">
+                      <p>The Rogers Bank app is the easiest way to manage your account.</p>
+                     </div>
+                    </ngx-dynamic-hooks><!---->
+                    <div class="d-flex flex-column-reverse">
+                     <!---->
+                     <div class="d-flex flex-wrap ng-star-inserted">
+                      <dsa-cta class="w-100 w-sm-auto mt-16 d-inline-flex mw-100 ng-star-inserted">
+                       <!----><!----><!---->
+                       <a ds-button class="w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large text-no-decoration ng-star-inserted" href="/mobile_app" aria-label="Rogers Bank App" tabindex="0"><span role="text" class="ds-button__wrapper d-flex justify-content-center align-items-center"><!----><span class="ds-button__copy ds-txt-button text-nowrap ds-no-overflow mw-100"><span>Rogers Bank App</span><!----></span><!----><!----><!----></span></a><!---->
+                      </dsa-cta><!---->
+                     </div><!---->
+                    </div>
+                   </div>
+                  </div>
+                 </div><!---->
+                </dsa-section>
+               </div><!---->
+              </ui-block-inspector><!---->
+             </ui-block-section><!---->
+            </div>
+           </div>
+          </div><!---->
+         </ui-block-inspector><!---->
+        </ui-block-layout-container>
+        <ui-block-layout-container class="ng-star-inserted">
+         <ui-block-inspector data-testid="layout-container-5BtHN7n5VpYH7QOys1wS8E" class="ng-star-inserted">
+          <div class="ng-star-inserted">
+           <!----><a aria-hidden="false" tabindex="-1" id="5BtHN7n5VpYH7QOys1wS8E"></a><!---->
+           <div data-testid="ui-block-layout-container-div" class="ds-bg-body-default pb-40 pb-md-56 pt-40 pt-md-56" mode="light">
+            <div class="d-flex flex-column gap-24 gap-md-32 container">
+             <ui-block-section class="ng-star-inserted">
+              <ui-block-inspector data-testid="section-3Xsy9Uiemn4RLn0BAuFlqF" class="ng-star-inserted">
+               <div class="ng-star-inserted">
+                <!----><a aria-hidden="false" tabindex="-1" id="3Xsy9Uiemn4RLn0BAuFlqF"></a><!----><dsa-section>
+                 <div class="dsa-section flex-md-row-reverse d-flex flex-column flex-md-row">
+                  <!---->
+                  <div class="dsa-section__image col-12 pl-0 pr-0 align-self-md-center -product col-md-6 pr-md-0 pl-md-12">
+                   <!----><ds-picture ratio="16by9" class="ng-star-inserted">
+                    <span class="ds-picture d-block ds-no-overflow ratio-16by9 ratio-md-1by1 -product"><picture>
+                      <source media="(max-width: 599.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                      <source media="(min-width: 600px) and (max-width: 899.9px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                      <source media="(min-width: 900px)" srcset="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" class="ng-star-inserted">
+                      <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Mobile Wallet" class="ng-star-inserted"><!---->
+                     </picture></span><!----><!---->
+                   </ds-picture><!---->
+                  </div>
+                  <div class="dsa-section__copy col-12 pl-0 pr-0 pt-16 d-flex flex-column justify-content-center ds-bgcolor-transparent col-md-6 pb-md-16 pl-md-0 pr-md-12">
+                   <div class="dsa-section__copyWrapper pr-md-24">
+                    <!----><!---->
+                    <h2 class="dsa-section__copyHeading2 ds-title-4 mb-16 mb-md-24 ng-star-inserted">The faster, easier, contactless way to pay.</h2><!----><!----><!----><!----><!----><!----><!----><!----><!----><ngx-dynamic-hooks class="ng-star-inserted">
+                     <div class="rich-text-wrapper">
+                      <p>Use your mobile device to pay with your Rogers Red World Elite Mastercard in seconds.</p>
+                     </div>
+                    </ngx-dynamic-hooks><!---->
+                    <div class="d-flex flex-column-reverse">
+                     <!---->
+                     <div class="d-flex flex-wrap ng-star-inserted">
+                      <dsa-cta class="w-100 w-sm-auto mt-16 d-inline-flex mw-100 ng-star-inserted">
+                       <!----><!----><!---->
+                       <a ds-button class="w-100 ds-button ds-corners ds-pointer text-center mw-100 d-inline-block -primary -large text-no-decoration ng-star-inserted" href="/mobile_wallet" aria-label="Learn More" tabindex="0"><span role="text" class="ds-button__wrapper d-flex justify-content-center align-items-center"><!----><span class="ds-button__copy ds-txt-button text-nowrap ds-no-overflow mw-100"><span>Learn More</span><!----></span><!----><!----><!----></span></a><!---->
+                      </dsa-cta><!---->
+                     </div><!---->
+                    </div>
+                   </div>
+                  </div>
+                 </div><!---->
+                </dsa-section>
+               </div><!---->
+              </ui-block-inspector><!---->
+             </ui-block-section><!---->
+            </div>
+           </div>
+          </div><!---->
+         </ui-block-inspector><!---->
+        </ui-block-layout-container>
+        <ui-block-layout-container class="ng-star-inserted">
+         <ui-block-inspector data-testid="layout-container-4KOBMPXyubCHwoKp4C2A1w" class="ng-star-inserted">
+          <div class="ng-star-inserted">
+           <!----><a aria-hidden="false" tabindex="-1" id="4KOBMPXyubCHwoKp4C2A1w"></a><!---->
+           <div data-testid="ui-block-layout-container-div" class="ds-bg-body-container pb-40 pb-md-56 pt-40 pt-md-56" mode="light">
+            <div class="d-flex flex-column gap-24 gap-md-32 container">
+             <ui-block-content-block class="ng-star-inserted">
+              <ui-block-inspector data-testid="content-block-52uLXx8bjZpWYeNJAtQe3C" class="ng-star-inserted">
+               <div class="ng-star-inserted">
+                <!----><a aria-hidden="false" tabindex="-1" id="52uLXx8bjZpWYeNJAtQe3C"></a><!---->
+                <div class="d-flex flex-column gap-24 gap-md-32">
+                 <h2 class="ui-block-content__heading ds-title-2 mb-0 text-center ng-star-inserted">Insurances and other benefits</h2><!---->
+                 <div class="ui-block-content__copy text-center ng-star-inserted">
+                  <div class="rich-text-wrapper"></div>
+                 </div><!---->
+                 <div class="ui-block-content__components d-flex flex-column gap-24 gap-md-32 ng-star-inserted">
+                  <ui-block-layout-container-element class="ng-star-inserted">
+                   <ui-block-inspector data-testid="layout-container-elementFcv0T9OPqRiVZ1Rlo1dc7" class="ng-star-inserted">
+                    <div class="ng-star-inserted">
+                     <!----><a aria-hidden="false" tabindex="-1" id="Fcv0T9OPqRiVZ1Rlo1dc7"></a><!----><dsa-layout class="w-100">
+                      <div class="dsa-layout">
+                       <div class="row justify-content-center">
+                        <ui-block-featured-element class="ng-star-inserted">
+                         <ui-block-inspector data-testid="featured-element-1dI7Y2Lwew5dLu59XFOHFt" class="ng-star-inserted">
+                          <div class="h-100 ng-star-inserted">
+                           <!----><a aria-hidden="false" tabindex="-1" id="1dI7Y2Lwew5dLu59XFOHFt"></a><!---->
+                           <div class="h-100">
+                            <!----><!----><dsa-value-prop class="dsa-valueProp d-flex flex-column align-items-center text-center -primary ng-star-inserted">
+                             <!---->
+                             <div class="dsa-value-prop__pictogram ng-star-inserted">
+                              <ds-pictogram class="ds-pictogram">
+                              <span role="img" class="ds-icon d-inline-flex rds-pictogram-monitoring" aria-hidden="true"><!----></span>
+                              </ds-pictogram>
+                             </div><!---->
+                             <p class="dsa-valueProp__heading mt-16 mb-0 w-100 ds-title-4 ng-star-inserted">Transaction Monitoring &amp; Alerts</p><!---->
+                             <p class="dsa-valueProp__body ds-body-r mb-0 w-100 mt-16 ng-star-inserted"></p>
+                             <div class="rich-text-wrapper">
+                              <p>We'll help you automatically detect and prevent fraud.</p>
+                             </div>
+                             <p></p><!---->
+                             <a ds-link class="dsa-valueProp__cta mt-8 ds-link ds-pointer d-inline-flex outline-none mw-100 -cta text-no-decoration ng-star-inserted" href="/security" tabindex="0" role="link"><span class="ds-link__container d-flex align-items-center"><span role="text" class="ds-link__wrapper d-inline-block ds-txt-button"><span class="ds-link__copy"> Learn More <!----></span><!----><ds-icon name="right" class="right -size-24 ng-star-inserted">
+                              <span role="img" class="ds-icon d-inline-flex rds-icon-right" aria-hidden="true"><!----><!----></span>
+                              </ds-icon><!----></span></span></a><!---->
+                            </dsa-value-prop><!----><!----><!---->
+                           </div>
+                          </div><!---->
+                         </ui-block-inspector><!---->
+                        </ui-block-featured-element><ui-block-featured-element class="ng-star-inserted">
+                         <ui-block-inspector data-testid="featured-element-7nZ4Z3YC0YOss7Yoh61Qqa" class="ng-star-inserted">
+                          <div class="h-100 ng-star-inserted">
+                           <!----><a aria-hidden="false" tabindex="-1" id="7nZ4Z3YC0YOss7Yoh61Qqa"></a><!---->
+                           <div class="h-100">
+                            <!----><!----><dsa-value-prop class="dsa-valueProp d-flex flex-column align-items-center text-center -primary ng-star-inserted">
+                             <!---->
+                             <div class="dsa-value-prop__pictogram ng-star-inserted">
+                              <ds-pictogram class="ds-pictogram">
+                              <span role="img" class="ds-icon d-inline-flex rds-pictogram-reliable" aria-hidden="true"><!----></span>
+                              </ds-pictogram>
+                             </div><!---->
+                             <p class="dsa-valueProp__heading mt-16 mb-0 w-100 ds-title-4 ng-star-inserted">Zero Liability</p><!---->
+                             <p class="dsa-valueProp__body ds-body-r mb-0 w-100 mt-16 ng-star-inserted"></p>
+                             <div class="rich-text-wrapper">
+                              <p>In the event of unauthorized use, you won’t be held liable.</p>
+                             </div>
+                             <p></p><!---->
+                             <a ds-link class="dsa-valueProp__cta mt-8 ds-link ds-pointer d-inline-flex outline-none mw-100 -cta text-no-decoration ng-star-inserted" href="/security" tabindex="0" role="link"><span class="ds-link__container d-flex align-items-center"><span role="text" class="ds-link__wrapper d-inline-block ds-txt-button"><span class="ds-link__copy"> Learn More <!----></span><!----><ds-icon name="right" class="right -size-24 ng-star-inserted">
+                              <span role="img" class="ds-icon d-inline-flex rds-icon-right" aria-hidden="true"><!----><!----></span>
+                              </ds-icon><!----></span></span></a><!---->
+                            </dsa-value-prop><!----><!----><!---->
+                           </div>
+                          </div><!---->
+                         </ui-block-inspector><!---->
+                        </ui-block-featured-element><ui-block-featured-element class="ng-star-inserted">
+                         <ui-block-inspector data-testid="featured-element-1SuHOStZiJaFQSGfSPg4DO" class="ng-star-inserted">
+                          <div class="h-100 ng-star-inserted">
+                           <!----><a aria-hidden="false" tabindex="-1" id="1SuHOStZiJaFQSGfSPg4DO"></a><!---->
+                           <div class="h-100">
+                            <!----><!----><dsa-value-prop class="dsa-valueProp d-flex flex-column align-items-center text-center -primary ng-star-inserted">
+                             <!---->
+                             <div class="dsa-value-prop__pictogram ng-star-inserted">
+                              <ds-pictogram class="ds-pictogram">
+                              <span role="img" class="ds-icon d-inline-flex rds-pictogram-family" aria-hidden="true"><!----></span>
+                              </ds-pictogram>
+                             </div><!---->
+                             <p class="dsa-valueProp__heading mt-16 mb-0 w-100 ds-title-4 ng-star-inserted">Balance Protection</p><!---->
+                             <p class="dsa-valueProp__body ds-body-r mb-0 w-100 mt-16 ng-star-inserted"></p>
+                             <div class="rich-text-wrapper">
+                              <p>Group Balance Protection Insurance<sup>5</sup> protects you and your loved ones from the financial impact of unforeseen events.</p>
+                             </div>
+                             <p></p><!---->
+                             <a ds-link class="dsa-valueProp__cta mt-8 ds-link ds-pointer d-inline-flex outline-none mw-100 -cta text-no-decoration ng-star-inserted" href="/help_centre_answers/protection_services" tabindex="0" role="link"><span class="ds-link__container d-flex align-items-center"><span role="text" class="ds-link__wrapper d-inline-block ds-txt-button"><span class="ds-link__copy"> Learn More <!----></span><!----><ds-icon name="right" class="right -size-24 ng-star-inserted">
+                              <span role="img" class="ds-icon d-inline-flex rds-icon-right" aria-hidden="true"><!----><!----></span>
+                              </ds-icon><!----></span></span></a><!---->
+                            </dsa-value-prop><!----><!----><!---->
+                           </div>
+                          </div><!---->
+                         </ui-block-inspector><!---->
+                        </ui-block-featured-element><!---->
+                       </div>
+                      </div>
+                     </dsa-layout>
+                    </div><!---->
+                   </ui-block-inspector><!---->
+                  </ui-block-layout-container-element><!---->
+                 </div><!----><!----><!---->
+                </div>
+               </div><!---->
+              </ui-block-inspector><!---->
+             </ui-block-content-block><!---->
+            </div>
+           </div>
+          </div><!---->
+         </ui-block-inspector><!---->
+        </ui-block-layout-container><!----><!---->
+       </credit-card-page><!----><!----><!----><!----><!----><!----><!---->
+       <div class="container py-40 py-md-56 ng-star-inserted">
+        <ui-block-legal class="ng-star-inserted">
+         <ui-block-inspector data-testid="legal-6DotlWAv7YnYJC7eh7KYfg" class="ng-star-inserted">
+          <div class="ng-star-inserted">
+           <!----><a aria-hidden="false" tabindex="-1" id="6DotlWAv7YnYJC7eh7KYfg"></a><!----><dsa-legal class="ng-tns-c3846839460-3 d-block b-solid b-0 by-1 ds-br-body-secondary ng-star-inserted">
+            <button cdkmonitorelementfocus class="dsa-legal__header group w-100 b-0 d-flex align-items-center justify-content-between py-16 px-16 px-md-24 ds-pointer ds-bgcolor-transparent ds-keyboard-element-focus outline-none ds-moz-focus-inner ds-txt-body-default ng-tns-c3846839460-3" aria-label="<div class=&quot;rich-text-wrapper&quot;><span class=&quot;d-block&quot;>See Full Details</span></div>. " aria-expanded="false" aria-controls="legal-expanderRefId-2">
+             <div class="col-md-8 p-0 text-left ng-tns-c3846839460-3">
+              <span class="dsa-legal__copy mb-0 ds-body-l ng-tns-c3846839460-3 group-hover:text-bold group-keyboard-focused:text-bold">
+               <div class="rich-text-wrapper">
+                <span class="d-block">See Full Details</span>
+               </div></span>
+             </div><ds-icon name="chevron-down" class="dsa-legal__toggleIcon ds-pointer ml-24 ng-tns-c3846839460-3 ng-trigger ng-trigger-indicatorRotate -size-24" style="transform: rotate(0deg);">
+              <span role="img" class="ds-icon d-inline-flex rds-icon-chevron-down" aria-hidden="true"><!----><!----></span>
+             </ds-icon></button>
+            <ds-expander class="ng-tns-c3846839460-3" _nghost-ng-c476109515>
+             <div _ngcontent-ng-c476109515 tabindex="-1" class="ds-expander__expansionArea outline-none -collapsed ds-no-overflow" data-id="ds-expander__expansionArea-6" aria-hidden="true" style="max-height: 0px;">
+              <div _ngcontent-ng-c476109515>
+               <div class="dsa-legal__expansionArea px-16 px-md-24 pb-16" id="legal-expanderRefId-2">
+                <div class="ds-trim-last pl-0 pr-48 pr-md-0 ng-tns-c3846839460-3 col-md-8">
+                 <p class="ds-body-r mb-16 ng-tns-c3846839460-3 ng-star-inserted"></p>
+                 <div class="rich-text-wrapper">
+                  <p>Offers subject to change without notice. Application approval subject to credit assessment and income verification.</p>
+                 </div>
+                 <p></p><!---->
+                 <ol class="mb-16 ng-tns-c3846839460-3 ng-star-inserted">
+                  <li class="ds-body-r mb-0 ng-tns-c3846839460-3 mb-8 ng-star-inserted">
+                   <div class="rich-text-wrapper">
+                    <p><b class="text-bold"><u>Rogers customers</u></b>: You will earn 2% cash back rewards on all eligible purchases if you are a Rogers, Shaw or Fido customer with an eligible service and your accounts are in good standing. Eligible services include postpaid Rogers or Fido-branded consumer mobile plans (including wireless home phone and tablet data plans) or any Rogers, Shaw or Fido-branded internet, TV, home phone, home monitoring or satellite plan. Business/corporate plans are excluded. You must be the primary account holder for the eligible service. Eligibility for postpaid Rogers consumer mobile plans includes user who has permission to make changes on the account (i.e. a Level 1 Authorized User).</p>
+                    <p><b class="text-bold"><u>Non-Rogers customers:</u></b> You will earn 1% cash back rewards on all eligible purchases and 2% cash back rewards on eligible purchases made in US dollars.</p>
+                    <p>Cash back rewards are earned on eligible purchases or deducted for returns on a per-transaction basis based on the posting date of the transaction. Cash advances, balance transfers, cash-like transactions, interest, fees, insurance premiums and payments are not eligible purchases and do not qualify. Minimum redemption amount is $10 CAD. Cash back rewards can be redeemed online through the Rogers Bank app towards purchases or requested in the form of a statement credit annually. Account must be open and in good standing to earn and redeem cash back rewards. Foreign currency transactions are converted to Canadian dollars at the rate established by Mastercard International in effect on or after the date of the transaction and no later than the date the transaction is posted to the account plus an amount equal to 2.5% of the transaction amount after it has been converted to Canadian dollars.</p>
+                   </div></li>
+                  <li class="ds-body-r mb-0 ng-tns-c3846839460-3 mb-8 ng-star-inserted">
+                   <div class="rich-text-wrapper">
+                    <p>Your cash back rewards can be redeemed for 1.5 times (or 150%) of their regular redemption value when you apply them against eligible Rogers Communications Canada Inc. (“Rogers”) purchases, including new phones, bill payments and accessories. Fido and Shaw purchases are included. Exclusions apply. Redemptions must be made in the Rogers Bank app, where eligible Rogers purchases are identified. Minimum redemption amount is $10 CAD.</p>
+                   </div></li>
+                  <li class="ds-body-r mb-0 ng-tns-c3846839460-3 mb-8 ng-star-inserted">
+                   <div class="rich-text-wrapper">
+                    <p>Roam Like Home is provided by Rogers Communications Canada Inc. ("Rogers") and available to most Rogers customers with an eligible postpaid wireless plan (most enterprise plans, monthly plans that include roaming services as well as prepaid accounts are excluded). You will automatically be credited up to 5 Roam Like Home days per year on your Rogers bill once you link your Rogers Mastercard account to your Rogers postpaid account and eligible wireless plan. Both accounts must be in good standing. Unused Roam Like Home days at no cost do not carry over to the following year. See rogers.com/terms for full Roam Like Home terms and conditions.</p>
+                   </div></li>
+                  <li class="ds-body-r mb-0 ng-tns-c3846839460-3 mb-8 ng-star-inserted">
+                   <div class="rich-text-wrapper">
+                    <p>Offer available to new primary cardholders only. Get $60 cash back when you use your Rogers Red Mastercard to make: (a) 6 automatic bill payments for a Rogers, Fido or Shaw postpaid service (business/corporate plans are excluded) within 8 months of opening your credit card account, and (b) at least 1 purchase via your mobile wallet within 90 days of opening your credit card account.<br><br>
+                     Refunded purchases do not qualify. Cash back rewards can be redeemed online through the Rogers Bank app towards purchases or requested in the form of a statement credit annually. Minimum redemption amount is $10. Account must be open and in good standing to earn, redeem and be given cash back rewards. After you qualify for the $60 cash back, it may take up to 5 months for the cash back to be posted to your account. Offer may be changed, cancelled or extended at any time without notice and cannot be combined with any other offer unless otherwise indicated. We may revoke this offer if you appear to be manipulating or abusing it, or are engaged in any suspicious or fraudulent activity, as we may determine in our sole discretion. Rogers employees and existing cardholders who switched to the Rogers Red Mastercard are not eligible for this offer.</p>
+                   </div></li>
+                  <li class="ds-body-r mb-0 ng-tns-c3846839460-3 ng-star-inserted">
+                   <div class="rich-text-wrapper">
+                    <p>Rogers Bank optional Group Balance Protection group insurance is underwritten by Canadian Premier Life Insurance Company.</p>
+                   </div></li><!---->
+                 </ol><!---->
+                 <p class="ds-body-r mb-16 ng-tns-c3846839460-3 ng-star-inserted"></p>
+                 <div class="rich-text-wrapper">
+                  <p><sup>®/TM</sup> Mastercard and World Elite are registered trademarks and the circles design is a trademark of Mastercard International Incorporated. Used under license.</p>
+                 </div>
+                 <p></p>
+                 <p class="ds-body-r mb-16 ng-tns-c3846839460-3 ng-star-inserted"></p>
+                 <div class="rich-text-wrapper">
+                  <p><sup>TM</sup> Rogers and Mobius Design, Rogers Bank and related marks, logos and brand names are trademarks of Rogers Communications Inc., or an affiliate, used under license. © 2025 Rogers Bank.</p>
+                 </div>
+                 <p></p>
+                 <p class="ds-body-r mb-16 ng-tns-c3846839460-3 ng-star-inserted"></p>
+                 <div class="rich-text-wrapper">
+                  <p>The Rogers Red Mastercard is a credit card issued by Rogers Bank.</p>
+                 </div>
+                 <p></p>
+                 <p class="ds-body-r mb-16 ng-tns-c3846839460-3 ng-star-inserted"></p>
+                 <div class="rich-text-wrapper">
+                  <p>The Rogers Red World Elite Mastercard is a credit card issued by Rogers Bank.</p>
+                 </div>
+                 <p></p><!----><!---->
+                </div>
+               </div>
+              </div>
+             </div>
+            </ds-expander>
+           </dsa-legal>
+          </div><!---->
+         </ui-block-inspector><!---->
+        </ui-block-legal><!---->
+       </div><!---->
+      </div><!----><!---->
+     </div><!---->
+     <p style="display: none;">Build info: U2FsdGVkX1/5FmDsA9hL8skAMrPzJ+m9B2yxtV/ZW/rpOXr11uCH5HEdUJxCIrmGD1GvyLfo5qWg7IynkwX+g0oqt5Egbzdq5devh0IFV/j/m2kKdbLZQtE8dDAhnJtWbWI6uK3CJuxOAQQZRmfyYoPi+1+dfaash1G9dIjGkb8PpoLPukLJk9z6s0cX/a9TOqsvodsNQc5Y6pAb3ZMjaft8VRurV8zW9Hw7qKGdwPk=</p>
+    </ng-component><!----><app-cookie _ngcontent-ng-c2219046469 _nghost-ng-c1507547615>
+     <!---->
+    </app-cookie>
+   </main>
+  </app-root><!----> <ge-footer config="{&quot;isFooterEnabled&quot;:true}"></ge-footer>
+  <script src="polyfills-LKESJD2S.js" type="module"></script>
+  <script src="main-WJWOQAWP.js" type="module"></script>
+  <script id="ng-state" type="application/json">{"dynamicPage":{"pageMetadata":{"title":"Rogers Red Mastercard | Rogers Bank","description":"Everything you need to know about the Rogers Red Mastercard.","searchEngineCrawlerOptions":"Allow all"},"templateType":"creditCardPageTemplate","entryTitle":"Rogers Red Mastercard","title":"Rogers Red Mastercard","date":"","introduction":"\u003Cdiv class=\"rich-text-wrapper\">\u003C/div>","hero":[{"contentfulEntryId":"6SYmUXxMSSwOUWc3jGiTIs","contentType":"heroBillboardBlockWithTile","heading":"Rogers Red Mastercard®","headingType":"h1","copyAlign":"right","container":"none","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>3% cash back value when you redeem with Rogers.\u003C/p>\u003Cp>\u003Cb class=\"text-bold\">Exclusively for Rogers customers.\u003C/b>\u003C/p>\u003Cp>\u003Cb class=\"text-bold\">\u003Cbr/>\u003C/b>\u003C/p>\u003C/div>","fgImage":{"src":"//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png","alt":"Rogers Mastercard image.","variant":"product","preload":true,"fetchPriority":"high","loading":"eager"},"bgImage":null,"bgColor":"transparent","ctas":[{"contentfulEntryId":"6y8j2GLQdRuOkmdh5UjuCh","contentType":"cta","copy":"Apply Now","variant":"primary","href":"void(0);","ctaType":"Apply Now - CON","isTracked":false,"isCustomerJourney":false,"type":"link"},{"contentfulEntryId":"5Gh920mkGbaj8c8bF3ZgiZ","contentType":"cta","copy":"Learn More","variant":"secondary","href":"/rogers_red_mastercard_details#5nj1asvLbivw7CbhdeoiPC","ctaType":"URL","isTracked":false,"isCustomerJourney":false,"type":"link"}],"backgroundColour":"white","headingColor":"default","entryTitle":"Rogers Red Mastercard®","tile":[{"contentfulEntryId":"5hmnwiwRRfycxU7DUhv1m3","contentType":"tile","title":"New to Canada?","description":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Help build your credit from day one. With Rogers Bank, you can utilize your credit history from select countries which can help you qualify for higher credit limits.\u003C/p>\u003C/div>","cta":[{"contentfulEntryId":"69ZPgMPNbgUWyR8lbFlOCu","contentType":"cta","copy":"Apply Now","variant":"primary","href":"void(0);","ctaType":"New Comer - CON","isTracked":false,"isCustomerJourney":false},{"contentfulEntryId":"66jzLcTU2k1COp3LyFKZfu","contentType":"cta","copy":"Learn More","variant":"secondary","href":"/credit-card-for-newcomers","ctaType":"URL","isTracked":false,"isCustomerJourney":false,"type":"link"}],"image":{"picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/136DGFSbw0tSu2565gX51Z/c638e8452cbc7ab7c1a8cf88ceeb820f/459d673bbdc090532b634f930fb003d3__1_.jfif","alt":"New to Canada","variant":"lifestyle","preload":false,"fetchPriority":"auto","loading":"lazy"}}}]}],"body":[{"contentfulEntryId":"1fsveq0u6WboGLV0W04qvU","contentType":"layoutContainer","entryTitle":"Welcome Bonus","layoutMode":"light","uiBlocks":[{"contentfulEntryId":"2yb0bIUln9WIzNzroXjsXD","contentType":"contentBlock","sectionTitle":"Welcome Bonus","sectionBody":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>As a welcome bonus for signing up, earn $60 cash back when you make a mobile wallet purchase within the first 90 days and 6 automatic payments within the first 8 months for your Rogers, Fido or Shaw postpaid service\u003Csup>4\u003C/sup> \u003C/p>\u003C/div>","sectionBodyAlignment":"center"}],"cssClasses":["ds-bg-body-container","pt-md-56","pb-md-56","pt-40","pb-40"],"enableFullWidth":false},{"contentfulEntryId":"5nj1asvLbivw7CbhdeoiPC","contentType":"layoutContainer","entryTitle":"Value props - Being a Rogers customer has never been more rewarding Earn icon (Rogers Mastercard®)","layoutMode":"light","uiBlocks":[{"contentfulEntryId":"4iOe66wQHCeKOTKt1cMNdE","contentType":"contentBlock","sectionTitle":"Being a Rogers customer has never been more rewarding","sectionBody":"\u003Cdiv class=\"rich-text-wrapper\">\u003C/div>","sectionBodyAlignment":"center","components":[{"contentfulEntryId":"5smmmrMFTV6DFnxhhOcSAL","contentType":"layoutContainerElement","uiBlocks":[{"contentfulEntryId":"4WrsxEyCUpqzXZfrPuIjUM","contentType":"featuredElement","title":"Earn 2% cash back","body":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Earn 2% unlimited cash back on all eligible non-U.S. dollar purchases if you have 1 qualifying service with Rogers, Fido or Shaw.\u003Csup>1\u003C/sup>\u003C/p>\u003Cp>\u003Cb class=\"text-bold\">Otherwise\u003C/b>\u003C/p>\u003Cp>Earn 1% unlimited cash back on eligible non-U.S. dollar purchases\u003Csup>1\u003C/sup>\u003C/p>\u003C/div>","style":"ValueProp","icon":"money-back"},{"contentfulEntryId":"3801DgfKntF8GzpJ3VDNSz","contentType":"featuredElement","title":"Earn 2% cash back on U.S. purchases","body":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Earn 2% unlimited cash back on all eligible purchases made in U.S. dollars.\u003Csup>1\u003C/sup>\u003C/p>\u003C/div>","style":"ValueProp","icon":"canada-usa"},{"contentfulEntryId":"qvQ1aKunD1sWfYAkgtLee","contentType":"featuredElement","title":"1.5x cash back","body":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Get 1.5x more cash back every time you redeem for Rogers, Fido or Shaw purchases\u003Csup>2\u003C/sup> \u003C/p>\u003C/div>","style":"ValueProp","icon":"device-financing"},{"contentfulEntryId":"Bw1yKvIJ6azCmSLPLQhx5","contentType":"featuredElement","title":"5 Roam Like Home days","body":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Get 5 \u003Cb class=\"text-bold\">Roam Like Home\u003C/b> days at no cost every year for Rogers mobile plans (up to $80 value).\u003Csup>3,*\u003C/sup>\u003C/p>\u003C/div>","style":"ValueProp","icon":"travel"}],"alignment":"center","col":12,"colSm":6,"colMd":3}],"cta":[{"contentfulEntryId":"50oqBLQN2llv2DlPLXBD0d","contentType":"cta","copy":"Check Eligibility","variant":"secondary","href":"/","ctaType":"Modal","isTracked":false,"isCustomerJourney":false,"type":"button","alignIcon":"left","modal":{"metadata":{"tags":[],"concepts":[]},"sys":{"space":{"sys":{"type":"Link","linkType":"Space","id":"q52gnekwj7nu"}},"id":"1BfTjoiT2J69C0jwNRQTXQ","type":"Entry","createdAt":"2024-05-29T14:18:32.984Z","updatedAt":"2024-05-29T14:25:57.482Z","environment":{"sys":{"id":"master","type":"Link","linkType":"Environment"}},"publishedVersion":11,"revision":5,"contentType":{"sys":{"type":"Link","linkType":"ContentType","id":"modal"}},"locale":"en"},"fields":{"entryTitle":"Rogers Mastercard® - You will be eligible for 2% cash back if you are actively subscribed to only 1 eligible service. Eligible services include:","title":"You will be eligible for 2% cash back if you are actively subscribed to only 1 eligible service. Eligible services include:","body":[{"metadata":{"tags":[],"concepts":[]},"sys":{"space":{"sys":{"type":"Link","linkType":"Space","id":"q52gnekwj7nu"}},"id":"29vzXqOXNQviENG54XroV8","type":"Entry","createdAt":"2024-05-29T14:18:59.620Z","updatedAt":"2024-05-29T14:25:28.820Z","environment":{"sys":{"id":"master","type":"Link","linkType":"Environment"}},"publishedVersion":12,"revision":4,"contentType":{"sys":{"type":"Link","linkType":"ContentType","id":"richText"}},"locale":"en"},"fields":{"entryTitle":" Rogers Mastercard® - You will be eligible for 2% cash back if you are actively subscribed to only 1 eligible service. Eligible services include:","body":{"data":{},"content":[{"data":{},"content":[{"data":{},"content":[{"data":{},"content":[{"data":{},"marks":[],"value":"Postpaid Rogers-branded consumer mobile plans (which includes wireless home phone and tablet data plans). For these plans, users who have permission to make changes (i.e. a Level 1 Authorized User) are also eligible.","nodeType":"text"}],"nodeType":"paragraph"}],"nodeType":"list-item"},{"data":{},"content":[{"data":{},"content":[{"data":{},"marks":[],"value":"Postpaid Fido-branded consumer mobile plans – primary account holders only (which includes wireless home phone and tablet data plans)","nodeType":"text"}],"nodeType":"paragraph"}],"nodeType":"list-item"},{"data":{},"content":[{"data":{},"content":[{"data":{},"marks":[],"value":"Any Rogers, Shaw or Fido-branded internet, TV, home phone, home monitoring or satellite service – primary account holders only","nodeType":"text"}],"nodeType":"paragraph"}],"nodeType":"list-item"}],"nodeType":"unordered-list"},{"data":{"target":{"metadata":{"tags":[],"concepts":[]},"sys":{"space":{"sys":{"type":"Link","linkType":"Space","id":"q52gnekwj7nu"}},"id":"6608Ep5QiDrdh9MfkfqrjO","type":"Entry","createdAt":"2024-05-23T13:04:16.667Z","updatedAt":"2024-05-30T16:08:47.873Z","environment":{"sys":{"id":"master","type":"Link","linkType":"Environment"}},"publishedVersion":28,"revision":12,"contentType":{"sys":{"type":"Link","linkType":"ContentType","id":"cta"}},"locale":"en"},"fields":{"value":"void(0);","type":"Apply Now - CON","copy":"Apply Now","variant":"primary","accessibilityDescriptionForExternalUrl":"opens in a new window","isTracked":false,"isCustomerJourney":false}}},"content":[],"nodeType":"embedded-entry-block"},{"data":{},"content":[{"data":{},"marks":[],"value":"","nodeType":"text"}],"nodeType":"paragraph"}],"nodeType":"document"},"alignment":"left"}}]}}}]},{"contentfulEntryId":"2TEbC8hn2CzWWkDniGv8Yv","contentType":"richText","entryTitle":"Access your Roam Like Home days when your Rogers account is linked to your Rogers Red Mastercard","alignment":"center","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>\u003Csup>*\u003C/sup>Access your Roam Like Home days when your Rogers account is linked to your Rogers Red Mastercard. Only one Rogers Red Mastercard can be linked to one eligible Rogers mobile account. You must be the primary account holder or a Level 1 Authorized user for the eligible service. Most eligible cardholders are linked automatically shortly after approval. \u003C/p>\u003C/div>"}],"cssClasses":["ds-bg-body-default","pt-md-56","pb-md-56","pt-40","pb-40"],"enableFullWidth":false},{"contentfulEntryId":"5Dt4khoDtG9qOfxMsMCPrq","contentType":"layoutContainer","entryTitle":"Section Block - Interest rates and fees on your card (Rogers Mastercard®)","layoutMode":"dark","uiBlocks":[{"contentfulEntryId":"5L1QTQ059A9wXxpc9qMZFc","contentType":"sectionBlock","title":"Apply today and start earning cash back","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cul>\u003Cli>\u003Cp>Annual fee: \u003Cb class=\"text-bold\">Free\u003C/b>\u003C/p>\u003C/li>\u003Cli>\u003Cp>Interest rates for purchases: \u003Cb class=\"text-bold\">20.99% - 25.99%\u003C/b>\u003C/p>\u003C/li>\u003Cli>\u003Cp>Interest rates for cash advances: \u003Cb class=\"text-bold\">22.99% - 27.99%\u003C/b>\u003C/p>\u003C/li>\u003Cli>\u003Cp>Additional cardholders: \u003Cb class=\"text-bold\">Free\u003C/b> \u003C/p>\u003C/li>\u003C/ul>\u003Cp>\u003Cbr/>\u003C/p>\u003C/div>","variant":"5050","alignMedia":"left","ctas":[{"contentfulEntryId":"4JFQEjaeOhq72O0XIudAbM","contentType":"cta","copy":"Get Started","variant":"primary","href":"void(0);","ctaType":"Apply Now - CON","type":"link"},{"contentfulEntryId":"6TcT7weoIN32f84yIeZpR8","contentType":"cta","copy":"Learn More","variant":"secondary","href":"/compare_cards","ctaType":"URL","isTracked":false,"isCustomerJourney":false,"type":"link"}],"picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png","alt":"Rogers Mastercard image","variant":"product","preload":true,"fetchPriority":"high","loading":"eager"},"headingType":"h2"}],"cssClasses":["ds-bg-body-default","pt-md-56","pb-md-56","pt-40","pb-40"],"enableFullWidth":false},{"contentfulEntryId":"5lT1qhWlI1yerl836oMdHM","contentType":"layoutContainer","entryTitle":"Calculator - Estimate your earnings with the (Rogers Mastercard®)","layoutMode":"light","uiBlocks":[{"contentfulEntryId":"7nViSZJLxB45ygMaEqzwSd","contentType":"richText","entryTitle":"Estimate your earnings with the (Rogers Mastercard®)","alignment":"center","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Ch2 class=\"ds-title-2\">Estimate your earnings with the\u003Cbr/>Rogers Red Mastercard\u003C/h2>\u003Cp>\u003Cbr/>\u003C/p>\u003C/div>"},{"contentfulEntryId":"1KEeyNeWXLwUgQTbf3ehm6","contentType":"cashBackCalculator","creditCardDetails":{"productName":"Rogers Mastercard®","productKey":"rogers-mastercard","annualFee":20,"cashBackInterestCAD":0.01,"cashBackAdditionalInterestCAD":0.02,"cashBackInterestUSD":0.02,"productPhoto":{"picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png","alt":"Rogers Mastercard image","variant":"product","preload":true,"fetchPriority":"high","loading":"eager"}},"features":[{"id":"includes","groupId":"includes","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Get $60 cash back in the first 8 months\u003Csup>4\u003C/sup>\u003C/p>\u003C/div>","picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/2CYufxf4VoeTuIWQI3JrTj/23ad54d56860e64bb06071484d6f2b88/Promotion.svg","alt":"Promotion","variant":"lifestyle","preload":false,"fetchPriority":"auto","loading":"lazy"}},{"id":"12312","groupId":"includes","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Up to 2% on all your estimated spend thereafter\u003Csup>1\u003C/sup> \u003C/p>\u003C/div>","picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/7h0I8d8jaXr2nqn3df93qM/b9f326399c7b28e909a19052ef6d661b/Pro-On-The-Go.svg","alt":"Pro-On-The-Go","variant":"lifestyle","preload":false,"fetchPriority":"auto","loading":"lazy"}},{"id":"roam-like-home","groupId":"includes","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>5 Roam Like Home days at no cost (up to $80 value)\u003Csup>3\u003C/sup>\u003C/p>\u003C/div>","picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/42iFjITPnCGBWcRgV6nVB0/a581d55defd29bbe14fc375b70128cc1/Travel.svg","alt":"Travel","variant":"lifestyle","fetchPriority":"auto","loading":"lazy"}},{"id":"service-cash-back-bonus","groupId":"includes","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>1.5 times more cash back every time you redeem for Rogers, Fido or Shaw purchases\u003Csup>2\u003C/sup>\u003C/p>\u003C/div>","picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/4TaQBlq4kGeZUxlDq1fRRy/83b6e4af6e128c76df7f2c77d159a702/Economic_Growth.svg","alt":"Cash Back Value","variant":"lifestyle","fetchPriority":"auto","loading":"lazy"}},{"id":"no-annual-fee","groupId":"includes","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>No Annual Fee\u003C/p>\u003C/div>","picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/1dea7hc0i995fzrshcPjiA/75e73ced40c06e56d392389c00262a91/Waived_Service_Fee_1.svg","alt":"No Annual Fee","variant":"lifestyle","fetchPriority":"auto","loading":"lazy"}}]},"config":{"sliderMinCAD":0,"sliderMaxCAD":10000,"defaultValueCAD":900,"sliderMinUSD":0,"sliderMaxUSD":10000,"defaultValueUSD":100},"copy":{"cashBack":"cash back","includes":"Includes:","perMonth":"/month","breakDown":"Average value in the 1st year","decrement":"Decrement","increment":"Increment","fidoMobile":"Fido Mobile*","rogersMobile":"Rogers Mobile*","servicesNote":"*Rogers and Fido mobile plans must be postpaid to qualify. Business/corporate plans do not qualify. Mobile plans with Chatr do not qualify.","toolTipTitle":"Cash back breakdown","breakDownNote":"**Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.","servicesCombo":"Rogers, Fido, or Shaw Home (Internet, TV, home phone, home monitoring, or satellite)","redemptionBonus":"Rogers Redemption Bonus:","everydayPurchase":"Non-US dollar purchases","usDollarPurchase":"U.S. dollar purchases","toolTipCloseLabel":"Close","toolTipUsPurchase":"U.S dollar purchases","highlightedFeature":"Get 2% unlimited cash back on all eligible purchases if you have 1 qualifying service with Rogers, Fido or Shaw\u003Csup>1\u003C/sup>.","toolTipCadPurchase":"Non-U.S dollar purchases","toolTipYearlyValue":"Yearly value","selectServicesTitle":"Select the services you currently have","toolTipRoamLikeHome":"5 Roam like home days at no cost","toolTipTriggerLabel":"Trigger Label","estimatedYearlyValue":"Estimated yearly value","toolTipBonusCashBack":"Get $60 cash back in the 8 months","toolTipTotalCashBack":"Total cash back value","toolTipRedemptionBonus":"Rogers Redemption Bonus:","estimateMonthlySpending":"Estimate your monthly spending:","toolTipBonusTimesCashBack":"1.5x bonus on your earned cash back value when redeemed for Rogers purchases"}}],"cssClasses":["ds-bg-body-default","pt-md-56","pb-md-56","pt-40","pb-40"],"enableFullWidth":false},{"contentfulEntryId":"4rqDFk4kC9QfMLNSaBq9iX","contentType":"layoutContainer","entryTitle":"Exclusive benefits for Rogers customers","layoutMode":"light","uiBlocks":[{"contentfulEntryId":"1MG9m1mu7lWJEuFILQPIHX","contentType":"contentBlock","sectionTitle":"Exclusive benefits for Rogers customers","sectionBody":"\u003Cdiv class=\"rich-text-wrapper\">\u003C/div>","sectionBodyAlignment":"center","components":[{"contentfulEntryId":"5MLqSUsgOnVf7FvYt4O3Og","contentType":"layoutContainerElement","uiBlocks":[{"contentfulEntryId":"16SFCpm0wSgVpHJZ8uCtjx","contentType":"featuredElement","title":"The most cash back for Rogers customers","body":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Earn 2% unlimited cash back on all eligible non-U.S. dollar purchases if you have 1 qualifying service with Rogers, Fido or Shaw.\u003Csup>1\u003C/sup> \u003C/p>\u003C/div>","style":"ValueProp","icon":"money-back"},{"contentfulEntryId":"2yaPE2PtNtXffkXEdgp7Jr","contentType":"featuredElement","title":"5 Roam Like Home days every year","body":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Rogers mobile customers get to roam at no cost for 5 days every year with Roam Like Home in up to 185 destinations.\u003Csup>3\u003C/sup> \u003C/p>\u003C/div>","style":"ValueProp","icon":"travel"},{"contentfulEntryId":"7Gag7TjRbTeWWlMaMetOoi","contentType":"featuredElement","title":"Rogers Redemption Bonus","body":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Get 1.5 times more cash back every time you redeem for Rogers, Fido or Shaw purchases.\u003Csup>2\u003C/sup> \u003C/p>\u003C/div>","style":"ValueProp","icon":"mix-match-devices"}],"alignment":"left","col":12,"colSm":6,"colMd":4}],"cta":[{"contentfulEntryId":"2Q0NXrB4FYFmZjscIHnYxL","contentType":"cta","copy":"Explore All Rogers Benefits","variant":"secondary","href":"/rogers_benefits","ctaType":"URL","type":"link"}]}],"cssClasses":["ds-bg-body-container","pt-md-56","pb-md-56","pt-40","pb-40"],"enableFullWidth":false},{"contentfulEntryId":"2DwAv5rzZFDlHM2waa4pdA","contentType":"layoutContainer","entryTitle":"Freedom to redeem your way","layoutMode":"dark","uiBlocks":[{"contentfulEntryId":"7lXUUpXRlxnfN9LxFJrhkE","contentType":"sectionBlock","title":"Freedom to redeem your way","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Earn unlimited cash back rewards on eligible purchases anywhere Mastercard is accepted. Get 1.5 times more cash back every time you redeem for Rogers, Fido or Shaw purchases.\u003Csup>1,2\u003C/sup> \u003C/p>\u003Cp>Redeem your rewards easily with the Rogers Bank app.\u003C/p>\u003C/div>","variant":"5050","alignMedia":"left","ctas":[{"contentfulEntryId":"5rmgRrgLMM1pMJntWZCNep","contentType":"cta","copy":"Learn More","variant":"primary","href":"/rewards","ctaType":"URL","type":"link"}],"picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/4XoNdTqecih9KiAGBPaIRf/20d2bcd07da5dbc5cdf2e658ef151ee9/GettyImages-1141999394__1_.jpg","alt":"Happy Family New","variant":"lifestyle","preload":false,"fetchPriority":"auto","loading":"lazy"},"headingType":"h2"}],"cssClasses":["ds-bg-body-default","pt-md-56","pb-md-56","pt-40","pb-40"],"enableFullWidth":false},{"contentfulEntryId":"7ybTZgaDO8wLAagpHAOvNN","contentType":"layoutContainer","entryTitle":"Simplified banking, now available anywhere - Rogers Red Mastercard","layoutMode":"light","uiBlocks":[{"contentfulEntryId":"RzQzhd9CAJ2meCNQRYQHI","contentType":"richText","entryTitle":"Manage your Rogers Red Mastercard anywhere","alignment":"center","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Ch2 class=\"ds-title-2\">Manage your Rogers Red Mastercard anywhere\u003C/h2>\u003Cp>\u003Cbr/>\u003C/p>\u003C/div>"},{"contentfulEntryId":"60XXljMvK5InNJ0Gd33Rss","contentType":"sectionBlock","title":"Simplified banking,\u003Cbr> now available anywhere.","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>The Rogers Bank app is the easiest way to manage your account.\u003C/p>\u003C/div>","variant":"5050","alignMedia":"left","ctas":[{"contentfulEntryId":"476P0UgXREu4GxZIEy7nCW","contentType":"cta","copy":"Rogers Bank App","variant":"primary","href":"/mobile_app","ctaType":"URL","isTracked":false,"isCustomerJourney":false,"type":"link"}],"picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/6mXFmh3KDU5pJlyacvbAZL/a0cf3f24a6ae70709f87a70f10a0a982/mobile_app_con.en.png","alt":"Rogers Bank Mobile App","variant":"product","preload":true,"fetchPriority":"high","loading":"eager"},"headingType":"h2"}],"cssClasses":["ds-bg-body-default","pt-md-56","pb-md-56","pt-40","pb-40"],"enableFullWidth":false},{"contentfulEntryId":"5BtHN7n5VpYH7QOys1wS8E","contentType":"layoutContainer","entryTitle":"The faster, easier, contactless way to pay.","layoutMode":"light","uiBlocks":[{"contentfulEntryId":"3Xsy9Uiemn4RLn0BAuFlqF","contentType":"sectionBlock","title":"The faster, easier, contactless way to pay.","content":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Use your mobile device to pay with your Rogers Red World Elite Mastercard in seconds. \u003C/p>\u003C/div>","variant":"5050","alignMedia":"right","ctas":[{"contentfulEntryId":"kuK31vANNDO2eGNDj6t6R","contentType":"cta","copy":"Learn More","variant":"primary","href":"/mobile_wallet","ctaType":"URL","type":"link"}],"picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/gQafloCusS9UDAaMBdis9/78e93b0f661e81d3223c1c2bc8d6d79c/mobile_wallet_landing_hero.en.png","alt":"Mobile Wallet","variant":"product","fetchPriority":"auto","loading":"lazy"},"headingType":"h2"}],"cssClasses":["ds-bg-body-default","pt-md-56","pb-md-56","pt-40","pb-40"],"enableFullWidth":false},{"contentfulEntryId":"4KOBMPXyubCHwoKp4C2A1w","contentType":"layoutContainer","entryTitle":"With a Rogers Bank credit card, you get…","layoutMode":"light","uiBlocks":[{"contentfulEntryId":"52uLXx8bjZpWYeNJAtQe3C","contentType":"contentBlock","sectionTitle":"Insurances and other benefits","sectionBody":"\u003Cdiv class=\"rich-text-wrapper\">\u003C/div>","sectionBodyAlignment":"center","components":[{"contentfulEntryId":"Fcv0T9OPqRiVZ1Rlo1dc7","contentType":"layoutContainerElement","uiBlocks":[{"contentfulEntryId":"1dI7Y2Lwew5dLu59XFOHFt","contentType":"featuredElement","title":"Transaction Monitoring & Alerts","body":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>We&#39;ll help you automatically detect and prevent fraud.\u003C/p>\u003C/div>","cta":{"contentfulEntryId":"pGfgyOgIJw9Z9XKjvD40B","contentType":"cta","copy":"Learn More","variant":"tertiary","href":"/security","ctaType":"URL","type":"link"},"style":"ValueProp","icon":"monitoring"},{"contentfulEntryId":"7nZ4Z3YC0YOss7Yoh61Qqa","contentType":"featuredElement","title":"Zero Liability","body":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>In the event of unauthorized use, you won’t be held liable.\u003C/p>\u003C/div>","cta":{"contentfulEntryId":"pGfgyOgIJw9Z9XKjvD40B","contentType":"cta","copy":"Learn More","variant":"tertiary","href":"/security","ctaType":"URL","type":"link"},"image":{"picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/5vzH3RaNHTQY0u813lmfuP/974129ec4dc78cc2cca96ee1c5ef3005/Zero_Liability.svg","alt":"Zero Liability","variant":"lifestyle","fetchPriority":"auto","loading":"lazy"}},"style":"ValueProp","icon":"reliable"},{"contentfulEntryId":"1SuHOStZiJaFQSGfSPg4DO","contentType":"featuredElement","title":"Balance Protection","body":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Group Balance Protection Insurance\u003Csup>5\u003C/sup> protects you and your loved ones from the financial impact of unforeseen events.\u003C/p>\u003C/div>","cta":{"contentfulEntryId":"2G7VPx3nmY4Blk6hJNpvD1","contentType":"cta","copy":"Learn More","variant":"tertiary","href":"/help_centre_answers/protection_services","ctaType":"URL","type":"link"},"style":"ValueProp","icon":"family"}],"alignment":"center","col":12,"colSm":6,"colMd":4}]}],"cssClasses":["ds-bg-body-container","pt-md-56","pb-md-56","pt-40","pb-40"],"enableFullWidth":false}],"legal":{"contentfulEntryId":"6DotlWAv7YnYJC7eh7KYfg","contentType":"legalDisclaimer","collapsedCta":{"copy":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cspan class=\"d-block\">See Full Details\u003C/span>\u003C/div>","alt":""},"expandedCta":{"copy":"\u003Cdiv class=\"rich-text-wrapper\">\u003Cspan class=\"d-block\">Hide Full Details\u003C/span>\u003C/div>","alt":""},"details":["\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Offers subject to change without notice. Application approval subject to credit assessment and income verification.\u003C/p>\u003C/div>"],"list":["\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>\u003Cb class=\"text-bold\">\u003Cu>Rogers customers\u003C/u>\u003C/b>: You will earn 2% cash back rewards on all eligible purchases if you are a Rogers, Shaw or Fido customer with an eligible service and your accounts are in good standing. Eligible services include postpaid Rogers or Fido-branded consumer mobile plans (including wireless home phone and tablet data plans) or any Rogers, Shaw or Fido-branded internet, TV, home phone, home monitoring or satellite plan. Business/corporate plans are excluded. You must be the primary account holder for the eligible service. Eligibility for postpaid Rogers consumer mobile plans includes user who has permission to make changes on the account (i.e. a Level 1 Authorized User).\u003C/p>\u003Cp>\u003Cb class=\"text-bold\">\u003Cu>Non-Rogers customers:\u003C/u>\u003C/b> You will earn 1% cash back rewards on all eligible purchases and 2% cash back rewards on eligible purchases made in US dollars.\u003C/p>\u003Cp>Cash back rewards are earned on eligible purchases or deducted for returns on a per-transaction basis based on the posting date of the transaction. Cash advances, balance transfers, cash-like transactions, interest, fees, insurance premiums and payments are not eligible purchases and do not qualify. Minimum redemption amount is $10 CAD. Cash back rewards can be redeemed online through the Rogers Bank app towards purchases or requested in the form of a statement credit annually. Account must be open and in good standing to earn and redeem cash back rewards. Foreign currency transactions are converted to Canadian dollars at the rate established by Mastercard International in effect on or after the date of the transaction and no later than the date the transaction is posted to the account plus an amount equal to 2.5% of the transaction amount after it has been converted to Canadian dollars.\u003C/p>\u003C/div>","\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Your cash back rewards can be redeemed for 1.5 times (or 150%) of their regular redemption value when you apply them against eligible Rogers Communications Canada Inc. (“Rogers”) purchases, including new phones, bill payments and accessories. Fido and Shaw purchases are included. Exclusions apply. Redemptions must be made in the Rogers Bank app, where eligible Rogers purchases are identified. Minimum redemption amount is $10 CAD.\u003C/p>\u003C/div>","\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Roam Like Home is provided by Rogers Communications Canada Inc. (&quot;Rogers&quot;) and available to most Rogers customers with an eligible postpaid wireless plan (most enterprise plans, monthly plans that include roaming services as well as prepaid accounts are excluded). You will automatically be credited up to 5 Roam Like Home days per year on your Rogers bill once you link your Rogers Mastercard account to your Rogers postpaid account and eligible wireless plan. Both accounts must be in good standing. Unused Roam Like Home days at no cost do not carry over to the following year. See rogers.com/terms for full Roam Like Home terms and conditions.\u003C/p>\u003C/div>","\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Offer available to new primary cardholders only. Get $60 cash back when you use your Rogers Red Mastercard to make: (a) 6 automatic bill payments for a Rogers, Fido or Shaw postpaid service (business/corporate plans are excluded) within 8 months of opening your credit card account, and (b) at least 1 purchase via your mobile wallet within 90 days of opening your credit card account.\u003Cbr/>\u003Cbr/>Refunded purchases do not qualify. Cash back rewards can be redeemed online through the Rogers Bank app towards purchases or requested in the form of a statement credit annually. Minimum redemption amount is $10. Account must be open and in good standing to earn, redeem and be given cash back rewards. After you qualify for the $60 cash back, it may take up to 5 months for the cash back to be posted to your account. Offer may be changed, cancelled or extended at any time without notice and cannot be combined with any other offer unless otherwise indicated. We may revoke this offer if you appear to be manipulating or abusing it, or are engaged in any suspicious or fraudulent activity, as we may determine in our sole discretion. Rogers employees and existing cardholders who switched to the Rogers Red Mastercard are not eligible for this offer.\u003C/p>\u003C/div>","\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>Rogers Bank optional Group Balance Protection group insurance is underwritten by Canadian Premier Life Insurance Company.\u003C/p>\u003C/div>"],"notes":["\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>\u003Csup>®/TM\u003C/sup> Mastercard and World Elite are registered trademarks and the circles design is a trademark of Mastercard International Incorporated. Used under license.\u003C/p>\u003C/div>","\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>\u003Csup>TM\u003C/sup> Rogers and Mobius Design, Rogers Bank and related marks, logos and brand names are trademarks of Rogers Communications Inc., or an affiliate, used under license. © 2025 Rogers Bank.\u003C/p>\u003C/div>","\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>The Rogers Red Mastercard is a credit card issued by Rogers Bank.\u003C/p>\u003C/div>","\u003Cdiv class=\"rich-text-wrapper\">\u003Cp>The Rogers Red World Elite Mastercard is a credit card issued by Rogers Bank.\u003C/p>\u003C/div>"]},"enableSearch":false,"searchCategories":[],"image":{"src":"//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png","alt":"Rogers Mastercard image","variant":"product","preload":true,"fetchPriority":"high","loading":"eager"},"isVirtualAssistantEnabled":true,"creditCard":{"attributes":{"interest-purchase":{"name":"Interest Purchase","id":"interest-purchase","value":"0.1999","displayValue":"19.99%"},"interest-cash-advance":{"name":"Interest Cash Advance","id":"interest-cash-advance","value":"0.2299","displayValue":"22.99%"},"welcome-bonus":{"name":"Welcome Bonus","id":"welcome-bonus","value":"60","displayValue":"$60"},"welcome-bonus-duration":{"name":"Welcome Bonus Duration","id":"welcome-bonus-duration","value":"8 months","displayValue":"8 months"},"redemption-bonus":{"name":"Redemption Bonus","id":"redemption-bonus","value":"0.30","displayValue":"30%"},"cash-back-percent":{"name":"Cash Back","id":"cash-back-percent","value":"0.01","displayValue":"1%"},"cash-back-customer-percent":{"name":"Cash Back Customer Percent","id":"cash-back-customer-percent","value":"0.02","displayValue":"2%"},"cash-back-usd-percent":{"name":"Cash Back USD","id":"cash-back-usd-percent","value":"0.02","displayValue":"2%"}},"productKey":"rogers-mastercard","productName":"Rogers Mastercard®","productPhoto":{"picture":{"src":"//images.ctfassets.net/q52gnekwj7nu/6MSgBUdsGOfzmzHKkr3yFT/fe900b4d264534c02492c8267b8b0201/CON_Card_Image_28Jan2024.png","alt":"Rogers Mastercard image","variant":"product","preload":true,"fetchPriority":"high","loading":"eager"}}}}}</script>
+ </body>
+</html>
