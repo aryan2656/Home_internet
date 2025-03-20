@@ -167,29 +167,40 @@ footer {
 </footer>
 
 <script>
-    function search(){
+    async function search() {
         let query = document.getElementById("search-input").value;
 
-        // Send data to Spring Boot API
-        fetch("http://localhost:8080/api/search", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ query: query })
-        })
-            .then(response => response.json())
-            .then(data => {
-                let resultsList = document.getElementById("results");
-                resultsList.innerHTML = ""; // Clear previous results
-                data.forEach(item => {
-                    let li = document.createElement("li");
-                    li.textContent = item;
-                    resultsList.appendChild(li);
-                });
-            })
-            .catch(error => console.error("Error:", error));
+        if (!query) {
+            console.error("Query is empty!");
+            return;
+        }
+
+        const url = "http://localhost:8082/search"; // No query in URL
+
+        try {
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json" // Tell backend it's JSON
+                },
+                body: JSON.stringify({ query: query }) // Send query as JSON
+            });
+
+            console.log(response);
+
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+
+            const text = await response.text();
+            console.log("Response from API:", text);
+            document.getElementById("result").innerText = text;
+        } catch (error) {
+            console.error("Error:", error.message);
+        }
     }
+
+
 </script>
 </body>
 </html>
