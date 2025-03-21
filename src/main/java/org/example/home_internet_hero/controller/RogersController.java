@@ -41,7 +41,6 @@ public class RogersController {
         return plansList;
     }
 
-
     @GetMapping("/rogersData")
     public String showData(Model model) {
         List<RogersPlans> planList = readCSV();
