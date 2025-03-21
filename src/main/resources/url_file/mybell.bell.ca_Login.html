@@ -1,0 +1,921 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html id="myBell" lang="en">
+ <head>
+  <script type="text/javascript" src="/static/bell_common.js?cache">
+</script>
+  <script type="text/javascript" src="/static/bell_common.js?async"></script>
+  <script>
+        (function () {
+            function processScripts() {
+                // Select all script elements with type="text/plain"
+                var scripts = document.querySelectorAll('script[type="text/plain"]');
+
+                // Loop through the selected script elements
+                scripts.forEach(function (script) {
+
+                    // Check if the script element has a class that starts with "optanon-category"
+                    var hasOptanonCategory = Array.from(script.classList).some(cls => cls.startsWith("optanon-category"));
+
+                    if (hasOptanonCategory) {
+                        // Create a new script element
+                        var newScript = document.createElement('script');
+                        newScript.type = "text/javascript";
+
+                        // Copy attributes to the new script element
+                        if (script.hasAttribute('async')) {
+                            newScript.async = script.async;
+                        }
+                        if (script.hasAttribute('id')) {
+                            newScript.id = script.id;
+                        }
+                        if (script.hasAttribute('src')) {
+                            newScript.src = script.src;
+                        } else {
+                            // If there's no src attribute, copy the inline script content
+                            newScript.textContent = script.textContent;
+                        }
+
+                        // Replace the old script with the new one
+                        script.parentNode.replaceChild(newScript, script);
+                    }
+                });
+            }
+
+            if (window.jQuery) {
+                $(document).ready(function () {
+                    processScripts();
+                });
+            } else {
+                document.addEventListener('DOMContentLoaded', function () {
+                    processScripts();
+                });
+            }
+        })();
+    </script>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Log in to MyBell</title>
+  <link rel="canonical" href="https://mybell.bell.ca/Login?lang=en">
+  <link rel="alternate" lang="fr" href="https://mybell.bell.ca/Login?lang=fr">
+  <meta name="description" content="Log in to MyBell to manage your personal Bell account and bill online. You’ll be able to view and pay your e-bill and use a variety of self-serve features.">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-language" content="en">
+  <meta name="province" content="on">
+  <meta name="language" content="en">
+  <meta name="mobile-web-app-capable" content="yes">
+  <link rel="icon" href="https://mybell.bell.ca/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="https://mybell.bell.ca/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="https://mybell.bell.ca/bellIcon_196x196_precomposed.png" sizes="196x196"><!--iPhone / iPod-->
+  <link rel="apple-touch-icon" href="https://mybell.bell.ca/bellIcon_60x60.png" sizes="60x60">
+  <link rel="apple-touch-icon-precomposed" href="https://mybell.bell.ca/bellIcon_60x60_precomposed.png" sizes="60x60"><!--iPad-->
+  <link rel="apple-touch-icon" href="https://mybell.bell.ca/bellIcon_76x76.png" sizes="76x76"><!--iPhone / iPod Retina-->
+  <link rel="apple-touch-icon" href="https://mybell.bell.ca/bellIcon_120x120.png" sizes="120x120"><!--iPad Retina-->
+  <link rel="apple-touch-icon" href="https://mybell.bell.ca/bellIcon_152x152.png" sizes="152x152">
+  <script src="//www.bell.ca/styles/tealeaf/tealeaf.js"></script>
+  <script src="//www.bell.ca/styles/tealeaf/tealeaf_config_myb.js"></script>
+  <script src="//www.bell.ca/styles/tealeaf/tealeaf_cookies.js"></script>
+  <script src="https://mybell-on.akamaized.net/Resource/web/ids/js/jquery-1.10.2.min.js?ver=201503220757" type="text/javascript"></script>
+  <link href="https://mybell-on.akamaized.net/styles/RSX/framework/css/bell.css?v=OLQvJicRzjyNbidi_2Uavuh39xKnkMzwt6GVPcPDRDs1&amp;ver=00000000" rel="stylesheet">
+  <link href="https://mybell-on.akamaized.net/styles/RSX/mybell/css/bell.css?v=7Ds5ChdcgFBOOflebYvOBBa1eedJgSs5ORbb4q-0P4g1&amp;ver=00000000" rel="stylesheet">
+  <script src="https://mybell-on.akamaized.net/styles/RSX/framework/bell.js?v=GI8IM4sK5wI23_2CEheH6mi5DukHSToRvzQpg94bqB41&amp;ver=00000000"></script>
+  <link href="https://mybell-on.akamaized.net/styles/RSX/mybell/css/page/registrationFlow-login.css?ver=202503200214" rel="stylesheet">
+  <script src="https://mybell-on.akamaized.net/styles/RSX/mybell/js/registrationFlow-login.js?ver=202211060826"></script>
+  <link href="https://mybell-on.akamaized.net/Styles/BRF2/Master/content/css/login-tracker-icon.min.css?ver=202503200214" rel="stylesheet">
+  <link href="https://mybell-on.akamaized.net/Styles/BRF2/Master/content/css/login-tracker.min.css?ver=202503200214" rel="stylesheet">
+  <link href="https://mybell-on.akamaized.net/Styles/BRF2/Master/core/css/bell.css?ver=202503200213" rel="stylesheet"><!--prehiding snippet for Adobe Target with asynchronous Launch deployment-->
+  <script type="text/javascript"> (function(g,b,d,f){(function(a,c,d){if(a){var e=b.createElement("style");e.id=c;e.innerHTML=d;a.appendChild(e)}})(b.getElementsByTagName("head")[0],"at-body-style",d);setTimeout(function(){var a=b.getElementsByTagName("head")[0];if(a){var c=b.getElementById("at-body-style");c&&a.removeChild(c)}},f)})(window,document,"body {opacity: 0 !important}",3E3) </script>
+  <script src="//assets.adobedtm.com/92c238f848e3/7634fe33bd4f/launch-ENebd7a9b148404f67903d514c40949f24.min.js" async></script>
+  <style>
+        header .skip-to-main-link {
+            display: inline-block;
+            padding: 9px 12px;
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            text-decoration: none;
+            /*border-bottom-right-radius: 8px;*/
+            transition: top .3s ease-out;
+            z-index: 3000;
+            color: #fff;
+            text-transform: uppercase;
+            font-size: 11px;
+            background: #2d2e33;
+        }
+
+            header .skip-to-main-link:focus {
+                top: 0;
+            }
+
+        footer .skip-to-main-link {
+            display: inline-block;
+            padding: 7px 12px;
+            position: absolute;
+            left: -300px;
+            text-decoration: underline;
+            /*border-bottom-right-radius: 8px;*/
+            transition: left .3s ease-out;
+            background-color: #e1e1e1;
+            z-index: 3000;
+            font-size: 13px;
+            color: #00549a;
+        }
+
+            footer .skip-to-main-link:focus {
+                left: 0;
+            }
+
+        a.skip-to-main-link:focus {
+            outline: 2px solid #2672cb
+        }
+
+        @media screen and (max-width:999px) {
+            header .skip-to-main-link, footer .skip-to-main-link, .skip-to-main-link {
+                display: none !important;
+            }
+        }
+    </style>
+  <script type="text/javascript" src="/ruxitagentjs_ICA7NQVfghqrtux_10301241007103824.js" data-dtconfig="rid=RID_1044500103|rpid=650043897|domain=bell.ca|reportUrl=/rb_bced360d-a02a-4b73-b0e7-46fe5ae1dc34|app=429b1eac4514c5ce|ssc=1|uanpi=2|featureHash=ICA7NQVfghqrtux|doNotDetect=scr|msl=153600|srsr=65000|xb=(https:^bs/^bs/tr^bs.snapchat^bs.com^bs/p)^p(https:^bs/^bs/edge^bs.bell^bs.ca)^p(https:^bs/^bs/api2^bs.branch^bs.io^bs/v1^bs/pageview)^p(https:^bs/^bs/analytics^bs.google^bs.com^bs/g^bs/collect)^p(https:^bs/^bs/stats^bs.g^bs.doubleclick^bs.net^bs/j^bs/)^p(https:^bs/^bs/collection^bs.decibelinsight^bs.net)^p(https:^bs/^bs/c^bs.go^bs-mpulse^bs.net^bs/api^bs/config^bs.json)^p(https:^bs/^bs/dpm^bs.demdex^bs.net^bs/id)^p(https:^bs/^bs/[a-z]^bs.clarity^bs.ms^bs/collect)^p(https:^bs/^bs/www^bs.bell^bs.ca^bs/ajax^bs/FacebookConversion^bs/TrackEvent)^p(https:^bs/^bs/px^bs.ads^bs.linkedin^bs.com)^pusageanalytics^bs.coveo^bs.com^pinqchat^bs.html^pwww^bs.google^bs-analytics^bs.com^pdata1^bs.bell^bs.ca^p^bs/TealeafTarget^bs.TeaLeaf^pmbox^pct^bs.pinterest^bs.com^pglassboxdigital|rdnt=1|uxrgce=1|bp=3|cuc=gticcd0a|chw=https?:^bs/^bs/.*dofbffselfserveapi*|srms=2,0,0,0%2F%23container%20%3E%20span%20%3E%20div%20%3E%20div%3Anth-child%283%29%20%3E%20div%20%3E%20div.payment-block.payment-relative%20%3E%20div%26;0%2F%23bank-name%2C%20%23bank-name%20%7E%20.rsx-custom-select-trigger%26;0%2F%23bank-holder-name%26;0%2F%23bank-transit-number%26;0%2F%23bank-account-number%26;0%2F%23text-4%26;0%2F%23select-2%2C%20%23select-2%20%7E%20.rsx-custom-select-trigger%26;0%2F%23select-12%2C%20%23select-12%20%7E%20.rsx-custom-select-trigger%26;0%2F%23card-number%26;0%2F%23dlprovince%26;0%2F%23txtDriverLicenseNumber%26;0%2F%23divStandardLightboxLarge%20%3E%20div%20%3E%20div%20%3E%20div.modal-body.bgWhite.body-pad.hiddenOverFlow%26;0%2F%23profileinformation-prf-rcry%20%3E%20div%20%3E%20div%20%3E%20div.table.table-bordered.table-hover%20%3E%20div%20%3E%20div;0%2F%23CreditCard_CardNumber%26;0%2F%23expiryYear%26;0%2F%23expiryDay%26;0%2F%23expiryMonth%26;0%2F%23SinNumber%26;0%2F%23CreditCardNumber%26;0%2F%23mobSelect%20%3E%20button%26;0%2F%23LoginInfoModel_SecretQuestionId3%26;0%2F%23LoginInfoModel_SecretQuestionId2%26;0%2F%23txtSecretAnswer1%26;0%2F%23LoginInfoModel_SecretQuestionId1%26;0%2F%23PASSWORD%26;0%2F%23txtPhotoCardIdNumber%26;0%2F%23EXPY%2C%20%23EXPY%20%7E%20.rsx-custom-select-trigger%26;0%2F%23EXPD%2C%20%23EXPD%20%7E%20.rsx-custom-select-trigger%26;0%2F%23EXPM%2C%20%23EXPM%20%7E%20.rsx-custom-select-trigger%26;0%2F%23txtPassportId%26;0%2F%23CVV_PI%26;0%2F%23CC_expYear_PI%2C%20%23CC_expYear_PI%20%7E%20.rsx-custom-select-trigger%26;0%2F%23CC_expMonth_PI%2C%20%23CC_expMonth_PI%20%7E%20.rsx-custom-select-trigger%26;0%2F%23PassportExpiryDate%2C%20%23PassportExpiryDate%20%7E%20.rsx-custom-select-trigger%26;0%2F%23PassportNumber%26;0%2F%23PassportCountry%26;0%2F%23billingAddressDiv%20%3E%20div.rsx-input-row%20%3E%20div%20%3E%20span%26;0%2F%23CvvNumber_Payment%2C%20%23CvvNumber_Payment%20%7E%20.rsx-custom-select-trigger%26;0%2F%23CcYearData_Payment%2C%20%23CcYearData_Payment%20%7E%20.rsx-custom-select-trigger%26;0%2F%23CcMonthData_Payment%2C%20%23CcMonthData_Payment%20%7E%20.rsx-custom-select-trigger%26;0%2F%23txtCCNumber_Payment%2C%20%23txtCCNumber_Payment%20%7E%20.rsx-custom-select-trigger%26;0%2F%23Cardholdername%2C%20%23Cardholdername%20%7E%20.rsx-custom-select-trigger%26;0%2F%23PersonalInformation_CreditInformationViewModel_DateOfBirth%26;0%2F%23csc-number%26;0%2F%23expiration-year%26;0%2F%23expiration-month%26;0%2F%23cardholder-name;0%2F%23card-number;0%2F%23Answer1%26;0%2F%23SecretQuestion1%26;0%2F%23txtSecretAnswer3%26;0%2F%23txtCustomQuestion3%26;0%2F%23txtSecretQuestion3%26;0%2F%23txtCustomQuestion2%26;0%2F%23txtSecretAnswer2%26;0%2F%23txtSecretQuestion2%26;0%2F%23txtCustomQuestion1%26;0%2F%23txtSecretQuestion1%26;0%2F%23HomePhone%26;0%2F%23CreditCard_ExpirationDateYY%2C%20%23CreditCard_ExpirationDateYY%20%7E%20.rsx-custom-select-trigger%26;0%2F%23ReviewPage_CardExpiryDate%26;0%2F%23CreditCard_ExpirationDataMM%2C%20%23CreditCard_ExpirationDataMM%20%7E%20.rsx-custom-select-trigger%26;0%2F%23frmConfirm%20%3E%20div%20%3E%20div%3Anth-child%283%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%287%29%20%3E%20div.sectionContent%26;0%2F%23transitCode%26;0%2F%23frmConfirm%20%3E%20div.standard-outline-custom-src.cWrap%20%3E%20div%3Anth-child%283%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%26;0%2F%23cardHolderName%20%3E%20div.form-group-input%20%3E%20div%20%3E%20span%3Anth-child%282%29%26;0%2F%23PersonalInformation_CreditInformationViewModel_DateOfBirthTemp%26;0%2F%23prepaid-review-card-holder%26;0%2F%23content%20%3E%20div%3Anth-child%283%29%20%3E%20div%3Anth-child%282%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%285%29%26;0%2F%23BankAccountInfo_CardHolder%26;0%2F%23content%20%3E%20div%3Anth-child%283%29%20%3E%20div%3Anth-child%282%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%2810%29%26;0%2F%23txtBankCode%26;0%2F%23frmConfirm%20%3E%20div%20%3E%20div%3Anth-child%284%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%284%29%20%3E%20div.sectionValue%26;0%2F%23frmConfirm%20%3E%20div%20%3E%20div%3Anth-child%282%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%284%29%20%3E%20div.sectionContent%26;0%2F%23prepaid-review-expiration-date%26;0%2F%23txtCardHoldersName%26;0%2F%23TransitNumber%26;0%2F%23bankCode%26;0%2F%23txtTransitCode%26;0%2F%23MOB%2C%20%23MOB%20%7E%20.rsx-custom-select-trigger%26;0%2F%23frmSubmitReview%20%3E%20div%3Anth-child%283%29%20%3E%20div.colGroup%20%3E%20div.col6.colLast%20%3E%20div%20%3E%20ul%3Anth-child%286%29%26;0%2F%23txtCCNumber%26;0%2F%23SelectedCreditCard_SecurityCodeMasked%26;0%2F%23content%20%3E%20div.cWrap.standard-outline-custom-src%20%3E%20div%3Anth-child%282%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%26;0%2F%23frmConfirm%20%3E%20div%20%3E%20div%3Anth-child%284%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%285%29%20%3E%20div.sectionContent%26;0%2F%23SelectedCreditCard_ExpireMonth%26;0%2F%23prepaid-review-payment-info-section%26;0%2F%23AccountNumber%26;0%2F%23accountHolderLastName%26;0%2F%23ddlCCYear%26;0%2F%23SelectedCreditCard_CreditCardNumberMasked%26;0%2F%23frmConfirm%20%3E%20div%20%3E%20div%3Anth-child%284%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%283%29%20%3E%20div.sectionValue%26;0%2F%23content%20%3E%20div%3Anth-child%283%29%20%3E%20div%3Anth-child%282%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%286%29%26;0%2F%23accountHolderFirstName%26;0%2F%23YOB%2C%20%23YOB%20%7E%20.rsx-custom-select-trigger%26;0%2F%23SelectedCreditCard_ExpireYear%26;0%2F%23CreditCard_SecurityCode%26;0%2F%23paymentDetails%20%3E%20div%3Anth-child%281%29%26;0%2F%23frmConfirm%20%3E%20div%20%3E%20div%3Anth-child%282%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%286%29%20%3E%20div.sectionContent%26;0%2F%23bankName%26;0%2F%23frmConfirm%20%3E%20div%20%3E%20div%3Anth-child%284%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%286%29%20%3E%20div.sectionContent%26;0%2F%23ReviewPage_CardHolderName%26;0%2F%23ReviewPage_PaymentExpiryDate%26;0%2F%23frmConfirm%20%3E%20div%20%3E%20div%3Anth-child%282%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%285%29%20%3E%20div.sectionContent%26;0%2F%23BankName%26;0%2F%23txtBankAcctNumber%26;0%2F%23cardHolderName%20%3E%20div.form-group-input%20%3E%20div%20%3E%20span%3Anth-child%281%29%26;0%2F%23txtCreditCardHolderName%26;0%2F%23prepaid-review-card-number%26;0%2F%23DOB%2C%20%23DOB%20%7E%20.rsx-custom-select-trigger%26;0%2F%23Payment_PaymentInformation_PaymentInfoDetail_CreditCard_CardHolderName%26;0%2F%23ddlCCMonth%26;0%2F%23frmConfirm%20%3E%20div%20%3E%20div%3Anth-child%282%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%287%29%20%3E%20div.sectionContent%26;0%2F%23frmConfirm%20%3E%20div%20%3E%20div%3Anth-child%284%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%287%29%20%3E%20div.sectionValue%26;0%2F%23content%20%3E%20div%3Anth-child%283%29%20%3E%20div%3Anth-child%282%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%287%29%26;0%2F%23ddlBankName%26;0%2F%23ReviewPage_DataOfBirth%26;0%2F%23ReviewPage_PaymentCardHolderName%26;0%2F%23your-order-accordion-body%20%3E%20div%20%3E%20section%3Anth-child%284%29%20%3E%20div%20%3E%20div%20%3E%20div%3Anth-child%282%29%20%3E%20table%20%26;0%2F%23CreditCardExpirationDate%26;0%2F%23txtSecurityCode%26;0%2F%23frmConfirm%20%3E%20div.standard-outline-custom-src.cWrap%20%3E%20div%3Anth-child%283%29%20%3E%20div%3Anth-child%282%29%26;0%2F%23txtCardNumber%26;0%2F%23frmConfirm%20%3E%20div%20%3E%20div%3Anth-child%283%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%284%29%20%3E%20div.sectionContent%26;0%2F%23frmBack%20%3E%20div%3Anth-child%286%29%20%3E%20div%20%3E%20div%3Anth-child%288%29%20%3E%20div%3Anth-child%287%29%20%3E%20div%3Anth-child%282%29%26;0%2F%23SelectedCreditCard_CardholderName%26;0%2F%23txtBankPayerName%26;0%2F%23BankAccountInfo_AccountNumberMasked%26;0%2F%23bankAccountNumber%26;0%2F%23CardholderName%26;0%2F%23BankAccountInfo_TransitCode%26;0%2F%23AccountHolderName%26;0%2F%23txtSSN%26;0%2F%23content%20%3E%20div%3Anth-child%283%29%20%3E%20div%3Anth-child%282%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%288%29%26;0%2F%23content%20%3E%20div%3Anth-child%283%29%20%3E%20div%3Anth-child%282%29%20%3E%20div%3Anth-child%282%29%20%3E%20ul%20%3E%20li%3Anth-child%284%29%26|mdl=mdcc16=20,mdcc23=20|mel=100000|dpvc=1|md=mdcc1=clast_login_attempt_bup,mdcc4=bbdaDL[0].page.info.url,mdcc5=b_dim_ga.dimension14,mdcc6=b_dim_ga.dimension37,mdcc7=ahtml@id,mdcc8=b_dim_ga.dimension23,mdcc11=a#USER,mdcc12=bs.pageURL,mdcc15=cgemini,mdcc16=czone,mdcc17=bserverName,mdcc18=b_dim_ga.dimension38,mdcc19=borderId,mdcc20=bnavigator.connection.downlink,mdcc21=bnavigator.connection.effectiveType,mdcc22=c_cls_s,mdcc23=bglassboxDigital|ssv=4|lastModification=1742260403470|tp=500,50,0|agentUri=/ruxitagentjs_ICA7NQVfghqrtux_10301241007103824.js"></script>
+ </head>
+ <body id="login-mybell-page" class="en" data-search-url="https://www.bell.ca/Search/">
+  <section class="login-mfa-header-section" role="banner">
+   <div class="header-nav brui-bg-blue">
+    <div class="header-nav-container">
+     <div class="nav-logo brui-flex brui-items-center brui-justify-start">
+      <a href="https://www.bell.ca" class="brui-text-white" id="bell-header-icon" aria-label="Bell"> <span class=" bi_bell_logo_f bi_brui"></span> </a>
+     </div>
+     <nav class="login-nav brui-flex brui-items-center brui-text-white" role="navigation">
+      <ul>
+       <li><a href="javascript:void(0)" onclick="window.history.back()" class="underline-on-hover brui-text-14 brui-leading-18 brui-text-white brui-mr-5 brui-text-16" id="back-button" role="button"> <span class="bi_brui2 bi_chev_left"></span> <span>Back </span> </a></li>
+       <li><a href="javascript:void(0)" class="g-lang-selector-desktop underline-on-hover " translate="no" aria-label="Consulter le site en franÃ§ais" lang="fr-CA" id="langSelectorDesktopBtnG" data-language="en" data-alternative="fr" data-vanityurl="">Français</a></li>
+      </ul>
+     </nav>
+    </div>
+   </div>
+  </section>
+  <script src="https://mybell-on.akamaized.net/Styles/BRF3/core/js/connector.js?ver=202412161607"></script>
+  <script src="https://mybell-on.akamaized.net/styles/RSX/bell.js?v=ICdohnfPFGxwy-8z6elsbJsj8ECbKkIxeSMgLsFiYjc1&amp;ver=00000000"></script>
+  <script src="https://mybell-on.akamaized.net/styles/RSX/mybell.js?v=47-8px8fooFPBN5xNNFlFlHAmdbrMwP9p8MK_Uw4qzw1&amp;ver=00000000"></script>
+  <main id="maincontent" class="content pageWidth middleAlign MYBLoginFocusOutline">
+   <style>
+	button.maskUnMaskPwsBtn:focus {
+		outline: -webkit-focus-ring-color auto 5px;
+	}
+
+	button.maskUnMaskPwsBtn.top-pos {
+		top: 20%;
+		right: 5%;
+	}
+
+    .bg-soft-blue {
+        background-color: #F0F8FF;
+    }
+
+    .bg-soft-blue .container {
+        margin: 0 auto;
+    }
+
+    .ciam-login-info-icon {
+        font-size: 14px;
+        transform: rotate(180deg);
+        position: relative;
+        left: -5px;
+        top: 1px;
+        display: inline-block;
+        align-content: stretch;
+    }
+
+    .text-center {
+        text-align: center !important;
+    }
+</style><input type="hidden" name="hdnOmnitureLogin" id="hdnOmnitureLogin" value="{s_oAPT:'#APT@X#-#APT@Y#-#APT@Z#',s_oARS:'#APSLogIn@X#',s_oAPT:'#APT@X#-#APT@Y#-#APT@Z#',s_oARS:'#APSLogIn@X#'}"> <input type="hidden" name="lgnhdnVldErrors" id="lgnhdnVldErrors" value="[{&quot;ErrorCode&quot;:&quot;PASSWORD_REQUIRED&quot;,&quot;ErrorType&quot;:&quot;V&quot;,&quot;ErrorLayer&quot;:&quot;FE&quot;,&quot;ErrorDesc&quot;:&quot;password field is required&quot;,&quot;IsUnknownTechnicalError&quot;:false,&quot;ERR_CLASS&quot;:&quot;PASSWORD_REQUIRED:[V|FE]&quot;,&quot;ERR_DESC&quot;:&quot;PASSWORD_REQUIRED:password field is required&quot;},{&quot;ErrorCode&quot;:&quot;USERNAME_REQUIRED&quot;,&quot;ErrorType&quot;:&quot;V&quot;,&quot;ErrorLayer&quot;:&quot;FE&quot;,&quot;ErrorDesc&quot;:&quot;Please enter your username.&quot;,&quot;IsUnknownTechnicalError&quot;:false,&quot;ERR_CLASS&quot;:&quot;USERNAME_REQUIRED:[V|FE]&quot;,&quot;ERR_DESC&quot;:&quot;USERNAME_REQUIRED:Please enter your username.&quot;}]">
+   <link rel="stylesheet" href="https://mybell-on.akamaized.net/MYB/custom/css/login-mfa/bell-react-ui-library.css?ver=202503200214">
+   <link href="https://mybell-on.akamaized.net/styles/RSX/mybell/css/page/ciam-login.min.css?ver=00000000" rel="stylesheet">
+   <script type="text/javascript" src="https://mybell-on.akamaized.net/Resource/web/js/Omniture.js?ver=202410200717"></script>
+   <script>
+        //console.log('False');
+</script>
+   <script>
+        //copied (override) from registrationFlow-login.js then revised since we moved the button to after the input
+        $(document).ready(function () {
+            if (false)
+                {
+                    var model = '';
+                $("#" + model).show();
+                $("#" + model + " #cancelBtn").on("click", function () {
+                    $("#" + model).hide();
+                });
+                $("#" + model + " #cancelBtn").focus();
+                const focusableElements = $("#"+model).find("button, [href], input, select, textarea, [tabindex]:not([tabindex=\"-1\"])");
+                const fElement = focusableElements.first();
+                const lElement = focusableElements.last();
+                const handleTabKeydown = (e) => {
+                    if (e.key === "Tab") {
+                        const $fElement = $(fElement);
+                        const $lElement = $(lElement);
+                        if (e.shiftKey && $fElement.is(":focus")) {
+                            e.preventDefault();
+                            $lElement.focus();
+                        } else if (!e.shiftKey && $lElement.is(":focus")) {
+                            e.preventDefault();
+                            $fElement.focus();
+                        }
+                    }
+                };
+                $(fElement).on("keydown", handleTabKeydown);
+                $(lElement).on("keydown", handleTabKeydown);
+            }
+
+            $(".ciam-login-input").on("blur", function () {
+                if ($(this).val() == '') {
+                    $(this).parent().addClass('ciam-login-input-form-error');
+                } else {
+                    $(this).parent().removeClass('ciam-login-input-form-error');
+                }
+            })
+
+            $(".ciam-login-input").on("input", function () {
+                $(this).parent().removeClass('ciam-login-input-form-error');
+            })
+
+            $("#labelLogin").on("click", function () {
+                var userNameBox = $('#USER');
+                var passWordBox = $('#PASSWORD');
+                if (userNameBox.val() == '') {
+                    userNameBox.parent().addClass('ciam-login-input-form-error');
+                }
+                else {
+                    userNameBox.parent().removeClass('ciam-login-input-form-error');
+                }
+
+                if (passWordBox.val() == '') {
+                    passWordBox.parent().addClass('ciam-login-input-form-error');
+                }
+                else {
+                    passWordBox.parent().removeClass('ciam-login-input-form-error');
+                }
+
+                var loginError = $('#js-login-alert-msg')
+                if (loginError.is(':visible')) {
+                    loginError.addClass('hidden');
+                }
+            })
+
+            setTimeout(function () {
+                var isLoginFailed = 'False';
+                var isAccountLocked = 'False';
+                var isMaxTryLimitReached = 'False';
+                var omniErrorCode = '';
+                var isSessionTimedOut = 'False'
+                var urlParams = new URLSearchParams(window.location.search);
+                var LoginFailed = ''
+                if (urlParams.size > 0) {
+                    LoginFailed = urlParams.get('LoginFailed');
+                    if (LoginFailed != null) {
+                        LoginFailed = LoginFailed.toLowerCase();
+                    }
+                }
+                if (isLoginFailed.toLowerCase() == 'true' || LoginFailed == 'true') {
+                    if (isAccountLocked.toLowerCase() == 'true') {
+                        omniErrorCode = "Login_err_08";
+                    }
+                    else if (isSessionTimedOut.toLowerCase() == 'true') {
+                        omniErrorCode = "Login_err_09";
+                    }
+                    else if (isMaxTryLimitReached.toLowerCase() == 'true') {
+                        omniErrorCode = "Login_err_07";
+                    }
+                    else {
+                        omniErrorCode = "Login_err_10";
+                    }
+                    //Commented for page load OmnitureLogin(omniErrorCode);
+                }
+            }, 2000);
+
+        });
+
+        $(document).on('click', '#langSelectorDesktopBtnG', function () {
+            saveLanguage(this);
+        });
+
+        function OmnitureLogin(error) {
+            try {
+                s_oTrackPage({
+                    s_oAPT: "001-2-2",
+                    s_oARS: error
+                });
+            }
+            catch (e) {
+                console.error("Error during Omniture login call: %s", e);
+            }
+        }
+
+        function maskUnmaskPws(obj) {
+            var searchInput, row, strLength;
+
+            if (obj.hasClass('maskUnMaskPwsBtn') || (obj.nodeName && "button" === obj.nodeName.toLowerCase())) { // check if the button is the trigger
+                searchInput = obj.siblings('input').first(); // allow function to work even if markup order of input and button is wrong (correct order is input before button)
+            } else {
+                // if anything else other than the button called the function, do nothing
+                return;
+            }
+
+            row = obj.parent().closest(".row");
+            strLength = searchInput.val().length * 2;
+
+            // not sure why old code need to find them using classes when references to the input and button are already set but let's keep it as is in case they had a reason for doing so
+            if (searchInput.attr('type') == 'password') {
+                row.find(".maskUnMaskPwsBtn .pword-icon").addClass('bi_hide_password_c');
+                row.find(".maskUnMaskPwsBtn .pword-icon").removeClass('bi_show_password_c');
+                row.find(".maskUnMaskPwsBtn").attr('aria-label', 'Hide password');
+                row.find(".maskUnMaskPwsTxtBox").attr('type', 'text');
+            }
+            else {
+                row.find(".maskUnMaskPwsBtn .pword-icon").addClass('bi_show_password_c');
+                row.find(".maskUnMaskPwsBtn .pword-icon").removeClass('bi_hide_password_c');
+                row.find(".maskUnMaskPwsBtn").attr('aria-label', 'Show password');
+                row.find(".maskUnMaskPwsTxtBox").attr('type', 'password');
+            }
+
+            searchInput.focus();
+            searchInput[0].setSelectionRange(strLength, strLength);
+        }
+</script>
+   <script src="https://www.google.com/recaptcha/enterprise.js?render=6LeIfTIaAAAAAHMPXsezv4PdsckDc-wAJU-eo2YP&amp;onload=onloadCallback"></script>
+   <style>
+            #loginCaptcha .grecaptcha-badge {
+                transition: none;
+                right: 30px;
+                display: block !important;
+            }
+
+			#loginCaptcha > div:first-child:not(.grecaptcha-badge) {
+				display: none;
+			}
+		</style>
+   <script defer>
+        var captchaId = -1;
+        checkboxcalled = false;
+        var omnitureCalled = false;
+        function enableReCaptchaEnterpriseCheckbox() {
+            if (!checkboxcalled) {
+                typeof s_oTrackPage == "function" && s_oTrackPage({
+                    s_oAPT: "002-0-0",
+                    s_oCRSK: '',
+                    s_oCRSN: "",
+                    s_oCACT: "enterprise checkbox",
+                    s_oAJC: true
+                });
+                checkboxcalled = true;
+            }
+            captchaId = grecaptcha.enterprise.render('loginCaptcha', {
+                'sitekey': '6LeHfTIaAAAAAE8TkvlCBFUqP7E52VxL6ZQnqjli',
+                'hl': 'en',
+                'callback': successCaptchaCallbackcheckbox
+            });
+        }
+        function successCaptchaCallbackcheckbox(token) {
+            typeof s_oTrackPage == "function" && s_oTrackPage({
+                s_oAPT: "002-2-1",
+                s_oCRSK: '',
+                s_oAJC: true
+            });
+
+            jQuery('#captcha').val(token);
+            document.forms['LoginForm'].submit();
+
+        }
+        var onloadCallback = function () {
+            if ('False'.toLowerCase() == "true") {
+                if ('' == "preparedloginfcc" && omnitureCalled == false) {
+                    
+
+                    omnitureCalled = true;
+                }
+                enableReCaptchaEnterpriseCheckbox();
+            }
+            else {
+                if ("True".toLowerCase() == "false") {
+                    init('loginCaptcha', '6LeHfTIaAAAAAE8TkvlCBFUqP7E52VxL6ZQnqjli');
+                }
+            }
+        };
+
+        function errorCallback(err) {
+
+        }
+
+        function setCustomBrowserUpgradeBtn(url) {
+            if (url != "#") {
+                jQuery('#captchaUpgradeBrowserBtn').attr("href", jQuery('#captchaUpgradeBrowserBtn').data(url));
+                jQuery('#logincaptchaUpgradeBrowserBtn').attr("href", jQuery('#logincaptchaUpgradeBrowserBtn').data(url));
+            }
+        }
+
+        function showCustomUnsupported() {
+            document.getElementById("captchaDeprecatedLogin").style.display = "block";
+        }
+
+        function onChange(flag) {
+            s_oTrackPage({
+                s_oAPT: "002-0-0",
+                s_oCRSK: '',
+                s_oCRSN: "",
+                s_oCACT: "recaptcha checkbox",
+                s_oAJC: true
+            });
+            //if (flag == 1) {
+            //    console.log("challenge window ON");
+            //}
+            //else {
+            //    console.log("challenge window OFF");
+            //}
+            //console.log("change - " + captchaCounter);
+            //jQuery('#counter').html(captchaCounter);
+        }
+
+
+        function processCaptcha() {
+            //debugger;
+            if (document.getElementById("captchaDeprecatedLogin") != null && document.getElementById("captchaDeprecatedLogin").style.display == "block") {
+                jQuery('#js-login-errors').addClass("hidden");
+                jQuery('#captcha-login-errors').addClass("hidden");
+                jQuery('#captcha-login-errors').removeClass("hidden");
+                jQuery('#js-login-errors').removeClass("hidden");
+            }
+            else {
+                if (BELL.mybell.login.fieldsFilled(document.forms['LoginForm'])) {
+                    if ("True".toLowerCase() == "true") {
+                        loginExecuteEnterpriseCaptcha();
+                    }
+                    else {
+                        executeCaptcha();
+                        
+                        }
+                }
+            }
+        }
+        var callbackCalled = false;
+        function loginExecuteEnterpriseCaptcha() {
+            grecaptcha.enterprise.execute('6LeIfTIaAAAAAHMPXsezv4PdsckDc-wAJU-eo2YP', { action: 'mybell_login' }).then(function (token) {
+                jQuery('#captcha').val(token);
+                if (!callbackCalled) {
+                    callbackCalled = true;
+                    document.forms['LoginForm'].submit();
+                }
+            });
+
+        }
+
+        var captchav3called = false;
+        var captchav2called = false;
+        
+
+
+            function captchaCallback(token) {
+                grecaptcha.enterprise.reset(captchaId);
+                jQuery('#captcha').val(token);
+                captchav2called = true;
+                if (captchav3called) {
+                    BELL.mybell.login.submitLoginForm(document.forms['LoginForm']);
+                }
+            }
+
+	</script><input type="hidden" id="hideText" value=" hide"> <input type="hidden" id="showText" value=" show">
+   <div class="txtBlue bg-soft-blue pad-15 text-center">
+    <div class="container">
+     <p class="margin-b-0"><span class=" icon-o-data-2 icon ciam-login-info-icon"></span> <strong>We’ve added multi-factor authentication to the MyBell login page as an extra security feature.</strong> <a href="https://support.bell.ca/Billing-and-Accounts/Security_and_privacy/mybell_mfa" aria-label="Learn more about multi-factor authentication ">Learn More</a></p>
+    </div>
+   </div>
+   <div class="container my-bell-login login-mfa login-main">
+    <div class="login-box brui-flex brui-justify-center brui-items-center" role="presentation">
+     <div class="my-bell-login-left-pane brui-shadow-xl brui-border brui-border-gray-4 set-min-height  brui-overflow-hidden brui-rounded-10">
+      <form action="/Login" aria-label="Log in" autocomplete="off" class="my-bell-login-form" id="LoginForm" method="post" name="LoginForm">
+       <input id="refreshLink" name="refreshLink" type="hidden" value=""><input id="language" name="language" type="hidden" value="en"><input id="region" name="region" type="hidden" value="ON"><input id="target" name="target" type="hidden" value=""><input id="LoginFlow" name="LoginFlow" type="hidden" value="Generallogin"> <input id="captcha" name="captcha" type="hidden" value=""> <input id="riskScore" name="riskScore" type="hidden">
+       <div class="rsx-form-group rsx-col-no-pad row clearfix ciam-login-form-group" role="presentation">
+        <div class="col-xs-12 rsx-form-label-col ciam-login-form-label">
+         <div classname="brui-text-left">
+          <a href="/" class="brui-block brui-mb-30 form-bell-icon" id="bell-form-icon" aria-label="Bell"> <span class="brui-block brui-mb-30 bell-icon brui-text-blue bi_brui bi_bell_logo_f"> </span> </a>
+         </div>
+         <h1 classname="brui-block brui-text-20 brui-leading-22 brui-text-left brui-font-bold brui-mb-30">Log in to MyBell</h1>
+         <h2 class="rsx-pad-bottom rsx-h3 ciam-login-header hidden" id="region1-label">PPA_SECURE_LOGIN_MY_BELL_ADOBE</h2>
+        </div>
+       </div>
+       <div id="js-login-errors" class="rsx-form-group rsx-col-no-pad row clearfix validation-messages hidden">
+        <div class="col-xs-12 rsx-form-label-col">
+         <div id="js-login-credentials-errors" class="rsx-notification rsx-error hidden">
+          <span class="rsx-icon rsx-icon-i"></span> <span class="rsx-error-text"> You have entered an incorrect username/password combination. </span>
+          <ul class="rsx-list hidden ciam-login-error-list">
+           <li id="msgLoginUserError" class="hidden">This field is required. <a href="#" onclick="document.getElementById('USER').focus(); return false;" role="link"> Bell.ca username </a></li>
+           <li id="msgLoginPasswordError" class="hidden">This field is required. <a href="#" onclick="document.getElementById('PASSWORD').focus(); return false;" role="link"> Password </a></li>
+          </ul>
+         </div>
+         <div id="captcha-login-errors" class="rsx-notification rsx-error hidden">
+          <span class="rsx-icon rsx-icon-i"></span> <span class="rsx-error-text"> The browser version you are using appears to be out of date. In order to log in to MyBell, please upgrade to the latest version of your browser. </span>
+          <br><a style="text-decoration:none;" target="_blank" rel="noopener noreferrer" href="#" data-urlchrome="https://www.google.com/intl/en/chrome/browser/" data-urlmoz="https://www.mozilla.org/en-US/firefox/all/" data-urlie="http://windows.microsoft.com/en-ca/internet-explorer/download-ie" data-urlsafari="http://support.apple.com/downloads#safari" id="logincaptchaUpgradeBrowserBtn"> <span class="txtHoverUnderline" style="line-height:1.3; font-size:14px;"> Upgrade your browser </span> </a>
+         </div><!--START LAST LOGIN SESSION INFO ALERT CARD--> <!--END LAST LOGIN SESSION INFO ALERT CARD-->
+         <br>
+         <div class="rsx-error-text ciam-login-email-error">
+          <span> Trying to access your Bell email? Log in at <a onclick="loginLinkTracking();" href="https://webmail.bell.net/loginr/wmwrap.jsp?lang=en">bell.net</a>. </span>
+         </div>
+        </div>
+       </div>
+       <script type="text/javascript">
+
+	function loginLinkTracking() {
+		if (typeof s_oTrackPage != "undefined") {
+			s_oTrackPage({
+				s_oAPT: "647-0-0",
+				s_oBTN: "login here"
+			});
+		}
+    }
+</script>
+       <div class="rsx-form-group rsx-col-no-pad row clearfix ciam-login-input-form" role="presentation">
+        <div class="col-xs-12 rsx-form-control-col">
+         <input type="email" autocorrect="off" autocapitalize="off" autocomplete="on" class="rsx-form-control username-form-control ciam-login-input" id="USER" name="USER" maxlength="40" onkeydown="if (event.keyCode === 13) { processCaptcha() }" placeholder="Username"> <label class="mb-otp-input-label" for="USER"> Username </label>
+         <div class="ciam-login-error">
+          <span class=" icon-o-data-2 icon ciam-login-error-icon"></span>
+          <p aria-hidden="true">This information is required.</p>
+          <p class="sr-only">Error: This information is required.</p>
+         </div>
+        </div>
+       </div>
+       <div class="rsx-form-group rsx-col-no-pad row clearfix ciam-login-input-form" role="presentation">
+        <div class="col-xs-12 rsx-form-control-col">
+         <div class="rsx-inline-block rsx_pos_relative col-xs-12 ">
+          <input type="password" onfocus="this.removeAttribute('readonly');" maskunmaskpws(jqrsx(this));_ autocorrect="off" autocapitalize="off" class="ciam-login-input rsx-form-control password-form-control rsx-inline-block maskUnMaskPwsTxtBox rsx-width-100-xs rsx-width-100-sm rsx-width-100-md rsx-width-100-lg rsx-margin-right rsx-no-margin-right-xs rsx-no-margin-right-sm" id="PASSWORD" name="PASSWORD" maxlength="40" onkeydown="if (event.keyCode === 13) { processCaptcha()}" autocomplete="off" placeholder="Password"> <label class="mb-otp-input-label" for="PASSWORD" id="PASSWORD-error"> Password </label>
+          <button type="button" onclick="maskUnmaskPws(jQRSX(this));" id="show-password-btn" class="maskUnMaskPwsBtn rsx-pos-absolute top-pos login-mfa-password-icon" aria-label=" CIAM_PWRD_SHOW"><span class="pword-icon bi_brui bi_show_password_c"> </span></button>
+          <div class="ciam-login-error">
+           <span class=" icon-o-data-2 icon ciam-login-error-icon"></span>
+           <p aria-hidden="true">This information is required.</p>
+           <p class="sr-only">Error: This information is required.</p>
+          </div>
+         </div>
+         <script type="text/javascript" language="javascript">
+
+								jQRSX(document).ready(function () {
+									var isMobile = false;
+									if ((jQRSX('#USER') && jQRSX('#USER').val()) || (jQRSX('#PASSWORD') && jQRSX('#PASSWORD').val())) {
+										if (!isMobile) {
+											//jQRSX('#PASSWORD').attr('readonly', true);
+										}
+									}
+
+									jQRSX('.rsx-form-control').on('touchstart', function (event) {
+										isMobile = true;
+									});
+
+									jQRSX('.rsx-form-control').on('blur', function (event) {
+										if (!isMobile) {
+											jQRSX('#PASSWORD').attr('readonly', true);
+										}
+									});
+								});
+
+							</script>
+        </div>
+       </div>
+       <div class="rsx-form-group rsx-col-no-pad row clearfix rsx-pad-10-v ciam-login-form-remember" role="presentation">
+        <div class="col-xs-12">
+         <div class="rsx-checkboxes rsx-checkboxes_absolute" data-widget="checkboxes">
+          <label class="rsx-label" for="rememberusername" id="rememberUsername"> <span class="rsx-checkbox"></span> <input type="checkbox" id="rememberusername"> <span class="rsx-label-text"> Remember my username </span> </label>
+         </div>
+        </div>
+       </div>
+       <div class="rsx-form-group rsx-col-no-pad row clearfix rsx-pad-10-top" role="presentation">
+        <div id="loginCaptcha" class="col-lg-6"></div>
+       </div>
+       <div class="rsx-form-group rsx-col-no-pad row clearfix ciam-login-form-submit" role="presentation">
+        <div class="rsx-form-label-col">
+         <a href="javascript:void(0)" role="button" id="labelLogin" class="rsx-button my-bell-login-button" onclick="javascript: processCaptcha(); return false;"> Log in </a>
+        </div>
+       </div>
+       <div class="rsx-form-group rsx-col-no-pad row clearfix ciam-form-link ciam-login-forgot-password">
+        <div class="col-xs-12">
+         <p><a href="/ForgotPassword/RecoverPassword/Loginhelp?lang=en" class="txtBlue" id="recover-link">Forgot username or password? <span class="bi_brui2 bi_chev_right"> </span> </a></p>
+        </div>
+       </div>
+       <div class="rsx-form-group rsx-col-no-pad row clearfix ciam-form-link ciam-login-register">
+        <div class="col-xs-12">
+         <p><a href="/Registration?lang=en" class="txtBlue " id="register-link">Register now<span class="bi_brui2 bi_chev_right"> </span></a></p>
+        </div>
+       </div>
+       <div class="rsx-form-group rsx-col-no-pad row clearfix ciam-form-link ciam-login-login-mybell">
+        <div class="col-xs-12">
+         <p><a href="/login/qrcode" class="txtBlue qrCode" id="qrcode-link">Log in to the MyBell app <span class="bi_brui2 bi_chev_right"> </span></a></p>
+        </div>
+       </div>
+       <div class="rsx-form-group rsx-col-no-pad row clearfix ciam-recaptcha-footer">
+        <div class="col-xs-12">
+         <p>This site protected by reCAPTCHA Enterprise. The Google <a href="https://policies.google.com/privacy" class="txtBlue " id="google-privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms" class="txtBlue " id="google-terms">Terms of Service</a> apply.</p>
+        </div>
+       </div>
+       <div class="rsx-form-group rsx-col-no-pad row clearfix hidden" role="presentation">
+        <div class="col-xs-12">
+         <p>FORGOT_YOUR_USERNAME_PWD</p>
+        </div>
+       </div>
+      </form>
+      <div class="hidden">
+       <div class="col-lg-6"></div>
+       <style>
+					#customEnterpriseBadge {
+						display: none;
+					}
+				</style>
+       <div id="customEnterpriseBadge" class="col-lg-6">
+        <div class="rsx-footer-copyright">
+         This site is protected by reCAPTCHA Enterprise. The Google <a href="https://policies.google.com/privacy"> <u>Privacy Policy</u></a> and <a href="https://policies.google.com/terms"><u>Terms of Service</u></a> apply.
+        </div>
+       </div>
+       <div id="v3Badge" class="col-lg-6">
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+   <script type="text/javascript">
+		s_oAPT = "001-1-0";
+	</script>
+   <script type="text/javascript" language="javascript">
+        if ('' !== '') {
+            
+        }
+</script><input id="Token" name="Token" type="hidden" value="">
+   <script>
+            jQRSX(document).ready(function () {
+                if ('' == "SuccessCalled") {
+                    typeof s_oTrackPage == "function" && s_oTrackPage({
+                        s_oAPT: "420-2-1",
+                        s_oSS1: "Common",
+                        s_oSS2: "Identity verification",
+                        s_oSS3: '' == "BundleLogin" ? "Bundle Login" : ('' == "Addaline" ? "Add line Login" : "Login"),
+                        s_oPGN: "Confirmation",
+                        s_oPIT: '' == "SMS" ? "verification by sms" : "verification by email"
+                    });
+                }
+                function getMeta(metaName) {
+                    const metas = document.getElementsByTagName('meta');
+                    for (let i = 0; i < metas.length; i++) {
+                        if (metas[i].getAttribute('name') === metaName) {
+                            return metas[i].getAttribute('content');
+                        }
+                    }
+                    return '';
+                }
+
+                var zoomDisable = function () {
+                    var _desc = getMeta("viewport");
+                    if (_desc != '', _desc.indexOf("user-scalable") == -1) {
+                        _desc = _desc + ", user-scalable = 0";
+                        document.querySelector('meta[name="viewport"]').setAttribute("content", _desc)
+                    }
+                };
+
+                jQRSX(".rsx-form-group").on({ 'touchstart': function () { zoomDisable() } });
+
+                //Override aria-attributes added by 3rd party validation script
+                var $loginInput = $(".my-bell-login-form input#USER");
+
+                $loginInput.keyup(function () {
+                    updateAriaAttributes();
+                })
+
+                $loginInput.focus(function () {
+                    updateAriaAttributes();
+                })
+
+                $loginInput.blur(function () {
+                    updateAriaAttributes();
+                })
+
+                function updateAriaAttributes() {
+                    setTimeout(function () {
+                        $loginInput.attr("aria-invalid", "false");
+                        $loginInput.removeAttr("aria-describedby");
+                    }, 0);
+				}
+
+				//Shows the link for ipad if touch screen is detected
+				const QRLink = $(".qrCode");
+				const IOSQRLink = $(".qrCode-ipad");
+				if (navigator.userAgent.match(/Mac/) && navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && IOSQRLink.length > 0) {
+					QRLink.addClass("hidden");
+					IOSQRLink.removeClass("hidden");
+				}
+            });
+
+            function saveLanguage(obj) {
+                var language = $(obj).data("alternative");
+                var vanityurl = $(obj).data("vanityurl");
+                this.setLanguageRegionCookieValue(language, null);
+                var langRegex = /(language=\w+)|(lang=\w+)/i;
+
+                if (vanityurl && vanityurl.length > 0) {
+                    if (langRegex.test(vanityurl)) {
+                        window.location = vanityurl.replace(langRegex, "lang=" + language);
+                    } else {
+                        window.location = vanityurl;
+                    }
+                } else if (langRegex.test(location.href)) {
+                    location.href = location.href.replace(langRegex, "lang=" + language);
+                } else {
+                    window.location.reload();
+                }
+            };
+
+            function setLanguageRegionCookieValue(lang, region, larsegmenttype, bIgnorePreviousCookie) {
+                var geminiCookieName = "gemini";
+                var cookieVal = bIgnorePreviousCookie == true ? null : this.getCookie(geminiCookieName);
+                var geminiCookieVal = this.getGeminiString(lang, region, cookieVal, larsegmenttype);
+                var hostname = window.location.hostname;
+                var domain = ".bell.ca";
+                //this.setCookie(geminiCookieName, geminiCookieVal, 90, domain);
+                document.cookie = geminiCookieName + "=" + (geminiCookieVal || "") + 90 + "; path=/" + (domain ? "; domain=" + domain : "");
+            };
+
+            function getGeminiString(lang, region, cval, larsegmenttype) {
+                var retVal = "region=" + region + "|language=" + lang + "|province=" + region + "|LarSegmentType=" + larsegmenttype;
+                if (cval != null) {
+                    var strSpl = cval.split('|');
+
+                    if (region != null && region.length != 0) {
+                        strSpl[0] = "region=" + region;
+                        strSpl[2] = "province=" + region;
+                    }
+
+                    if (lang != null && lang.length != 0) {
+                        strSpl[1] = "language=" + lang;
+                    }
+
+                    if (larsegmenttype != null && larsegmenttype != undefined && larsegmenttype.length != 0) {
+                        strSpl[3] = "LarSegmentType=" + larsegmenttype;
+                    }
+
+                    retVal = strSpl[0] + "|" + strSpl[1] + "|" + strSpl[2] + "|" + strSpl[3];
+                }
+
+                return retVal;
+            };
+</script>
+   <div class="forcedlogout-modal-c modal modal-trap-focus js-avoid-modal" id="ForcedLogoutNotification" aria-labelledby="forcedlogout-modal-title-h2" role="dialog" tabindex="-1" data-keyboard="false" data-toggle="modal" style="display: none;">
+    <div class="modal-dialog">
+     <div class="modal-content" role="document">
+      <div class="modal-body">
+       <div class="forcedlogout-modal-content">
+        <div class="forcedlogout-modal-header">
+         <div class="forcedlogout-header-container container-flex-box-no-wrap flex-justify-space-between">
+          <h2 id="forcedlogout-modal-title-h2" class="forcedlogout-modal-title modal-header-title align-items-center align-items-start-xs bellSlimBlack noMargin  txtSize22-xs line-height-26 flex"><span class="forcedlogout-modal-icon-c icon icon-checkmark-circled"></span> <span class="forcedlogout-modal-header-title"> Your email address has been changed. </span></h2>
+         </div>
+        </div>
+        <div class="forcedlogout-modal-body txtSize14 line-height-18 pad-t-0 pad-b-30 pad-b-xs-15  max-height-none-n-xs">
+         <p class="forcedlogout-modal-subtitle"><span>We’ve logged you out for security reasons. Please log back in to continue using MyBell.</span></p>
+         <div class="forcedlogout-modal-buttons">
+          <a href="#" id="cancelBtn" class="forcedlogout-modal-button btn btn-default btn-width-xs" role="button" aria-label="Close">Close</a>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </main>
+  <section class="login-mfa-footer-section brui-flex brui-justify-center" role="contentinfo">
+   <div>
+    <div class="footer-links brui-mb-10 brui-flex brui-items-center brui-justify-start">
+     <nav class="footer-nav">
+      <ul>
+       <li><a href="https://www.bell.ca/Security_and_privacy/Commitment_to_privacy" class="underline-on-hover brui-text-blue brui-text-12 brui-leading-14" id="privacy-ftr-link">Privacy</a></li>
+       <li><a href="http://support.bell.ca/Billing-and-Accounts/Security_and_privacy/Security-and-preventing-fraud" class="underline-on-hover brui-text-blue brui-text-12 brui-leading-14" id="security-ftr-link">Security</a></li>
+       <li><a href="https://www.bell.ca/Legal_and_terms#INT=OTH_legal_TXT_Footer" class="underline-on-hover brui-text-blue brui-text-12 brui-leading-14" id="legal-ftr-link">Legal and regulatory</a></li>
+       <li><a href="https://www.bell.ca/CRTC-Wireless-Code" class="underline-on-hover brui-text-blue brui-text-12 brui-leading-14" id="wireless-ftr-link">Wireless Code</a></li>
+      </ul>
+     </nav>
+    </div>
+    <div class="footer-copyright brui-flex brui-items-center brui-justify-start">
+     <p class="brui-text-12 brui-leading-14">© Bell Canada, 2025. All rights reserved.</p>
+    </div>
+   </div>
+  </section>
+  <p hidden>OmnitureGenericView</p>
+  <script type="text/javascript">
+          
+var s_oCGN="";
+var s_oCVR="11063001";
+var s_oPGN="";
+var s_oLNG="en";
+var s_oPRV="on";
+var s_oSIN="qFaAdRINy/jGEPIkLKPKw2T1Mf2kTPni2mf5KXkniUc=";
+var s_oSS1="Login";
+var s_oSS2="";
+var s_oSS3="";
+var s_oLGS=false;
+var s_oSID="5b6633ee-91f5-416b-af99-85a9949eae53";
+var s_oSID_OMN="8d1de70d-f372-4eeb-ba72-88ed2705ee28";
+var s_oLOB="";
+var s_oACT="";
+var s_oMOT="";
+var s_oBUP="";
+var s_oMED="";
+var s_oMOID="";
+var s_oTVID="";
+var s_oIID="";
+var s_oHPID="";
+var s_oOBID="";
+var s_oESTD="2025-03-21";
+var s_oESTT="00:12:41.386";
+var s_oTLF="";
+var s_oPTE=true;
+var s_oUBT="";
+var s_oUVA="User";
+    </script><!-- Omniture page name: Login.Index -->
+  <script type="text/javascript" src="https://mybell-on.akamaized.net/resource/web/common/all_languages/all_regions/js/metrics/s_code_bell.js?v=23042015EH01&amp;ver=201607271402"></script>
+  <noscript>
+   <img src="https://data0.bell.ca/b/ss/bellca/1/H.23.3--NS/0?pageName=Noscript&amp;ch=Noscript" height="1" width="1" border="0" alt="">
+  </noscript>
+  <script src="https://mybell-on.akamaized.net/MYB/web/DCX/js/ieDeprecatedBrowserJS.js?ver=202502090834"></script><!-- MAIN OL ENGINE -->
+  <script language="javascript" type="text/javascript" charset="windows-1252" src="https://mybell-on.akamaized.net/Resource/web/js/opinion_lab/oo_engine.min.js?ver=201604271428"></script><!-- FEEDBACK CONFIGURATION -->
+  <script language="javascript" type="text/javascript" charset="windows-1252" src="https://mybell-on.akamaized.net/Resource/web/js/opinion_lab/oo_conf_inline.js?ver=201610031730"></script>
+  <script language="javascript" type="text/javascript" charset="windows-1252" src="https://mybell-on.akamaized.net/Resource/web/js/jquery.min.js?ver=202410092027"></script>
+  <script language="javascript" type="text/javascript" charset="windows-1252" src="https://mybell-on.akamaized.net/Resource/web/js/bootstrap.min.js?ver=202410092027"></script>
+  <noscript>
+   This JavaScript enables OnlineOpinion, a method for collecting secure feedback data.
+  </noscript><!-- END: OnlineOpinion v5.9.0 --> <!--Echat omniture - List of parameters Start--> <!-- Echat omniture - List of parameters End-->
+  <style>
+#ujet #ujet-launcher iframe {
+        min-width: 80px;
+        min-height: 80px;
+    }
+</style>
+  <script>
+    function getCookie(cookieName) {
+        let cookie = {};
+        document.cookie.split(';').forEach(function (el) {
+            var key = el.split('=')[0]; var value = el.substring(el.split("=")[0].length + 1);
+            cookie[key.trim()] = value;
+        })
+        return cookie[cookieName];
+    }
+</script>
+  <script src="https://mybell-on.akamaized.net/Web/MYB/custom/js/eChat/echat-common.min.js?ver=00000000"></script>
+  <script src="https://mybell-on.akamaized.net/Web/MYB/custom/js/eChat/echat-omniture.min.js?ver=00000000"></script>
+  <script type="text/javascript">
+            // Load polyfill.js only for IE
+            if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+                document.write('<script src="https://mybell-on.akamaized.net/Styles/WidgetAssets/bwtk/dist/polyfill/polyfill.min.js?ver=201901170607"><\/script>');
+            }
+        </script><!-- Load Global Anchor Init Icon Start -->
+  <script type="text/javascript">window.addEventListener('load', function(event){var link = document.createElement('link');link.setAttribute('rel', 'stylesheet');link.setAttribute('type', 'text/css');link.setAttribute('href', "/Web/MYB/custom/css/eChat/eChat-Light.min.css");document.getElementsByTagName('head')[0].appendChild(link);});</script><a id="eChat_BELL_INIT_GA" aria-label="Chat" role="button" title="Chat" tabindex="0" class="bell-style eChat-bot-container eChat-bgWhite">
+   <div class="eChat-bot-anchor">
+    <div>
+     <img alt="chat bubble" role="presentation" aria-hidden="true" class="eChat-logo" src="https://mybell.bell.ca//Web/MYB/custom/image/echat/assets/Chat-Button-Bubbles(D).png">
+    </div>
+   </div></a>
+  <div id="eChat_B_GA"></div>
+  <script type="text/javascript">document.getElementById("eChat_BELL_INIT_GA").addEventListener('keydown', function(event){if (event.keyCode === 13) {document.getElementById("eChat_BELL_INIT_GA").click();}});</script>
+  <script type="text/javascript">if(document.getElementById("eChat_MoreWaysTo_Shop") && document.getElementById("eChat_BELL_INIT_GA")){document.getElementById("eChat_MoreWaysTo_Shop").addEventListener('click', function(event){if(document.getElementById("eChat_BELL_INIT_GA")){document.getElementById("eChat_BELL_INIT_GA").click();}});}</script>
+  <script type="text/javascript">document.getElementById("eChat_BELL_INIT_GA").addEventListener('click', function(event){var link = document.createElement('link');link.setAttribute('rel', 'stylesheet');link.setAttribute('type', 'text/css');link.setAttribute('href', "/Web/MYB/custom/css/eChat/eChat_allBrowsers_framework.min.css");document.getElementsByTagName('head')[0].appendChild(link);});</script>
+  <script type="text/javascript">document.getElementById("eChat_BELL_INIT_GA").addEventListener('click', function(event){var link = document.createElement('link');link.setAttribute('rel', 'stylesheet');link.setAttribute('type', 'text/css');link.setAttribute('href', "/Web/MYB/custom/css/eChat/eChat.min.css");document.getElementsByTagName('head')[0].appendChild(link);});</script>
+  <script type="text/javascript">document.getElementById("eChat_BELL_INIT_GA").addEventListener('click', function(event){var link = document.createElement('link');link.setAttribute('rel', 'stylesheet');link.setAttribute('type', 'text/css');link.setAttribute('href', "/Web/MYB/custom/css/eChat/eChat-bell.min.css");document.getElementsByTagName('head')[0].appendChild(link);});</script>
+  <script type="text/javascript">document.getElementById("eChat_BELL_INIT_GA").addEventListener('click', function(){ if(typeof EChat !== 'undefined'){ setTimeout(function(){ EChat.default.init({selector: "#eChat_B_GA",isBlueHorizoneOn: "True",accessToken: "69b4aad4-af80-4121-820c-3106d004f61c",botApiUrl: "https://ws.bell.ca",enBotApiPath: "/iva/en/web.io/?xt",frBotApiPath: "/iva/fr/web.io/?xt",accountName: "",bupAuthFlag: "False",currentPageCategory: "",currentPageId: "B_MYB_EN_Login",entryPoint:"eChat_B_GA",language: "en",nsiAuth: "",province: "on",bupAuthToken: "",host: "https://mybell.bell.ca/",localizationApiUrl: "https://apigate.bell.ca/uxpcommon/UXP.Services/Common/localization/ResourceBundle?widget=eChat",tokenGenerateUrl: "https://mybell.bell.ca/GenerateToken/GetToken",logEventDetailsUrl: "https://apigate.bell.ca/uxpcommon/UXP.Services/Tools/Utilities/LogEventDetails",vaChatHistoryUrl: "https://apigate.bell.ca/api/echat/v2/chathistory",assetsPath: "/Web/MYB/custom/image/echat/assets/",mediaPath: "/Web/MYB/custom/audio/echat/",loginUrlEn: "https://mybell.bell.ca/login",loginUrlFr: "https://mybell.bell.ca/login",brand: "B",entryPointList: "eChat_Bell_ContactUs_MOB,eChat_Bell_ContactUs_INT,eChat_Bell_ContactUs_TV,eChat_Bell_ContactUs_HP,eChat_Bell_MOB_Escalations,eChat_Bell_BRS_Escalations,eChat_Bell_EPP,eChat_MoreWaysTo_Shop,eChat_ReadyToOrder",hideGlobalAnchorChatIcon: "False",isChatOperational: "True",operationalHour: "{From:00:00,To:23:59,Day:friday}",proactiveChatConnectionDelay: "0",proactiveChatFlag: "False",subtleNotificationLifespan: "1200000",typingDelay: "2000",typingDetectInterval: "3000",typingIndicatorImageAltText: "Agent is typing Icon",typingIndicatorImageName: "step-tracker_loop.gif",chatExpiryDuration: "20",safariAutoSaveInterval: "20000",vaChatHistoryMaxMsg: "9999",mergeCookies: "true",agid: "",buid: "",botDirect: "false",enSocketUrl: "",frSocketUrl: "",socketPath: "",cookieDomain: ".bell.ca",});EChat.open(); document.getElementById("eChat_BELL_INIT_GA").remove();}, 2000)} else { $.getScript("https://mybell.bell.ca/Web/MYB/custom/js/eChat/echat-component.js").done(function(script, textStatus){EChat.default.init({selector: "#eChat_B_GA",isBlueHorizoneOn: "True",accessToken: "69b4aad4-af80-4121-820c-3106d004f61c",botApiUrl: "https://ws.bell.ca",enBotApiPath: "/iva/en/web.io/?xt",frBotApiPath: "/iva/fr/web.io/?xt",accountName: "",bupAuthFlag: "False",currentPageCategory: "",currentPageId: "B_MYB_EN_Login",entryPoint:"eChat_B_GA",language: "en",nsiAuth: "",province: "on",bupAuthToken: "",host: "https://mybell.bell.ca/",localizationApiUrl: "https://apigate.bell.ca/uxpcommon/UXP.Services/Common/localization/ResourceBundle?widget=eChat",tokenGenerateUrl: "https://mybell.bell.ca/GenerateToken/GetToken",logEventDetailsUrl: "https://apigate.bell.ca/uxpcommon/UXP.Services/Tools/Utilities/LogEventDetails",vaChatHistoryUrl: "https://apigate.bell.ca/api/echat/v2/chathistory",assetsPath: "/Web/MYB/custom/image/echat/assets/",mediaPath: "/Web/MYB/custom/audio/echat/",loginUrlEn: "https://mybell.bell.ca/login",loginUrlFr: "https://mybell.bell.ca/login",brand: "B",entryPointList: "eChat_Bell_ContactUs_MOB,eChat_Bell_ContactUs_INT,eChat_Bell_ContactUs_TV,eChat_Bell_ContactUs_HP,eChat_Bell_MOB_Escalations,eChat_Bell_BRS_Escalations,eChat_Bell_EPP,eChat_MoreWaysTo_Shop,eChat_ReadyToOrder",hideGlobalAnchorChatIcon: "False",isChatOperational: "True",operationalHour: "{From:00:00,To:23:59,Day:friday}",proactiveChatConnectionDelay: "0",proactiveChatFlag: "False",subtleNotificationLifespan: "1200000",typingDelay: "2000",typingDetectInterval: "3000",typingIndicatorImageAltText: "Agent is typing Icon",typingIndicatorImageName: "step-tracker_loop.gif",chatExpiryDuration: "20",safariAutoSaveInterval: "20000",vaChatHistoryMaxMsg: "9999",mergeCookies: "true",agid: "",buid: "",botDirect: "false",enSocketUrl: "",frSocketUrl: "",socketPath: "",cookieDomain: ".bell.ca",});EChat.open(); document.getElementById("eChat_BELL_INIT_GA").remove();})}});window.addEventListener('beforeunload', function(event) { document.cookie = "__ctabid=undefined;domain=.bell.ca;secure=true; path=/; samesite=Lax "; window.sessionStorage.removeItem("__ctabid");}); </script>
+  <script type="text/javascript">if(!(/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)||(navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1))){reverifyChatAliveFlag(); document.cookie = "__cwaf=true; domain =.bell.ca; secure = true; path =/; samesite = Lax ";}else {document.cookie = "__cwaf=false; domain=.bell.ca;secure=true; path=/; samesite=Lax ";}document.getElementById("eChat_BELL_INIT_GA").addEventListener('click', function(event){document.cookie = "__cwaf=false;domain=.bell.ca;secure=true; path=/; samesite=Lax ";});window.addEventListener('beforeunload', function(event){document.cookie = "__cwaf=false;domain=.bell.ca;secure=true; path=/; samesite=Lax ";});</script><!-- Global Anchor Init Icon Start End -->
+  <script type="text/javascript"> 
+var inqCustData = {"CUSTOMER_LOGIN":"No"};
+</script>
+  <script>
+
+            //Not required since contact us is pointing to respective SFT from my bell
+            
+
+           // Omniture call for Echat.
+            (function ($) {
+                $(document).ready(function () {
+			        var newSessionOmniCall = false;
+			        var mergedCookies = "True" === "True";
+			        if (!mergedCookies) document.cookie = "__eccomp" + "=;expires=" + new Date().toUTCString() + ";domain=" + ".bell.ca" + ";path=/";
+			        setInterval(function () {
+				        try {
+					        var __cwi = mergedCookies ? readCookieContentById("__eccompslex", "__cwi") : getCookie("__cwi");
+					        var __cvf = mergedCookies ? readCookieContentById("__eccomp", "__cvf") : getCookie("__cvf");
+					        if (!newSessionOmniCall && __cwi === 'true' && __cvf === 'true') {
+							        newSessionPayloadCall('NA', newSessionOmniCall, mergedCookies);
+							        newSessionOmniCall = true;
+						        }
+					        if (newSessionOmniCall && __cwi !== 'true') {
+							        newSessionOmniCall = false;
+						        }
+				        } catch (e) {
+
+				        }
+			        }, 2000);
+
+                    if ('True' == 'True') {
+				        echatPayloadCall('NA', "BR", mergedCookies);
+                    }
+                });
+            }(jQuery));
+        </script>
+ </body>
+</html>

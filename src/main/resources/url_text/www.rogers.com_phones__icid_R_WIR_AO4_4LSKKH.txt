@@ -1,0 +1,9 @@
+Cell Phones and Devices - Buy iPhone, Samsung, Pixel- Rogers       appVersion: 5977d6fe8,
+      version: 5977d6fe8,
+      branch: refs/heads/release/bfa/rcom-ct/34.2.0/march-12-2025,
+      hash: 5977d6fe80fd36870d7cfcf25a34a16c7d7bc829,
+      buildTimeStamp: 1741298048564,
+      buildTime: Thu Mar 06 2025 21:54:08 GMT+0000 (Coordinated Universal Time),
+      ngProjectName: bfa-rcom-ct-rogers
+      isRunGc: true
+    Please enable JavaScript to continue using this application.

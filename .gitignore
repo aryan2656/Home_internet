@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+/resources/url_file
+/resources/url_text
+
+
