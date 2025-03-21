@@ -1,0 +1,22 @@
+Provider,PlanName,Price,DownloadSpeed,UploadSpeed,Features,ImageUrl
+AT&T,300Mbps Speed,$55/month,300 Mbps,N/A,"Game, stream, and video chat with confidence; Support your smart home devices; 15x faster upload speeds than cable internet",null
+AT&T,500Mbps Speed,$65/month,500 Mbps,N/A,"Level up your gaming with low lag; Connect and control multiple smart devices with ease; 20x faster upload speeds than cable internet",null
+AT&T,Up to 1 GIG speed,$80/month,1 Gbps,N/A,"The speed to succeed for work and pro-level gaming; Unleash the full potential of your smart home ecosystem; 25x faster upload speeds than cable internet",null
+Bell,PureFibre 250 Mbps,$80/month,250 Mbps,250 Mbps,"High-speed fiber internet with stable connectivity",null
+Bell,PureFibre 1 Gig,$100/month,940 Mbps,940 Mbps,"Ideal for work, gaming, and streaming",null
+Bell,PureFibre 3 Gig,$120/month,3000 Mbps,3000 Mbps,"Best for high-demand users and multiple devices",null
+Bell,PureFibre 5 Gig,$145/month,5000 Mbps,5000 Mbps,"Ultra-fast speeds for the ultimate performance",null
+Bell,Core channels + PureFibre Internet,$110/month,250 Mbps,250 Mbps,"Includes core channels along with fiber internet",null
+Bell,Choices + PureFibre Internet,$135/month,940 Mbps,940 Mbps,"Extended selection of channels with fiber internet",null
+Bell,More Choices + PureFibre Internet,$158/month,3000 Mbps,3000 Mbps,"Most extensive channel selection with top-speed fiber internet",null
+Fido,5G Home Internet Plan,$50/month,Up to 100 Mbps,20 Mbps,"500 GB with no data overage charges; Easy setup – just plug and play; Risk-free, try for 30 days",null
+Fido,Rogers Xfinity Internet,$90/month,Up to 2.5 Gbps,100 Mbps,"Unlimited usage for 25+ devices; Supports streaming, TV, and security; Wi-Fi Satisfaction Guarantee",null
+Koodo,Koodo Unlimited Internet 100,$65/month,Up to 100 Mbps,30 Mbps,"You save $5 per month; Koodo Mobile Exclusive! Log in to save $21/mo.",null
+Koodo,Koodo Unlimited Internet 500,$95/month,Up to 500 Mbps,30 Mbps,"You save $5 per month; Koodo Mobile Exclusive! Log in to save $21/mo.",null
+Koodo,Koodo Unlimited Internet 1 Gigabit,$105/month,Up to 1 Gbps,50 Mbps,"You save $5 per month; Koodo Mobile Exclusive! Log in to save $21/mo.",null
+Rogers,5G Home Internet 2,$60/month,500 Mbps,N/A,"Powered by our 5G mobile network; Easy setup – just plug and play; 500 GB no data overage fees",null
+Rogers,Starter,$70/month,100 Mbps,N/A,"Unlimited Rogers Xfinity Internet; Great for streaming TV and security; Best for up to 10 devices",null
+Rogers,Essentials,$90/month,250 Mbps,N/A,"Unlimited Rogers Xfinity Internet; Great for streaming TV and security; Best for 10-15 devices",null
+Rogers,Popular,$100/month,500 Mbps,N/A,"Unlimited Rogers Xfinity Internet; Great for streaming TV and security; Best for 15-20 devices",null
+Rogers,Ultimate,$110/month,1 Gbps,N/A,"Unlimited Rogers Xfinity Internet; Great for streaming TV and security; Best for 20+ devices",null
+Rogers,Pro,$120/month,2 Gbps,N/A,"Unlimited Rogers Xfinity Internet; Great for gaming and 8K content; Best for 25+ devices",null
