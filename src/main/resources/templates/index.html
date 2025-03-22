@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Internet Hero</title>
+</head>
+<body>
+<h1>Welcome to Home Internet Hero</h1>
+
+<!-- Word Completion -->
+<h2>Word Completion</h2>
+<form action="/search/complete" method="get">
+    <label for="prefix">Enter a prefix:</label>
+    <input type="text" id="prefix" name="prefix" required>
+    <button type="submit">Complete Word</button>
+</form>
+<div>
+    <h3>Completion Suggestions:</h3>
+    <ul>
+        <th:block th:if="${completionResults}">
+            <li th:each="suggestion : ${completionResults}" th:text="${suggestion}"></li>
+        </th:block>
+    </ul>
+</div>
+
+<!-- Word Frequency -->
+<!-- Word Frequency -->
+<h2>Check Word Frequency</h2>
+<form action="/search/frequency" method="get">
+    <label for="word">Enter a word:</label>
+    <input type="text" id="word" name="word"  required>
+    <button type="submit">Check Frequency</button>
+</form>
+<div>
+    <h3>Word Frequency:</h3>
+    <span th:if="${wordFrequency != 0}">
+        Frequency of <strong th:text="${searchedWord}"></strong>: <span th:text="${wordFrequency}"></span>
+    </span>
+    <span th:if="${wordFrequency == 0}">
+        No frequency data available for the word: <strong th:text="${searchedWord}"></strong>
+    </span>
+</div>
+
+<!-- Spell Check -->
+<h2>Spell Check</h2>
+<form action="/search/check" method="get">
+    <label for="spellCheckWord">Enter a word to check:</label>
+    <input type="text" id="spellCheckWord" name="word" required>
+    <button type="submit">Check Spelling</button>
+</form>
+<div>
+    <h3>Spell Check Suggestions:</h3>
+    <ul>
+        <th:block th:if="${spellCheckResult}">
+            <li th:each="suggestion : ${spellCheckResult}" th:text="${suggestion}"></li>
+        </th:block>
+    </ul>
+</div>
+
+<!-- Load All Words (if you want to load words from URL or folder) -->
+<h2>Load Words from URL</h2>
+<form action="/search/load" method="get">
+    <button type="submit">Load Words</button>
+</form>
+<div>
+    <h3>All Loaded Words:</h3>
+    <ul>
+        <th:block th:each="word : ${allWords}">
+            <li th:text="${word}"></li>
+        </th:block>
+    </ul>
+</div>
+</body>
+</html>

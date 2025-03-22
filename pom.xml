@@ -64,6 +64,12 @@
 			<version>6.1.6.Final</version> <!-- Or the latest compatible version -->
 		</dependency>
 
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>  <!-- Use the latest version -->
+			<scope>provided</scope>
+		</dependency>
 
 		<!-- Jakarta Persistence API -->
 		<dependency>
