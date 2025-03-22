@@ -5,7 +5,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import org.antlr.v4.runtime.misc.NotNull;
 
-
 @Entity
 public class Plans {
 
