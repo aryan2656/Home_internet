@@ -99,6 +99,12 @@
 </header>
 
 <div class="container">
+
+  <div>
+    <input type="search" id="search-input">
+    <button onclick="search()">Search</button>
+  </div>
+
   <h2>Available Internet Plans</h2>
   <table>
     <thead>
@@ -128,6 +134,59 @@
   </table>
   <a href="/" class="btn">Go Back to Home</a>
 </div>
+
+<script>
+  async function search() {
+    let query = document.getElementById("search-input").value;
+
+    if (!query) {
+      console.error("Query is empty!");
+      return;
+    }
+
+    const url = "http://localhost:8082/searchpattern";
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ query: query })
+      });
+
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+
+      const plans = await response.json();
+      updateTable(plans);
+
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
+  }
+
+  function updateTable(plans) {
+    let tbody = document.querySelector("tbody");
+    tbody.innerHTML = ""; // Clear old results
+
+    plans.forEach(plan => {
+      let row = `<tr>
+            <td>${plan.id}</td>
+            <td>${plan.provider}</td>
+            <td>${plan.planName}</td>
+            <td>${plan.price}</td>
+            <td>${plan.downloadSpeed}</td>
+            <td>${plan.uploadSpeed}</td>
+            <td>${plan.features}</td>
+            <td><img src="${plan.imageUrl}" width="100"></td>
+        </tr>`;
+      tbody.innerHTML += row;
+    });
+  }
+
+</script>
 
 </body>
 </html>
