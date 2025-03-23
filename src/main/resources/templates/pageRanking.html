@@ -10,6 +10,46 @@
 
 <!-- Navbar (Include it from a layout or copy-paste the navbar here) -->
 
+
+<!-- Navbar -->
+<nav class="flex justify-between items-center py-4 px-6">
+    <h1 class="text-2xl font-bold"><a href="/" class="hover:text-gray-300">Home Internet Hero</a></h1>
+    <div class="space-x-6 text-lg">
+        <a href="/rogersData" class="text-white hover:text-gray-300">Rogers</a>
+        <a href="/bellData" class="text-white hover:text-gray-300">Bell</a>
+        <a href="/attData" class="text-white hover:text-gray-300">AT&T</a>
+        <a href="/koodoData" class="text-white hover:text-gray-300">Koodo</a>
+        <a href="/fidoData" class="text-white hover:text-gray-300">Fido</a>
+
+        <!-- Dropdown Menu -->
+        <div class="relative inline-block">
+            <button class="text-white hover:text-gray-300 text-lg">Algorithms</button>
+            <div class="dropdown-menu absolute hidden bg-gray-800 border border-gray-700 rounded-md shadow-lg z-10 mt-2">
+                <a href="/frequencyCount" class="block px-2 py-1 text-white text-sm hover:bg-gray-700">Frequency Count</a>
+                <a href="/pageRanking" class="block px-2 py-1 text-white text-sm hover:bg-gray-700">Page Ranking</a>
+
+            </div>
+        </div>
+    </div>
+</nav>
+<!-- Hero Section -->
+<section class="flex flex-col items-center text-center py-20">
+    <h1 class="text-6xl font-bold">Home Internet Hero</h1>
+    <p class="text-xl text-gray-400 mt-4">A powerful system demonstrating practical applications of data structures and algorithms for efficient web content management and search functionalities.</p>
+    <div class="mt-6 relative">
+        <input type="text" id="searchInput" placeholder="Search for ISP plans..."
+               class="w-full max-w-md p-4 rounded-md border border-gray-700 bg-gray-800 text-white text-lg"
+               oninput="searchPlans()">
+        <button onclick="searchPlans()" class="mt-4 px-8 py-4 bg-blue-600 rounded-md hover:bg-blue-700 text-lg">
+            Search
+        </button>
+
+        <!-- Suggestion Box -->
+        <div id="suggestionBox" class="absolute bg-gray-800 border border-gray-700 w-full max-w-md mt-2 rounded-md shadow-lg hidden z-10">
+            <div id="didYouMean" class="p-2 text-gray-400 hidden">Did you mean: <span class="text-blue-400" id="suggestedWord"></span>?</div>
+        </div>
+    </div>
+</section>
 <!-- Main Content -->
 <section class="py-20">
     <div class="container mx-auto text-center">
@@ -21,5 +61,21 @@
 </section>
 
 </body>
+
+<script>
+    // JavaScript for dropdown menu
+   document.querySelector("button").addEventListener("click", function() {
+       const menu = document.querySelector(".dropdown-menu");
+       menu.classList.toggle("hidden");
+   });
+
+   // Close the dropdown if clicked outside
+   window.addEventListener("click", function(event) {
+       if (!event.target.closest(".relative")) {
+           const menu = document.querySelector(".dropdown-menu");
+           menu.classList.add("hidden");
+       }
+   });
+</script>
 </html>
 

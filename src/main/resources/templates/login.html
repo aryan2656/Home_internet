@@ -68,7 +68,24 @@ padding-right: 20px; /* Add some padding for spacing */
   </nav>
 </header>
 
+<!-- Hero Section -->
+<section class="flex flex-col items-center text-center py-20">
+  <h1 class="text-6xl font-bold">Home Internet Hero</h1>
+  <p class="text-xl text-gray-400 mt-4">A powerful system demonstrating practical applications of data structures and algorithms for efficient web content management and search functionalities.</p>
+  <div class="mt-6 relative">
+    <input type="text" id="searchInput" placeholder="Search for ISP plans..."
+           class="w-full max-w-md p-4 rounded-md border border-gray-700 bg-gray-800 text-white text-lg"
+           oninput="searchPlans()">
+    <button onclick="searchPlans()" class="mt-4 px-8 py-4 bg-blue-600 rounded-md hover:bg-blue-700 text-lg">
+      Search
+    </button>
 
+    <!-- Suggestion Box -->
+    <div id="suggestionBox" class="absolute bg-gray-800 border border-gray-700 w-full max-w-md mt-2 rounded-md shadow-lg hidden z-10">
+      <div id="didYouMean" class="p-2 text-gray-400 hidden">Did you mean: <span class="text-blue-400" id="suggestedWord"></span>?</div>
+    </div>
+  </div>
+</section>
 <!--	&lt;!&ndash; create navigation bar ( header) &ndash;&gt;-->
 <!--	<nav class="navbar navbar-inverse navbar-fixed-top">-->
 <!--		<div class="container">-->

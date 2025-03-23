@@ -8,7 +8,7 @@
 </head>
 <body class="bg-gray-900 text-white">
 
-<!-- Navbar dd-->
+<!-- Navbar -->
 <nav class="flex justify-between items-center py-4 px-6">
     <h1 class="text-2xl font-bold"><a href="/" class="hover:text-gray-300">Home Internet Hero</a></h1>
     <div class="space-x-6 text-lg">
@@ -17,6 +17,16 @@
         <a href="/attData" class="text-white hover:text-gray-300">AT&T</a>
         <a href="/koodoData" class="text-white hover:text-gray-300">Koodo</a>
         <a href="/fidoData" class="text-white hover:text-gray-300">Fido</a>
+
+        <!-- Dropdown Menu -->
+        <div class="relative inline-block">
+            <button class="text-white hover:text-gray-300 text-lg">Algorithms</button>
+            <div class="dropdown-menu absolute hidden bg-gray-800 border border-gray-700 rounded-md shadow-lg z-10 mt-2">
+                <a href="/frequencyCount" class="block px-2 py-1 text-white text-sm hover:bg-gray-700">Frequency Count</a>
+                <a href="/pageRanking" class="block px-2 py-1 text-white text-sm hover:bg-gray-700">Page Ranking</a>
+
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -26,6 +36,9 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         <!-- Thymeleaf loop to display Bell plans dynamically -->
         <div th:each="bellPlan : ${BellPlans}" class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <!-- Bell Logo Image -->
+            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Bell_logo.svg" alt="Bell Logo" class="w-24 h-24 mx-auto mb-4">
+
             <!-- Plan Name -->
             <h3 class="text-2xl font-semibold text-white" th:text="${bellPlan.planName}">Plan Name</h3>
 
@@ -40,4 +53,19 @@
 </section>
 
 </body>
+<script>
+    // JavaScript for dropdown menu
+   document.querySelector("button").addEventListener("click", function() {
+       const menu = document.querySelector(".dropdown-menu");
+       menu.classList.toggle("hidden");
+   });
+
+   // Close the dropdown if clicked outside
+   window.addEventListener("click", function(event) {
+       if (!event.target.closest(".relative")) {
+           const menu = document.querySelector(".dropdown-menu");
+           menu.classList.add("hidden");
+       }
+   });
+</script>
 </html>

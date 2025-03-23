@@ -22,8 +22,9 @@
     <div class="relative inline-block">
       <button class="text-white hover:text-gray-300 text-lg">Algorithms</button>
       <div class="dropdown-menu absolute hidden bg-gray-800 border border-gray-700 rounded-md shadow-lg z-10 mt-2">
-        <a href="/frequencyCount" class="block px-4 py-2 text-white hover:bg-gray-700">Frequency Count and Search Frequency</a>
-        <a href="/pageRanking" class="block px-4 py-2 text-white hover:bg-gray-700">Page Ranking and Inverted Index</a>
+        <a href="/frequencyCount" class="block px-2 py-1 text-white text-sm hover:bg-gray-700">Frequency Count</a>
+        <a href="/pageRanking" class="block px-2 py-1 text-white text-sm hover:bg-gray-700">Page Ranking</a>
+
       </div>
     </div>
   </div>
@@ -72,4 +73,20 @@
 </section>
 
 </body>
+
+<script>
+  // JavaScript for dropdown menu
+ document.querySelector("button").addEventListener("click", function() {
+     const menu = document.querySelector(".dropdown-menu");
+     menu.classList.toggle("hidden");
+ });
+
+ // Close the dropdown if clicked outside
+ window.addEventListener("click", function(event) {
+     if (!event.target.closest(".relative")) {
+         const menu = document.querySelector(".dropdown-menu");
+         menu.classList.add("hidden");
+     }
+ });
+</script>
 </html>
