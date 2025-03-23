@@ -1,125 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Koodo Internet Plans</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #eef2f7;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background: linear-gradient(to right, #007bff, #00c6ff);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 26px;
-            font-weight: bold;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .container {
-            padding: 30px;
-            max-width: 1000px;
-            margin: auto;
-            text-align: center;
-        }
-
-        h2 {
-            color: #333;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            background: #fff;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            padding: 15px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background: linear-gradient(to right, #007bff, #00c6ff);
-            color: white;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr:hover {
-            background-color: #e0f7fa;
-            transition: 0.3s;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            margin-top: 20px;
-            background: linear-gradient(to right, #007bff, #00c6ff);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            font-size: 18px;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: #0056b3;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        @media screen and (max-width: 768px) {
-            table {
-                width: 100%;
-            }
-            th, td {
-                padding: 10px;
-            }
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koodo Plans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-900 text-white">
 
-<header>
-    <h1>Koodo Internet Plans</h1>
-</header>
+<!-- Navbar -->
+<nav class="flex justify-between items-center py-4 px-6">
+    <h1 class="text-2xl font-bold"><a href="/" class="hover:text-gray-300">Home Internet Hero</a></h1>
+    <div class="space-x-6 text-lg">
+        <a href="/rogersData" class="text-white hover:text-gray-300">Rogers</a>
+        <a href="/koodoData" class="text-white hover:text-gray-300">Koodo</a>
+        <a href="/bellData" class="text-white hover:text-gray-300">Bell</a>
+        <a href="/attData" class="text-white hover:text-gray-300">AT&T</a>
+        <a href="/fidoData" class="text-white hover:text-gray-300">Fido</a>
+    </div>
+</nav>
 
-<div class="container">
-    <h2>Available Plans</h2>
-    <table>
-        <thead>
-        <tr>
-            <th>Name</th>
-            <th>Price ($)</th>
-            <th>Speed</th>
-            <th>Offer</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="plan : ${KoodoPlans}">
-            <td th:text="${plan.name}"></td>
-            <td th:text="${plan.price}"></td>
-            <td th:text="${plan.speed}"></td>
-            <td th:text="${plan.offer}"></td>
-        </tr>
-        </tbody>
-    </table>
-    <a href="/" class="btn">Go Back to Home</a>
-</div>
+<!-- Koodo Plans Section -->
+<section class="py-20">
+    <h2 class="text-4xl font-semibold text-center text-gray-300 mb-10">Available Koodo Internet Plans</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8">
+        <!-- Thymeleaf loop to display Koodo plans dynamically -->
+        <div th:each="koodoPlan : ${KoodoPlans}" class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <!-- Plan Name -->
+            <h3 class="text-2xl font-semibold text-white" th:text="${koodoPlan.name}">Plan Name</h3>
+
+            <!-- Price -->
+            <p class="text-xl text-pink-500 font-semibold mt-2" th:text="${koodoPlan.price}">$0/month</p>
+
+            <!-- Speed -->
+            <p class="text-gray-400 mt-4" th:text="'Speed: ' + ${koodoPlan.speed}">Speed</p>
+
+            <!-- Offer -->
+            <p class="text-gray-400" th:text="'Offer: ' + ${koodoPlan.offer}">Offer</p>
+        </div>
+    </div>
+</section>
 
 </body>
 </html>
