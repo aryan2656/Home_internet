@@ -1,207 +1,74 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Internet Providers</title>
-
-
-    <style>
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(135deg, #0A192F, #00C9FF); /* Deep blue to cyan */
-    color: white;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-/* Header */
-header {
-    padding: 20px;
-    font-size: 32px;
-    font-weight: 600;
-    background: rgba(0, 0, 0, 0.7);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    backdrop-filter: blur(5px);
-}
-
-/* Container */
-.container {
-    max-width: 1000px;
-    margin: 50px auto;
-    text-align: center;
-}
-
-/* Section Heading */
-h2 {
-    font-size: 28px;
-    font-weight: 500;
-    margin-bottom: 30px;
-    background: rgba(255, 255, 255, 0.1);
-    display: inline-block;
-    padding: 12px 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* Provider Links Grid */
-.provider-links {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 25px;
-}
-
-/* Provider Card */
-.provider-card {
-    background: rgba(255, 255, 255, 0.12);
-    color: white;
-    padding: 25px;
-    width: 240px;
-    height: 240px;
-    border-radius: 20px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    transition: all 0.3s ease-in-out;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 6px 12px rgba(0, 255, 255, 0.15);
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-/* Provider Card Image */
-.provider-card img {
-    width: 80%;
-    height: auto;
-    object-fit: contain;
-    margin-bottom: 15px;
-    transition: transform 0.3s ease-in-out;
-}
-
-/* Hover Effects */
-.provider-card:hover {
-    background: rgba(255, 255, 255, 0.25);
-    transform: translateY(-8px);
-    box-shadow: 0 8px 20px rgba(0, 255, 255, 0.3);
-}
-
-.provider-card:hover img {
-    transform: scale(1.1);
-}
-
-/* Glowing Hover Effect */
-.provider-card::before {
-    content: "";
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 250%;
-    height: 250%;
-    background: radial-gradient(circle, rgba(0, 255, 255, 0.2), transparent);
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-}
-
-.provider-card:hover::before {
-    opacity: 1;
-}
-
-/* Footer */
-footer {
-    margin-top: 50px;
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.8);
-    font-size: 14px;
-    text-align: center;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
-}
-
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Internet Hero</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-900 text-white">
 
-<header>
-    🌍 Internet Service Providers
-</header>
-
-<div class="container">
-    <h2>Select Your Provider</h2>
-
-    <div>
-        <input type="search" id="search-input">
-        <button onclick="search()">Search</button>
+<!-- Navbar -->
+<nav class="flex justify-between items-center py-4 px-6">
+    <h1 class="text-2xl font-bold"><a href="/" class="hover:text-gray-300">Home Internet Hero</a></h1>
+    <div class="space-x-6 text-lg">
+        <a href="/rogersData" class="text-white hover:text-gray-300">Rogers</a>
+        <a href="/bellData" class="text-white hover:text-gray-300">Bell</a>
+        <a href="/attData" class="text-white hover:text-gray-300">AT&T</a>
+        <a href="/koodoData" class="text-white hover:text-gray-300">Koodo</a>
+        <a href="/fidoData" class="text-white hover:text-gray-300">Fido</a>
     </div>
-    <div class="provider-links">
-        <a href="/rogersData" class="provider-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Rogers_logo.svg" alt="Rogers Logo">
+</nav>
 
-        </a>
-        <a href="/bellData" class="provider-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Bell_logo.svg" alt="Bell Logo">
-
-        </a>
-        <a href="/attData" class="provider-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/AT%26T_logo_2016.svg" alt="AT&T Logo">
-
-        </a>
-        <a href="/koodoData" class="provider-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Koodo_logo.svg" alt="Koodo Logo">
-
-        </a>
-        <a href="/fidoData" class="provider-card">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/b/b1/Fido_Solutions_logo.svg" alt="Fido Logo">
-
-        </a>
+<!-- Hero Section -->
+<section class="flex flex-col items-center text-center py-20">
+    <h1 class="text-6xl font-bold">Home Internet Hero</h1>
+    <p class="text-xl text-gray-400 mt-4">A powerful system demonstrating practical applications of data structures and algorithms for efficient web content management and search functionalities.</p>
+    <div class="mt-6">
+        <input type="text" placeholder="Search for ISP plans..." class="w-full max-w-md p-4 rounded-md border border-gray-700 bg-gray-800 text-white text-lg">
+        <button class="mt-4 px-8 py-4 bg-blue-600 rounded-md hover:bg-blue-700 text-lg">Search</button>
     </div>
-</div>
+</section>
 
-<footer>
-    &copy; 2025 Internet Plans
-</footer>
-
-<script>
-    async function search() {
-        let query = document.getElementById("search-input").value;
-
-        if (!query) {
-            console.error("Query is empty!");
-            return;
-        }
-
-        const url = "http://localhost:8082/search"; // No query in URL
-
-        try {
-            const response = await fetch(url, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json" // Tell backend it's JSON
-                },
-                body: JSON.stringify({ query: query }) // Send query as JSON
-            });
-
-            console.log(response);
-
-            if (!response.ok) {
-                throw new Error(`Response status: ${response.status}`);
-            }
-
-            const text = await response.text();
-            console.log("Response from API:", text);
-            document.getElementById("result").innerText = text;
-        } catch (error) {
-            console.error("Error:", error.message);
-        }
-    }
+<!-- Plans Section -->
+<section class="py-20">
+    <h2 class="text-4xl font-semibold text-center text-gray-300 mb-10">Available Internet Plans</h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <!-- Thymeleaf loop to display plans dynamically -->
+        <div th:each="plan : ${plans}" class="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <img th:src="@{${plan.imageUrl}}" alt="Plan Image" class="w-full h-auto object-cover rounded-md mb-4">
+            <h3 class="text-2xl font-semibold text-white" th:text="${plan.planName}">Plan Name</h3>
+            <p class="text-gray-400 mt-2" th:text="'Provider: ' + ${plan.provider}">Provider Name</p>
+            <p class="text-xl text-pink-500 font-semibold mt-2" th:text="${plan.price}">$0/month</p>
+            <p class="text-gray-400 mt-4" th:text="'Download Speed: ' + ${plan.downloadSpeed}">Download Speed</p>
+            <p class="text-gray-400" th:text="'Upload Speed: ' + ${plan.uploadSpeed}">Upload Speed</p>
+            <div class="mt-4 text-gray-300" th:text="${plan.features}">Plan Features</div>
+        </div>
+    </div>
+</section>
 
 
-</script>
+
+
+<!-- Key Features -->
+<section class="text-center mt-12">
+    <h2 class="text-4xl font-bold">Key Features</h2>
+    <p class="text-lg text-gray-400 mt-2">Explore the powerful capabilities of our system</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+        <div class="p-8 rounded-lg border bg-gray-800 shadow-lg">
+            <h3 class="text-2xl font-semibold">Data Extraction</h3>
+            <p class="text-gray-400 mt-2">Extract useful insights from the web.</p>
+        </div>
+        <div class="p-8 rounded-lg border bg-gray-800 shadow-lg">
+            <h3 class="text-2xl font-semibold">HTML Parsing</h3>
+            <p class="text-gray-400 mt-2">Analyze and structure web content efficiently.</p>
+        </div>
+        <div class="p-8 rounded-lg border bg-gray-800 shadow-lg">
+            <h3 class="text-2xl font-semibold">Spell Checking</h3>
+            <p class="text-gray-400 mt-2">Improve search accuracy with intelligent spell-checking.</p>
+        </div>
+    </div>
+</section>
+
 </body>
 </html>

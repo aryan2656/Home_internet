@@ -1,99 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-  <title>Rogers Internet Plans</title>
-  <style>
-    body {
-        font-family: Arial, sans-serif;
-        background-color: #f8f9fa;
-        margin: 0;
-        padding: 0;
-    }
-
-    h2 {
-        text-align: center;
-        color: #333;
-        margin-top: 20px;
-    }
-
-    .table-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 20px auto;
-    }
-
-    table {
-        width: 90%;
-        max-width: 1000px;
-        border-collapse: collapse;
-        background: #fff;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    th, td {
-        padding: 15px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    th {
-        background: linear-gradient(to right, #007bff, #00c6ff);
-        color: white;
-        font-weight: bold;
-        text-transform: uppercase;
-    }
-
-    tr:nth-child(even) {
-        background-color: #f2f2f2;
-    }
-
-    tr:hover {
-        background-color: #e0f7fa;
-        cursor: pointer;
-    }
-
-    td {
-        color: #333;
-    }
-
-    @media screen and (max-width: 768px) {
-        table {
-            width: 100%;
-        }
-
-        th, td {
-            padding: 10px;
-        }
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rogers Plans</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="bg-gray-900 text-white">
 
-<h2>Rogers Internet Plans</h2>
+<!-- Navbar -->
+<nav class="flex justify-between items-center py-4 px-6">
+  <h1 class="text-2xl font-bold"><a href="/" class="hover:text-gray-300">Home Internet Hero</a></h1>
+  <div class="space-x-6 text-lg">
+    <a href="/rogersData" class="text-white hover:text-gray-300">Rogers</a>
+    <a href="/bellData" class="text-white hover:text-gray-300">Bell</a>
+    <a href="/attData" class="text-white hover:text-gray-300">AT&T</a>
+    <a href="/koodoData" class="text-white hover:text-gray-300">Koodo</a>
+    <a href="/fidoData" class="text-white hover:text-gray-300">Fido</a>
+  </div>
+</nav>
 
-<div class="table-container">
-  <table>
-    <tr>
-      <th>Plan Name</th>
-      <th>Price ($)</th>
-      <th>Powered By</th>
-      <th>Support</th>
-      <th>Speed</th>
-      <th>Device</th>
-    </tr>
-    <tr th:each="plan : ${RogersPlans}">
-      <td th:text="${plan.planName}"></td>
-      <td th:text="${plan.price}"></td>
-      <td th:text="${plan.poweredBy}"></td>
-      <td th:text="${plan.support}"></td>
-      <td th:text="${plan.speed}"></td>
-      <td th:text="${plan.device}"></td>
-    </tr>
-  </table>
-</div>
+<!-- Rogers Plans Section -->
+<section class="py-20">
+  <h2 class="text-4xl font-semibold text-center text-gray-300 mb-10">Available Rogers Internet Plans</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+    <!-- Thymeleaf loop to display Rogers plans dynamically -->
+    <div th:each="rogersPlan : ${RogersPlans}" class="bg-gray-800 p-6 rounded-lg shadow-lg">
+      <!-- Plan Name -->
+      <h3 class="text-2xl font-semibold text-white" th:text="${rogersPlan.planName}">Plan Name</h3>
+
+      <!-- Price -->
+      <p class="text-xl text-pink-500 font-semibold mt-2" th:text="${rogersPlan.price}">$0/month</p>
+
+      <!-- Powered By -->
+      <p class="text-gray-400 mt-4" th:text="'Powered By: ' + ${rogersPlan.poweredBy}">Powered By</p>
+
+      <!-- Support -->
+      <p class="text-gray-400" th:text="'Support: ' + ${rogersPlan.support}">Support</p>
+
+      <!-- Speed -->
+      <p class="text-gray-400" th:text="'Speed: ' + ${rogersPlan.speed}">Speed</p>
+
+      <!-- Devices -->
+      <p class="text-gray-400" th:text="'Device Support: ' + ${rogersPlan.device}">Device Support</p>
+    </div>
+  </div>
+</section>
 
 </body>
 </html>
