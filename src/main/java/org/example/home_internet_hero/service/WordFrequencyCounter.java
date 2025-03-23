@@ -1,53 +1,78 @@
 package org.example.home_internet_hero.service;
 
-import org.example.home_internet_hero.model.AVLTree;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
-import org.jsoup.Jsoup;
-import org.jsoup.nodes.Document;
-import java.io.IOException;
+import org.springframework.web.client.RestTemplate;
+
+import java.io.*;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class WordFrequencyCounter {
 
-    private AVLTree wordFrequencyTree = new AVLTree();
+    private Map<String, Integer> wordFrequencyMap = new HashMap<>();
+    private Map<String, Integer> searchFrequencyMap = new HashMap<>();
 
-    // Fetch and process words from a URL
-    public void loadWordsFromURL(String url, Model model) {
-        try {
-            // Fetch the content from the URL
-            Document doc = Jsoup.connect(url).get();
-            String text = doc.body().text(); // Extract text from the body of the webpage
-
-            // Clean and split the text into words
-            String[] words = text.split("[^a-zA-Z]+");
-
-            // Process each word and update the frequency count in the AVL tree
-            for (String word : words) {
-                if (!word.isEmpty()) {
-                    word = word.toLowerCase(); // Case insensitivity
-                    wordFrequencyTree.insert(word); // Insert word into AVL tree
+    // Load words from a given text file and count their frequencies
+    public void loadWordsFromFile(File file) throws IOException {
+        wordFrequencyMap.clear();
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] words = line.split("\\s+");
+                for (String word : words) {
+                    word = word.toLowerCase().replaceAll("[^a-zA-Z]", ""); // Clean up the word
+                    if (!word.isEmpty()) {
+                        wordFrequencyMap.put(word, wordFrequencyMap.getOrDefault(word, 0) + 1);
+                    }
                 }
             }
-
-            // Add success message
-            model.addAttribute("message", "Successfully scanned and counted word frequencies from the URL.");
-        } catch (IOException e) {
-            model.addAttribute("error", "Error fetching content from the URL: " + e.getMessage());
         }
     }
 
-    // Get the top N frequent words
-    public List<Map.Entry<String, Integer>> getTopFrequentWords(int topN) {
-        List<Map.Entry<String, Integer>> sortedList = wordFrequencyTree.getSortedWordList();
-        List<Map.Entry<String, Integer>> topWords = new ArrayList<>();
+    // Get frequency of a specific word from the file
+    public int getWordFrequency(String word) {
+        return wordFrequencyMap.getOrDefault(word.toLowerCase(), 0);
+    }
 
-        // Select the top N words
-        for (int i = 0; i < Math.min(topN, sortedList.size()); i++) {
-            topWords.add(sortedList.get(i));
+    // Get top N frequent words
+    public List<Map.Entry<String, Integer>> getTopFrequentWords(int n) {
+        return wordFrequencyMap.entrySet()
+                .stream()
+                .sorted((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()))
+                .limit(n)
+                .collect(Collectors.toList());
+    }
+
+    // Frequency count from a URL's content
+    public int getFrequencyFromUrl(String url) {
+        int frequency = 0;
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            String content = restTemplate.getForObject(url, String.class);
+            if (content != null) {
+                String[] words = content.split("\\s+");
+                for (String word : words) {
+                    word = word.toLowerCase().replaceAll("[^a-zA-Z]", ""); // Clean up the word
+                    if (!word.isEmpty()) {
+                        wordFrequencyMap.put(word, wordFrequencyMap.getOrDefault(word, 0) + 1);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        return frequency;
+    }
 
-        return topWords;
+    // Increment search frequency for a word
+    public void incrementSearchFrequency(String word) {
+        searchFrequencyMap.put(word, searchFrequencyMap.getOrDefault(word, 0) + 1);
+    }
+
+    // Get the search frequency of a word
+    public int getSearchFrequency(String word) {
+        return searchFrequencyMap.getOrDefault(word.toLowerCase(), 0);
     }
 }

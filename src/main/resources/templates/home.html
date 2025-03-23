@@ -17,6 +17,15 @@
         <a href="/attData" class="text-white hover:text-gray-300">AT&T</a>
         <a href="/koodoData" class="text-white hover:text-gray-300">Koodo</a>
         <a href="/fidoData" class="text-white hover:text-gray-300">Fido</a>
+
+        <!-- Dropdown Menu -->
+        <div class="relative inline-block">
+            <button class="text-white hover:text-gray-300 text-lg">Algorithms</button>
+            <div class="dropdown-menu absolute hidden bg-gray-800 border border-gray-700 rounded-md shadow-lg z-10 mt-2">
+                <a href="/frequencyCount" class="block px-4 py-2 text-white hover:bg-gray-700">Frequency Count and Search Frequency</a>
+                <a href="/pageRanking" class="block px-4 py-2 text-white hover:bg-gray-700">Page Ranking and Inverted Index</a>
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -24,9 +33,18 @@
 <section class="flex flex-col items-center text-center py-20">
     <h1 class="text-6xl font-bold">Home Internet Hero</h1>
     <p class="text-xl text-gray-400 mt-4">A powerful system demonstrating practical applications of data structures and algorithms for efficient web content management and search functionalities.</p>
-    <div class="mt-6">
-        <input type="text" placeholder="Search for ISP plans..." class="w-full max-w-md p-4 rounded-md border border-gray-700 bg-gray-800 text-white text-lg">
-        <button class="mt-4 px-8 py-4 bg-blue-600 rounded-md hover:bg-blue-700 text-lg">Search</button>
+    <div class="mt-6 relative">
+        <input type="text" id="searchInput" placeholder="Search for ISP plans..."
+               class="w-full max-w-md p-4 rounded-md border border-gray-700 bg-gray-800 text-white text-lg"
+               oninput="searchPlans()">
+        <button onclick="searchPlans()" class="mt-4 px-8 py-4 bg-blue-600 rounded-md hover:bg-blue-700 text-lg">
+            Search
+        </button>
+
+        <!-- Suggestion Box -->
+        <div id="suggestionBox" class="absolute bg-gray-800 border border-gray-700 w-full max-w-md mt-2 rounded-md shadow-lg hidden z-10">
+            <div id="didYouMean" class="p-2 text-gray-400 hidden">Did you mean: <span class="text-blue-400" id="suggestedWord"></span>?</div>
+        </div>
     </div>
 </section>
 
@@ -35,7 +53,9 @@
     <h2 class="text-4xl font-semibold text-center text-gray-300 mb-10">Available Internet Plans</h2>
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
         <!-- Thymeleaf loop to display plans dynamically -->
-        <div th:each="plan : ${plans}" class="bg-gray-800 p-6 rounded-lg shadow-lg">
+        <div th:each="plan : ${plans}"
+             class="plan-card bg-gray-800 p-6 rounded-lg shadow-lg"
+             th:attr="data-provider=${plan.provider}, data-planName=${plan.planName}, data-price=${plan.price}">
             <img th:src="@{${plan.imageUrl}}" alt="Plan Image" class="w-full h-auto object-cover rounded-md mb-4">
             <h3 class="text-2xl font-semibold text-white" th:text="${plan.planName}">Plan Name</h3>
             <p class="text-gray-400 mt-2" th:text="'Provider: ' + ${plan.provider}">Provider Name</p>
@@ -47,28 +67,114 @@
     </div>
 </section>
 
-
-
-
-<!-- Key Features -->
-<section class="text-center mt-12">
-    <h2 class="text-4xl font-bold">Key Features</h2>
-    <p class="text-lg text-gray-400 mt-2">Explore the powerful capabilities of our system</p>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-        <div class="p-8 rounded-lg border bg-gray-800 shadow-lg">
-            <h3 class="text-2xl font-semibold">Data Extraction</h3>
-            <p class="text-gray-400 mt-2">Extract useful insights from the web.</p>
-        </div>
-        <div class="p-8 rounded-lg border bg-gray-800 shadow-lg">
-            <h3 class="text-2xl font-semibold">HTML Parsing</h3>
-            <p class="text-gray-400 mt-2">Analyze and structure web content efficiently.</p>
-        </div>
-        <div class="p-8 rounded-lg border bg-gray-800 shadow-lg">
-            <h3 class="text-2xl font-semibold">Spell Checking</h3>
-            <p class="text-gray-400 mt-2">Improve search accuracy with intelligent spell-checking.</p>
-        </div>
-    </div>
-</section>
-
 </body>
+
+<script>
+    // JavaScript for dropdown menu
+    document.querySelector("button").addEventListener("click", function() {
+        const menu = document.querySelector(".dropdown-menu");
+        menu.classList.toggle("hidden");
+    });
+
+    // Close the dropdown if clicked outside
+    window.addEventListener("click", function(event) {
+        if (!event.target.closest(".relative")) {
+            const menu = document.querySelector(".dropdown-menu");
+            menu.classList.add("hidden");
+        }
+    });
+
+    function searchPlans() {
+        let input = document.getElementById("searchInput").value.toLowerCase();
+        let plans = document.querySelectorAll(".plan-card");
+
+        if (input.trim() !== "") {
+            // Call spellcheck API for suggestions
+            fetch(`/api/spellcheck/suggestions?input=${input}`)
+                .then(response => response.json())
+                .then(suggestions => {
+                    if (suggestions.length > 0) {
+                        displaySuggestions(suggestions);
+                    } else {
+                        handleNoResults(input, plans);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching suggestions:', error);
+                    handleNoResults(input, plans);
+                });
+        } else {
+            resetSearch(plans);
+            resetDidYouMean();
+        }
+    }
+
+    function handleNoResults(input, plans) {
+        let correctedWord = input; // You can enhance this part to get an accurate corrected word
+        displayDidYouMean(correctedWord); // Show the suggestion message
+        performSearch(input, plans); // Perform search even if no results match
+    }
+
+    function displaySuggestions(suggestions) {
+        let suggestionBox = document.getElementById("suggestionBox");
+        suggestionBox.innerHTML = "";
+        suggestionBox.classList.remove("hidden");
+
+        suggestions.forEach(suggestion => {
+            let item = document.createElement("div");
+            item.classList.add("p-2", "cursor-pointer", "hover:bg-gray-700", "text-white", "rounded-md");
+            item.textContent = suggestion;
+            item.onclick = () => {
+                document.getElementById("searchInput").value = suggestion;
+                suggestionBox.classList.add("hidden");
+                performSearch(suggestion.toLowerCase(), document.querySelectorAll(".plan-card"));
+            };
+            suggestionBox.appendChild(item);
+        });
+    }
+
+    function displayDidYouMean(suggestedWord) {
+        let didYouMean = document.getElementById("didYouMean");
+        let suggestedWordSpan = document.getElementById("suggestedWord");
+
+        didYouMean.classList.remove("hidden");
+        suggestedWordSpan.textContent = suggestedWord;
+        suggestedWordSpan.style.cursor = "pointer";
+        suggestedWordSpan.onclick = function () {
+            document.getElementById("searchInput").value = suggestedWord;
+            searchPlans(); // Trigger search with the corrected word
+        };
+    }
+
+    function resetDidYouMean() {
+        document.getElementById("didYouMean").classList.add("hidden");
+    }
+
+    function resetSearch(plans) {
+        plans.forEach(plan => {
+            plan.style.display = "block"; // Reset all plans visibility
+        });
+    }
+
+    function performSearch(input, plans) {
+        let foundResults = false;
+        plans.forEach(plan => {
+            let provider = plan.getAttribute("data-provider").toLowerCase();
+            let planName = plan.getAttribute("data-planName").toLowerCase();
+            let price = plan.getAttribute("data-price").toLowerCase();
+
+            if (provider.includes(input) || planName.includes(input) || price.includes(input)) {
+                plan.style.display = "block";
+                foundResults = true;
+            } else {
+                plan.style.display = "none";
+            }
+        });
+
+        if (!foundResults) {
+            handleNoResults(input, plans); // Show the "Did you mean?" if no results are found
+        }
+    }
+</script>
+
 </html>

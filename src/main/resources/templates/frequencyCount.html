@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frequency Count and Search Frequency</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- Navbar -->
+<nav class="flex justify-between items-center py-4 px-6">
+  <h1 class="text-2xl font-bold"><a href="/" class="hover:text-gray-300">Home Internet Hero</a></h1>
+  <div class="space-x-6 text-lg">
+    <a href="/rogersData" class="text-white hover:text-gray-300">Rogers</a>
+    <a href="/bellData" class="text-white hover:text-gray-300">Bell</a>
+    <a href="/attData" class="text-white hover:text-gray-300">AT&T</a>
+    <a href="/koodoData" class="text-white hover:text-gray-300">Koodo</a>
+    <a href="/fidoData" class="text-white hover:text-gray-300">Fido</a>
+
+    <!-- Dropdown Menu -->
+    <div class="relative inline-block">
+      <button class="text-white hover:text-gray-300 text-lg">Algorithms</button>
+      <div class="dropdown-menu absolute hidden bg-gray-800 border border-gray-700 rounded-md shadow-lg z-10 mt-2">
+        <a href="/frequencyCount" class="block px-4 py-2 text-white hover:bg-gray-700">Frequency Count and Search Frequency</a>
+        <a href="/pageRanking" class="block px-4 py-2 text-white hover:bg-gray-700">Page Ranking and Inverted Index</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<section class="py-20">
+  <div class="container mx-auto text-center">
+    <h2 class="text-4xl font-semibold text-gray-300 mb-10">Frequency Count and Search Frequency</h2>
+    <p class="text-lg text-gray-400 mb-10">Here you can learn about frequency count algorithms and search frequency techniques applied to web content.</p>
+
+    <!-- Success or error messages -->
+    <p th:text="${message}" class="text-green-500 text-xl mb-6" th:if="${message != null}"></p>
+    <p th:text="${error}" class="text-red-500 text-xl mb-6" th:if="${error != null}"></p>
+
+    <!-- Search Bar (Frequency Count Search) -->
+    <form action="/searchWord" method="post" class="mb-10">
+      <input type="text" name="word" placeholder="Enter word to search" class="px-4 py-2 text-black rounded-md focus:outline-none" required>
+      <button type="submit" class="px-6 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 ml-4">Search</button>
+    </form>
+
+    <!-- Display search results -->
+    <div class="text-yellow-500 text-xl mb-6" th:if="${word != null}">
+      <p>Word: <span th:text="${word}"></span></p>
+      <p>Frequency: <span th:text="${frequency}"></span></p>
+      <p>Search Frequency: <span th:text="${searchFrequency}"></span></p>
+    </div>
+
+    <!-- Display the top frequent words -->
+    <h3 class="text-2xl font-semibold text-gray-300 mb-6">Top Frequent Words</h3>
+    <table class="min-w-full bg-gray-800 text-left text-gray-400">
+      <thead>
+      <tr>
+        <th class="px-4 py-2 text-xl">Word</th>
+        <th class="px-4 py-2 text-xl">Frequency</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="entry : ${topWords}">
+        <td class="px-4 py-2" th:text="${entry.key}"></td>
+        <td class="px-4 py-2" th:text="${entry.value}"></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+</body>
+</html>

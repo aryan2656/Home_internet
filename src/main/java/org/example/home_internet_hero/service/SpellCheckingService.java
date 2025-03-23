@@ -59,6 +59,12 @@ public class SpellCheckingService {
                 count++;
             }
         }
+
+        public boolean contains(String key) {
+            int hashKey1 = hash1(key);
+            int hashKey2 = hash2(key);
+            return t1[hashKey1] != null && t1[hashKey1].equals(key) || t2[hashKey2] != null && t2[hashKey2].equals(key);
+        }
     }
 
     // Edit Distance function
@@ -97,20 +103,19 @@ public class SpellCheckingService {
         }
 
         // Find alternate words based on edit distance
-        List<AlternateWords> alternateSuggestions = new ArrayList<>();
+        PriorityQueue<AlternateWords> priorityQueue = new PriorityQueue<>(Comparator.comparingInt(a -> a.distance));
         for (String word : dictionary) {
             int distance = EditDistance(inputWord.toLowerCase(), word.toLowerCase());
             if (distance <= 7) { // Adjust edit distance threshold
-                alternateSuggestions.add(new AlternateWords(word, distance));
+                priorityQueue.offer(new AlternateWords(word, distance));
             }
         }
 
-        // Sort alternate suggestions by distance
-        MergeSortMethod.sort(alternateSuggestions);
-
         // Limit suggestions to the first 5 results
-        for (int i = 0; i < Math.min(5, alternateSuggestions.size()); i++) {
-            suggestions.add(alternateSuggestions.get(i).word);
+        int count = 0;
+        while (!priorityQueue.isEmpty() && count < 5) {
+            suggestions.add(priorityQueue.poll().word);
+            count++;
         }
 
         return suggestions;
@@ -124,39 +129,6 @@ public class SpellCheckingService {
         public AlternateWords(String word, int distance) {
             this.word = word;
             this.distance = distance;
-        }
-    }
-
-    // Merge sort implementation for sorting alternate words by distance
-    static class MergeSortMethod {
-        public static void sort(List<AlternateWords> alternateWords) {
-            if (alternateWords.size() < 2) {
-                return;
-            }
-            int mid = alternateWords.size() / 2;
-            List<AlternateWords> l = new ArrayList<>(alternateWords.subList(0, mid));
-            List<AlternateWords> r = new ArrayList<>(alternateWords.subList(mid, alternateWords.size()));
-
-            sort(l);
-            sort(r);
-            merge(alternateWords, l, r);
-        }
-
-        private static void merge(List<AlternateWords> alternateWords, List<AlternateWords> l, List<AlternateWords> r) {
-            int i = 0, j = 0, k = 0;
-            while (i < l.size() && j < r.size()) {
-                if (l.get(i).distance <= r.get(j).distance) {
-                    alternateWords.set(k++, l.get(i++));
-                } else {
-                    alternateWords.set(k++, r.get(j++));
-                }
-            }
-            while (i < l.size()) {
-                alternateWords.set(k++, l.get(i++));
-            }
-            while (j < r.size()) {
-                alternateWords.set(k++, r.get(j++));
-            }
         }
     }
 }

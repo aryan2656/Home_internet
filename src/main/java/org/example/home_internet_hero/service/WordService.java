@@ -1,7 +1,6 @@
 package org.example.home_internet_hero.service;
 
 import org.example.home_internet_hero.model.AVLTreeNode;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
@@ -11,15 +10,17 @@ import java.util.*;
 @Service
 public class WordService {
 
-    private static final String DIRECTORY_PATH = "url_text/"; // Folder where text files are stored
-    private final Map<String, AVLTreeNode> wordMap;  // Store word and frequency data
+    private static final String DIRECTORY_PATH = "url_text/";
 
-    @Autowired
-    public WordService() {
-        this.wordMap = new HashMap<>(); // Initialize an empty map for storing words
+    private final Map<String, AVLTreeNode> wordMap = new HashMap<>();
+
+    // Method to update word frequencies
+    public void updateWordFrequency(String word) {
+        wordMap.putIfAbsent(word, new AVLTreeNode(word));
+        wordMap.get(word).setFrequency(wordMap.get(word).getFrequency() + 1);
     }
 
-    // Load all words from the directory
+    // Method to get all words from files in DIRECTORY_PATH
     public List<String> getAllWords() {
         Set<String> allWords = new HashSet<>();
         try {
@@ -30,22 +31,21 @@ public class WordService {
             e.printStackTrace();
         }
 
-        // Convert Set to List before returning
         return new ArrayList<>(allWords);
     }
 
-    // Method to read words from a single file
+    // Method to read words from a file and update frequencies
     private Set<String> readWordsFromFile(File file) {
         Set<String> words = new HashSet<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                String[] wordArray = line.split("\\s+"); // Split words by spaces
+                String[] wordArray = line.split("\\s+");
                 for (String word : wordArray) {
-                    word = word.trim().toLowerCase();  // Normalize word to lowercase
+                    word = word.trim().toLowerCase();
                     if (!word.isEmpty()) {
                         words.add(word);
-                        updateWordFrequency(word); // Update the frequency count for each word
+                        updateWordFrequency(word);
                     }
                 }
             }
@@ -55,27 +55,18 @@ public class WordService {
         return words;
     }
 
-    // Update the frequency of a word in the wordMap
-    private void updateWordFrequency(String word) {
-        wordMap.putIfAbsent(word, new AVLTreeNode(word));  // Add the word if not present
-        wordMap.get(word).setFrequency(wordMap.get(word).getFrequency() + 1);  // Increment frequency
-    }
-
-    // Search for a word in the map and return its frequency
+    // Method to get word frequency from wordMap
     public int getWordFrequency(String word) {
         AVLTreeNode node = wordMap.get(word);
-        if (node != null) {
-            return node.getFrequency();  // Return the frequency of the word
-        }
-        return 0;  // Return 0 if the word is not found
+        return node != null ? node.getFrequency() : 0;
     }
 
-    // Fetch all words in the map (for displaying purposes)
+    // Method to get all words in the map
     public Map<String, AVLTreeNode> getAllWordsMap() {
         return wordMap;
     }
 
-    // Additional method to search for suggestions for incomplete words
+    // Method to get spell suggestions based on prefix
     public List<String> getSpellSuggestions(String prefix) {
         List<String> suggestions = new ArrayList<>();
         for (String word : wordMap.keySet()) {

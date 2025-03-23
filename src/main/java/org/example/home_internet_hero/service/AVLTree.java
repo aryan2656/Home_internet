@@ -1,175 +1,120 @@
 package org.example.home_internet_hero.service;
 
-import org.antlr.v4.runtime.misc.NotNull;
-import org.springframework.ui.Model;
-
 import java.io.*;
-import java.net.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
+import java.nio.file.*;
 import java.util.*;
 
+class AVLNode {
+    String word;
+    int height;
+    AVLNode left, right;
+
+    AVLNode(String word) {
+        this.word = word;
+        this.height = 1;
+    }
+}
+
 public class AVLTree {
+    private AVLNode root;
 
-    // Root node of the AVL Tree
-    private Node root;
-
-    public void countWordsFromFile(@NotNull Path file) throws IOException {
-        BufferedReader br = Files.newBufferedReader(file);
-        String line;
-        while ((line = br.readLine()) != null) {
-            String[] words = line.split("[^a-zA-Z]+");  // Split by non-alphabetic characters
-            for (String word : words) {
-                if (!word.isEmpty()) {
-                    insert(word.trim().toLowerCase()); // Insert each word into AVL Tree
-                }
-            }
-        }
-        br.close();
+    // Get height of a node
+    private int height(AVLNode node) {
+        return (node == null) ? 0 : node.height;
     }
 
-
-    // Inner class for AVL Tree node
-    private static class Node {
-        String word;
-        int frequency;
-        Node left, right;
-        int height;
-
-        Node(String word) {
-            this.word = word;
-            this.frequency = 1;
-            this.height = 1;
-        }
+    // Rotate Right
+    private AVLNode rotateRight(AVLNode y) {
+        AVLNode x = y.left;
+        y.left = x.right;
+        x.right = y;
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        return x;
     }
 
-    /**
-     * Insert a word into the AVL Tree.
-     */
-    public void insert(String word) {
-        root = insert(root, word);
+    // Rotate Left
+    private AVLNode rotateLeft(AVLNode x) {
+        AVLNode y = x.right;
+        x.right = y.left;
+        y.left = x;
+        x.height = Math.max(height(x.left), height(x.right)) + 1;
+        y.height = Math.max(height(y.left), height(y.right)) + 1;
+        return y;
     }
 
-    private Node insert(Node node, String word) {
-        if (node == null) {
-            return new Node(word);
-        }
+    // Balance Factor
+    private int getBalance(AVLNode node) {
+        return (node == null) ? 0 : height(node.left) - height(node.right);
+    }
 
-        if (word.compareTo(node.word) < 0) {
+    // Insert a word into AVL Tree
+    private AVLNode insert(AVLNode node, String word) {
+        if (node == null) return new AVLNode(word);
+
+        if (word.compareTo(node.word) < 0)
             node.left = insert(node.left, word);
-        } else if (word.compareTo(node.word) > 0) {
+        else if (word.compareTo(node.word) > 0)
             node.right = insert(node.right, word);
-        } else {
-            node.frequency++;  // Word already exists, just increment the frequency
+        else
+            return node; // Duplicate words are ignored
+
+        node.height = 1 + Math.max(height(node.left), height(node.right));
+        int balance = getBalance(node);
+
+        // Perform rotations if needed
+        if (balance > 1 && word.compareTo(node.left.word) < 0) return rotateRight(node);
+        if (balance < -1 && word.compareTo(node.right.word) > 0) return rotateLeft(node);
+        if (balance > 1 && word.compareTo(node.left.word) > 0) {
+            node.left = rotateLeft(node.left);
+            return rotateRight(node);
         }
-
-        node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
-        return balance(node);
-    }
-
-    // Balance the tree to maintain AVL properties
-    private Node balance(Node node) {
-        int balanceFactor = getBalanceFactor(node);
-
-        // Left heavy
-        if (balanceFactor > 1) {
-            if (getBalanceFactor(node.left) < 0) {
-                node.left = rotateLeft(node.left);  // Left-Right case
-            }
-            return rotateRight(node);  // Left-Left case
-        }
-
-        // Right heavy
-        if (balanceFactor < -1) {
-            if (getBalanceFactor(node.right) > 0) {
-                node.right = rotateRight(node.right);  // Right-Left case
-            }
-            return rotateLeft(node);  // Right-Right case
+        if (balance < -1 && word.compareTo(node.right.word) < 0) {
+            node.right = rotateRight(node.right);
+            return rotateLeft(node);
         }
 
         return node;
     }
 
-    private Node rotateLeft(Node node) {
-        Node newRoot = node.right;
-        node.right = newRoot.left;
-        newRoot.left = node;
-        node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
-        newRoot.height = 1 + Math.max(getHeight(newRoot.left), getHeight(newRoot.right));
-        return newRoot;
+    public void insert(String word) {
+        root = insert(root, word);
     }
 
-    private Node rotateRight(Node node) {
-        Node newRoot = node.left;
-        node.left = newRoot.right;
-        newRoot.right = node;
-        node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
-        newRoot.height = 1 + Math.max(getHeight(newRoot.left), getHeight(newRoot.right));
-        return newRoot;
+    // Get words with given prefix
+    public List<String> getWordsWithPrefix(String prefix) {
+        List<String> result = new ArrayList<>();
+        searchPrefix(root, prefix, result);
+        return result;
     }
 
-    private int getHeight(Node node) {
-        return node == null ? 0 : node.height;
+    private void searchPrefix(AVLNode node, String prefix, List<String> result) {
+        if (node == null) return;
+        if (node.word.startsWith(prefix)) result.add(node.word);
+        if (node.word.compareTo(prefix) > 0) searchPrefix(node.left, prefix, result);
+        if (node.word.compareTo(prefix) < 0) searchPrefix(node.right, prefix, result);
     }
 
-    private int getBalanceFactor(Node node) {
-        return node == null ? 0 : getHeight(node.left) - getHeight(node.right);
-    }
-
-    /**
-     * Get the top N frequent words.
-     */
-    public List<Map.Entry<String, Integer>> getTopFrequentWords(int topN) {
-        List<Map.Entry<String, Integer>> topWords = new ArrayList<>();
-        inorderTraversal(root, topWords);
-
-        // Sort by frequency in descending order
-        topWords.sort((entry1, entry2) -> entry2.getValue().compareTo(entry1.getValue()));
-
-        // Get top N frequent words
-        return topWords.subList(0, Math.min(topN, topWords.size()));
-    }
-
-    private void inorderTraversal(Node node, List<Map.Entry<String, Integer>> result) {
-        if (node != null) {
-            inorderTraversal(node.left, result);
-            result.add(new AbstractMap.SimpleEntry<>(node.word, node.frequency));
-            inorderTraversal(node.right, result);
+    // Load words from text files in 'url_text' directory
+    public void loadWordsFromFiles(String directoryPath) {
+        try {
+            Files.walk(Paths.get(directoryPath))
+                    .filter(Files::isRegularFile)
+                    .forEach(file -> {
+                        try (BufferedReader br = new BufferedReader(new FileReader(file.toFile()))) {
+                            String line;
+                            while ((line = br.readLine()) != null) {
+                                String[] words = line.toLowerCase().split("\\W+");
+                                for (String word : words) {
+                                    if (!word.isEmpty()) insert(word);
+                                }
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-    }
-
-    /**
-     * Load words from a CSV file and insert them into the tree.
-     */
-    public void loadWordsFromCSV(String csvFile, Model model) throws IOException {
-        BufferedReader br = new BufferedReader(new FileReader(csvFile));
-        String line;
-        while ((line = br.readLine()) != null) {
-            String[] words = line.split(",");
-            for (String word : words) {
-                insert(word.trim().toLowerCase()); // Insert each word into AVL Tree
-            }
-        }
-        br.close();
-        model.addAttribute("message", "CSV file processed successfully.");
-    }
-
-    /**
-     * Load words from a URL and insert them into the tree.
-     */
-    public void loadWordsFromURL(String urlString, Model model) throws IOException {
-        URL url = new URL(urlString);
-        BufferedReader in = new BufferedReader(new InputStreamReader(url.openStream()));
-        String inputLine;
-        while ((inputLine = in.readLine()) != null) {
-            String[] words = inputLine.split("\\W+");
-            for (String word : words) {
-                if (!word.isEmpty()) {
-                    insert(word.trim().toLowerCase()); // Insert each word into AVL Tree
-                }
-            }
-        }
-        in.close();
-        model.addAttribute("message", "URL processed successfully.");
     }
 }
