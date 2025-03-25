@@ -16,20 +16,20 @@ public class WordFrequencyCounter {
 
     // Load words from a given text file and count their frequencies
     public void loadWordsFromFile(File file) throws IOException {
-        wordFrequencyMap.clear();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] words = line.split("\\s+");
                 for (String word : words) {
-                    word = word.toLowerCase().replaceAll("[^a-zA-Z]", ""); // Clean up the word
+                    word = word.toLowerCase().replaceAll("[^a-zA-Z]", ""); // Clean word
                     if (!word.isEmpty()) {
-                        wordFrequencyMap.put(word, wordFrequencyMap.getOrDefault(word, 0) + 1);
+                        wordFrequencyMap.merge(word, 1, Integer::sum); // Efficient increment
                     }
                 }
             }
         }
     }
+
 
     // Get frequency of a specific word from the file
     public int getWordFrequency(String word) {

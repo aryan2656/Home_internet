@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koodo Plans</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+
+    <nav class="flex justify-between items-center py-4 px-6">
+        <h1 class="text-2xl font-bold"><a href="/" class="hover:text-gray-300">Home Internet Hero</a></h1>
+        <div class="space-x-6 text-lg">
+            <a href="/rogersData" class="text-white hover:text-gray-300">Rogers</a>
+            <a href="/bellData" class="text-white hover:text-gray-300">Bell</a>
+            <a href="/attData" class="text-white hover:text-gray-300">AT&T</a>
+            <a href="/koodoData" class="text-white hover:text-gray-300">Koodo</a>
+            <a href="/fidoData" class="text-white hover:text-gray-300">Fido</a>
+
+            <!-- Dropdown Menu -->
+            <div class="relative inline-block">
+                <button class="text-white hover:text-gray-300 text-lg">Algorithms</button>
+                <div class="dropdown-menu absolute hidden bg-gray-800 border border-gray-700 rounded-md shadow-lg z-10 mt-2">
+                    <a href="/frequencyCount" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Frequency Count</a> <!-- Increased size and made bold -->
+                    <a href="/rankPage" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Page Ranking</a> <!-- Increased size and made bold -->
+                    <a href="/validate/results" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Validation</a> <!-- Increased size and made bold -->
+                    <a href="/invertedIndex" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Inverted Index</a> <!-- Increased size and made bold -->
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <br><br>
+
+    <!-- Header -->
+    <div class="text-center mb-12">
+        <h1 class="text-5xl font-bold mb-4">Search Engine</h1>
+        <p class="text-gray-400 text-lg">A powerful search engine with Inverted Index algorithm</p>
+    </div>
+
+    <!-- Search Form -->
+    <div class="max-w-2xl mx-auto">
+        <div class="relative">
+            <input
+                    type="text"
+                    id="searchInput"
+                    class="w-full px-6 py-4 rounded-full bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 text-lg"
+                    placeholder="Search for anything..."
+            >
+            <button
+                    id="searchButton"
+                    class="absolute right-2 top-1/2 -translate-y-1/2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-full transition-colors"
+            >
+                Search
+            </button>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="resultsContainer" class="max-w-3xl mx-auto mt-8 space-y-4"></div>
+</div>
+
+<script>
+    // DOM Elements
+    const searchInput = document.getElementById('searchInput');
+    const searchButton = document.getElementById('searchButton');
+    const resultsContainer = document.getElementById('resultsContainer');
+
+    // Search handler (making the API call)
+    async function handleSearch() {
+        const query = searchInput.value.trim();
+        if (!query) {
+            resultsContainer.innerHTML = '';
+            return;
+        }
+
+        try {
+            // Make API request to Spring backend
+            const response = await fetch('http://localhost:8082/rankPage', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ query,k:5 })
+            });
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch results');
+            }
+
+            console.log(response);
+            const data = await response.json();
+            console.log("API Response:", data); // Debugging Log
+            // if (!data.rankedFiles || data.rankedFiles.length === 0) {
+            //     resultsContainer.innerHTML = `
+            //     <div class="text-center py-8">
+            //         <p class="text-gray-400">No results found for "${query}"</p>
+            //     </div>
+            // `;
+            //     return;
+            // }
+
+
+            // Convert response object into an array of { filename, count } objects
+            const resultArray = Object.entries(data).map(([filename, count]) => ({
+                filename,
+                count
+            }));
+
+            console.log(resultArray)
+            // Display the results
+            resultsContainer.innerHTML = resultArray.map(({ filename, count }) => {
+                // Extract filename without path
+                const cleanFilename = filename.split('/').pop(); // Get only the filename
+                const link = `http://${cleanFilename.replace('.txt', '').replace(/_/g, '/')}`; // Generate link
+
+                console.log(cleanFilename);
+                console.log(link);
+
+                return `
+            <div class="bg-gray-700 rounded-lg p-6 hover:bg-gray-600 transition-colors">
+                <h2 class="text-xl font-semibold mb-2">
+                    <a href="${link}" class="text-sm text-gray-400 hover:text-gray-300" target="_blank">
+                        ${cleanFilename}
+                    </a>
+                </h2>
+                <p class="text-gray-300 mb-3">Occurrences: ${count}</p>
+                <div class="flex items-center justify-between">
+                    <a href="${link}" class="text-sm text-gray-400 hover:text-gray-300" target="_blank">
+                        Open File
+                    </a>
+                    <span class="text-sm text-gray-400">Score: ${count}</span>
+                </div>
+            </div>
+            `;
+            }).join("");
+
+        } catch (error) {
+            console.error("Search Error:", error); // Debugging Log
+            resultsContainer.innerHTML = `
+        <div class="text-center py-8">
+            <p class="text-red-500">Error fetching search results. Please try again later.</p>
+        </div>
+        `;
+        }
+    }
+
+    // Event listeners
+    searchButton.addEventListener('click', handleSearch);
+    searchInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleSearch();
+        }
+    });
+
+    // Initialize search on page load if there's a query
+    if (searchInput.value) {
+        handleSearch();
+    }
+  // JavaScript for dropdown menu
+ document.querySelector("button").addEventListener("click", function() {
+     const menu = document.querySelector(".dropdown-menu");
+     menu.classList.toggle("hidden");
+ });
+
+ // Close the dropdown if clicked outside
+ window.addEventListener("click", function(event) {
+     if (!event.target.closest(".relative")) {
+         const menu = document.querySelector(".dropdown-menu");
+         menu.classList.add("hidden");
+     }
+ });
+</script>
+</body>
+</html>

@@ -2,8 +2,8 @@ Provider,PlanName,Price,DownloadSpeed,UploadSpeed,Features,ImageUrl
 AT&T,300Mbps Speed,$55/month,300 Mbps,300 Mbps,"Game, stream, and video chat with confidence; Support your smart home devices; 15x faster upload speeds than cable internet",https://upload.wikimedia.org/wikipedia/commons/3/31/AT%26T_logo_2016.svg
 AT&T,500Mbps Speed,$65/month,500 Mbps,500 Mbps,"Level up your gaming with low lag; Connect and control multiple smart devices with ease; 20x faster upload speeds than cable internet",https://upload.wikimedia.org/wikipedia/commons/3/31/AT%26T_logo_2016.svg
 AT&T,Up to 1 GIG speed,$80/month,1 Gbps,800 Mbps,"The speed to succeed for work and pro-level gaming; Unleash the full potential of your smart home ecosystem; 25x faster upload speeds than cable internet",https://upload.wikimedia.org/wikipedia/commons/3/31/AT%26T_logo_2016.svg
-Bell,PureFibre 250 Mbps,$80/month,250 Mbps,250 Mbps,"High-speed fiber internet with stable connectivity",https://upload.wikimedia.org/wikipedia/commons/9/91/Bell_logo.svg
-Bell,PureFibre 1 Gig,$100/month,940 Mbps,940 Mbps,"Ideal for work, gaming, and streaming",https://upload.wikimedia.org/wikipedia/commons/9/91/Bell_logo.svg
+Bell,PureFibre 250 Mbps,$50/month,250 Mbps,250 Mbps,"High-speed fiber internet with stable connectivity",https://upload.wikimedia.org/wikipedia/commons/9/91/Bell_logo.svg
+Bell,PureFibre 1 Gig,$80/month,940 Mbps,940 Mbps,"Ideal for work, gaming, and streaming",https://upload.wikimedia.org/wikipedia/commons/9/91/Bell_logo.svg
 Bell,PureFibre 3 Gig,$120/month,3000 Mbps,3000 Mbps,"Best for high-demand users and multiple devices",https://upload.wikimedia.org/wikipedia/commons/9/91/Bell_logo.svg
 Bell,PureFibre 5 Gig,$145/month,5000 Mbps,5000 Mbps,"Ultra-fast speeds for the ultimate performance",https://upload.wikimedia.org/wikipedia/commons/9/91/Bell_logo.svg
 Bell,Core channels + PureFibre Internet,$110/month,250 Mbps,250 Mbps,"Includes core channels along with fiber internet",https://upload.wikimedia.org/wikipedia/commons/9/91/Bell_logo.svg

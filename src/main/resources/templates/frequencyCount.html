@@ -22,8 +22,10 @@
     <div class="relative inline-block">
       <button class="text-white hover:text-gray-300 text-lg">Algorithms</button>
       <div class="dropdown-menu absolute hidden bg-gray-800 border border-gray-700 rounded-md shadow-lg z-10 mt-2">
-        <a href="/frequencyCount" class="block px-2 py-1 text-white text-sm hover:bg-gray-700">Frequency Count</a>
-        <a href="/pageRanking" class="block px-2 py-1 text-white text-sm hover:bg-gray-700">Page Ranking</a>
+        <a href="/frequencyCount" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Frequency Count</a> <!-- Increased size and made bold -->
+        <a href="/rankPage" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Page Ranking</a> <!-- Increased size and made bold -->
+        <a href="/validate/results" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Validation</a> <!-- Increased size and made bold -->
+        <a href="/invertedIndex" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Inverted Index</a> <!-- Increased size and made bold -->
 
       </div>
     </div>
@@ -47,11 +49,19 @@
     </form>
 
     <!-- Display search results -->
-    <div class="text-yellow-500 text-xl mb-6" th:if="${word != null}">
-      <p>Word: <span th:text="${word}"></span></p>
-      <p>Frequency: <span th:text="${frequency}"></span></p>
-      <p>Search Frequency: <span th:text="${searchFrequency}"></span></p>
+    <div class="bg-gray-800 p-6 rounded-lg shadow-lg mb-6" th:if="${word != null}">
+      <h2 class="text-2xl font-semibold text-yellow-400 mb-4">Search Results</h2>
+      <p class="text-lg text-white mb-2">
+        <span class="font-bold text-yellow-300">Word:</span> <span th:text="${word}"></span>
+      </p>
+      <p class="text-lg text-white mb-2">
+        <span class="font-bold text-yellow-300">Frequency:</span> <span th:text="${frequency}"></span>
+      </p>
+      <p class="text-lg text-white mb-2">
+        <span class="font-bold text-yellow-300">Search Frequency:</span> <span th:text="${searchFrequency}"></span>
+      </p>
     </div>
+
 
     <!-- Display the top frequent words -->
     <h3 class="text-2xl font-semibold text-gray-300 mb-6">Top Frequent Words</h3>

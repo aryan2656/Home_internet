@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- Navbar -->
+<!-- Navbar -->
+<nav class="flex justify-between items-center py-4 px-6">
+    <h1 class="text-2xl font-bold"><a href="/" class="hover:text-gray-300">Home Internet Hero</a></h1>
+    <div class="space-x-6 text-lg">
+        <a href="/rogersData" class="text-white hover:text-gray-300">Rogers</a>
+        <a href="/bellData" class="text-white hover:text-gray-300">Bell</a>
+        <a href="/attData" class="text-white hover:text-gray-300">AT&T</a>
+        <a href="/koodoData" class="text-white hover:text-gray-300">Koodo</a>
+        <a href="/fidoData" class="text-white hover:text-gray-300">Fido</a>
+
+        <!-- Dropdown Menu -->
+        <div class="relative inline-block">
+            <button class="text-white hover:text-gray-300 text-lg">Algorithms</button>
+            <div class="dropdown-menu absolute hidden bg-gray-800 border border-gray-700 rounded-md shadow-lg z-10 mt-2">
+                <a href="/frequencyCount" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Frequency Count</a> <!-- Increased size and made bold -->
+                <a href="/rankPage" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Page Ranking</a> <!-- Increased size and made bold -->
+                <a href="/validate/results" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Validation</a> <!-- Increased size and made bold -->
+                <a href="/invertedIndex" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Inverted Index</a> <!-- Increased size and made bold -->
+
+            </div>
+        </div>
+    </div>
+</nav>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validation Results</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white">
+
+<!-- Page Title -->
+<h1 class="text-4xl font-bold text-center text-gray-100 mt-8 mb-4">Extracted Data</h1>
+
+<!-- Validation Form (Start Validation Button) -->
+<div class="text-center mb-8">
+    <form method="post" action="/validate/start" class="inline-block">
+        <button type="submit" class="px-8 py-3 bg-blue-600 text-white hover:bg-blue-500 rounded-lg shadow-lg text-lg font-semibold transition duration-200">Start Validation</button>
+    </form>
+</div>
+
+<!-- Display Extracted Data -->
+<div class="container mx-auto px-6 mt-8">
+
+    <!-- Phone Numbers Section -->
+    <div class="mb-12 bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-semibold mb-6">Phone Numbers</h2>
+        <table class="min-w-full table-auto bg-gray-900 rounded-lg">
+            <thead>
+            <tr class="bg-gray-700">
+                <th class="px-6 py-3 text-left text-lg">Phone Number</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="phone : ${phoneNumbers}" class="hover:bg-gray-700">
+                <td class="px-6 py-3 border-b" th:text="${phone}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Emails Section -->
+    <div class="mb-12 bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-semibold mb-6">Emails</h2>
+        <table class="min-w-full table-auto bg-gray-900 rounded-lg">
+            <thead>
+            <tr class="bg-gray-700">
+                <th class="px-6 py-3 text-left text-lg">Email</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="email : ${emails}" class="hover:bg-gray-700">
+                <td class="px-6 py-3 border-b" th:text="${email}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- URLs Section -->
+    <div class="mb-12 bg-gray-800 p-6 rounded-lg shadow-lg">
+        <h2 class="text-3xl font-semibold mb-6">URLs</h2>
+        <table class="min-w-full table-auto bg-gray-900 rounded-lg">
+            <thead>
+            <tr class="bg-gray-700">
+                <th class="px-6 py-3 text-left text-lg">URL</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="url : ${urls}" class="hover:bg-gray-700">
+                <td class="px-6 py-3 border-b" th:text="${url}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>
+
+<script>
+    // JavaScript for dropdown menu
+    document.querySelector("button").addEventListener("click", function() {
+        const menu = document.querySelector(".dropdown-menu");
+        menu.classList.toggle("hidden");
+    });
+
+    // Close the dropdown if clicked outside
+    window.addEventListener("click", function(event) {
+        if (!event.target.closest(".relative")) {
+            const menu = document.querySelector(".dropdown-menu");
+            menu.classList.add("hidden");
+        }
+    });
+</script>
+
+</body>
+</html>

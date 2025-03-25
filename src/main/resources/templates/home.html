@@ -22,8 +22,10 @@
         <div class="relative inline-block">
             <button class="text-white hover:text-gray-300 text-lg">Algorithms</button>
             <div class="dropdown-menu absolute hidden bg-gray-800 border border-gray-700 rounded-md shadow-lg z-10 mt-2">
-                <a href="/frequencyCount" class="block px-2 py-1 text-white text-sm hover:bg-gray-700">Frequency Count</a>
-                <a href="/pageRanking" class="block px-2 py-1 text-white text-sm hover:bg-gray-700">Page Ranking</a>
+                <a href="/frequencyCount" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Frequency Count</a>
+                <a href="/rankPage" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Page Ranking</a>
+                <a href="/validate/results" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Validation</a>
+                <a href="/invertedIndex" class="block px-4 py-2 text-white text-lg font-bold hover:bg-gray-700">Inverted Index</a> <!-- Increased size and made bold -->
 
             </div>
         </div>
@@ -45,6 +47,20 @@
         <!-- Suggestion Box -->
         <div id="suggestionBox" class="absolute bg-gray-800 border border-gray-700 w-full max-w-md mt-2 rounded-md shadow-lg hidden z-10">
             <div id="didYouMean" class="p-2 text-gray-400 hidden">Did you mean: <span class="text-blue-400" id="suggestedWord"></span>?</div>
+        </div>
+    </div>
+
+    <div class="mt-10 space-x-4">
+        <h2 class="text-2xl text-gray-300">Top Frequent Searches</h2>
+        <div class="space-x-4 mt-4">
+            <!-- Loop through the top frequent words and create buttons -->
+            <th:block th:each="word : ${topWords}">
+                <button
+                        th:attr="onclick='setSearchQueryAndSearch(' + ${word.key} + ')'"
+                        class="px-4 py-2 bg-gray-700 rounded-md text-white text-lg hover:bg-gray-600">
+                    <span th:text="${word.key}">Word</span>
+                </button>
+            </th:block>
         </div>
     </div>
 </section>
@@ -71,38 +87,31 @@
 </body>
 
 <script>
-    // JavaScript for dropdown menu
-    document.querySelector("button").addEventListener("click", function() {
-        const menu = document.querySelector(".dropdown-menu");
-        menu.classList.toggle("hidden");
-    });
+    // Function to handle search and display suggestion box
+    function searchPlans(query) {
+        const searchInput = document.getElementById('searchInput');
 
-    // Close the dropdown if clicked outside
-    window.addEventListener("click", function(event) {
-        if (!event.target.closest(".relative")) {
-            const menu = document.querySelector(".dropdown-menu");
-            menu.classList.add("hidden");
+        // If the query is not provided, use the input value
+        if (!query) {
+            query = searchInput.value;
         }
-    });
 
-    function searchPlans() {
-        let input = document.getElementById("searchInput").value.toLowerCase();
         let plans = document.querySelectorAll(".plan-card");
 
-        if (input.trim() !== "") {
+        if (query.trim() !== "") {
             // Call spellcheck API for suggestions
-            fetch(`/api/spellcheck/suggestions?input=${input}`)
+            fetch(`/api/spellcheck/suggestions?input=${query}`)
                 .then(response => response.json())
                 .then(suggestions => {
                     if (suggestions.length > 0) {
                         displaySuggestions(suggestions);
                     } else {
-                        handleNoResults(input, plans);
+                        handleNoResults(query, plans);
                     }
                 })
                 .catch(error => {
                     console.error('Error fetching suggestions:', error);
-                    handleNoResults(input, plans);
+                    handleNoResults(query, plans);
                 });
         } else {
             resetSearch(plans);
@@ -110,10 +119,10 @@
         }
     }
 
-    function handleNoResults(input, plans) {
-        let correctedWord = input; // You can enhance this part to get an accurate corrected word
+    function handleNoResults(query, plans) {
+        let correctedWord = query; // You can enhance this part to get an accurate corrected word
         displayDidYouMean(correctedWord); // Show the suggestion message
-        performSearch(input, plans); // Perform search even if no results match
+        performSearch(query, plans); // Perform search even if no results match
     }
 
     function displaySuggestions(suggestions) {
@@ -157,14 +166,14 @@
         });
     }
 
-    function performSearch(input, plans) {
+    function performSearch(query, plans) {
         let foundResults = false;
         plans.forEach(plan => {
             let provider = plan.getAttribute("data-provider").toLowerCase();
             let planName = plan.getAttribute("data-planName").toLowerCase();
             let price = plan.getAttribute("data-price").toLowerCase();
 
-            if (provider.includes(input) || planName.includes(input) || price.includes(input)) {
+            if (provider.includes(query) || planName.includes(query) || price.includes(query)) {
                 plan.style.display = "block";
                 foundResults = true;
             } else {
@@ -173,9 +182,49 @@
         });
 
         if (!foundResults) {
-            handleNoResults(input, plans); // Show the "Did you mean?" if no results are found
+            handleNoResults(query, plans); // Show the "Did you mean?" if no results are found
         }
     }
+
+    // Function to set the search query from a clicked word and trigger the search
+    function setSearchQueryAndSearch(word) {
+        const searchInput = document.getElementById('searchInput');
+
+        // Set the search input value to the clicked word
+        searchInput.value = word;
+
+        // Trigger the search
+        searchPlans(word);
+    }
+
+    // JavaScript for dropdown menu
+    document.querySelector("button").addEventListener("click", function() {
+        const menu = document.querySelector(".dropdown-menu");
+        menu.classList.toggle("hidden");
+    });
+
+    // Close the dropdown if clicked outside
+    window.addEventListener("click", function(event) {
+        if (!event.target.closest(".relative")) {
+            const menu = document.querySelector(".dropdown-menu");
+            menu.classList.add("hidden");
+        }
+    });
+
+    // Add event listeners for frequent search word buttons
+    document.querySelectorAll('.frequent-word').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const word = event.target.textContent; // Get the word clicked
+            const searchInput = document.getElementById('searchInput');
+
+            // Set the search bar to the clicked word
+            searchInput.value = word;
+
+            // Trigger the search
+            searchPlans(word); // Trigger the search immediately
+        });
+    });
+
 </script>
 
 </html>

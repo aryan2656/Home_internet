@@ -1,162 +1,184 @@
+
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+<html lang="en">
 <head>
-  <meta charset="ISO-8859-1">
-  <title>Login</title>
-
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-        integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-  <link rel="stylesheet" href="assets/css/templatemo.css">
-  <link rel="stylesheet" href="assets/css/custom.css">
-  <link rel="icon" href="images/favicon.png" type="image/x-icon"/>
-  <style>
-    .navbar-nav .nav-item:not(:last-child) .nav-link {
-border-right: 2.2px solid #ccc; /* Adjust the color and thickness as needed */
-padding-right: 20px; /* Add some padding for spacing */
- padding-left: 20px;
-}
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - Home Internet Hero</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
+
+<style>
+  body {
+    background-color: #0f172a;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+  .container {
+    background: #1e293b;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    width: 350px;
+  }
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .subtitle {
+    font-size: 14px;
+    color: #94a3b8;
+    margin-bottom: 20px;
+  }
+
+  .input-group {
+    text-align: left;
+    margin-bottom: 15px;
+  }
+
+  .input-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #475569;
+    border-radius: 5px;
+    background: #334155;
+    color: white;
+    font-size: 14px;
+  }
+
+  .input-group input:focus {
+    outline: none;
+    border-color: #3b82f6;
+  }
+
+  .error {
+    color: #ef4444;
+    font-size: 12px;
+    display: none;
+  }
+
+  button {
+    background-color: #3b82f6;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background-color: #2563eb;
+  }
+
+  .register-link {
+    margin-top: 10px;
+    font-size: 14px;
+  }
+
+  .register-link a {
+    color: #3b82f6;
+    text-decoration: none;
+  }
+
+</style>
 <body>
+<div class="container">
+  <h1>Home Internet Hero</h1>
+  <p class="subtitle">Login to access the best ISP plans.</p>
 
-<header>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #fff; padding-top: 20px; padding-bottom: 20px;">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="/">
-        <img th:src="@{/images/logo.png}" src="../static/images/logo2.png" width="200" height="80" class="d-inline-block align-top" alt=""/>
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto"></ul>
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" th:href="@{/}" href="#" style="font-size: 18px;">Home</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" th:href="@{/shop}" href="#" style="font-size: 18px;">Shop</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" sec:authorize="hasRole('ADMIN')" th:href="@{/admin}" href="#" style="font-size: 18px;">Admin-Home</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" sec:authorize="isAuthenticated()" th:href="@{/logout}" href="#" style="font-size: 18px;">Logout</a>
-          </li>
-          <!--					<li class="nav-item active">-->
-          <!--						<a class="nav-link" th:href="@{/cart}" href="#" style="font-size: 18px;">Cart</a>-->
-          <!--					</li>-->
-          <li class="nav-item active">
-            <a class="nav-icon nav-link position-relative text-decoration-none" th:href="@{/cart}">
-              <i class="fa fa-fw fa-cart-arrow-down text-dark mr-2"></i>
-              <span class="position-absolute top-0 left-100 translate-middle  rounded-pill bg-light text-dark" style="font-size: 15px;">
-          						  <span class="nav-link" th:text="${cartCount}" style="font-size: 10px;"></span>
-        					</span>
-            </a>
-          </li>
-
-          <!--					<li class="nav-item active">-->
-          <!--						<span class="nav-link" th:text="${cartCount}" style="font-size: 18px;">( 0 )</span>-->
-          <!--					</li>-->
-        </ul>
-      </div>
+  <form id="loginForm">
+    <div class="input-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+      <small class="error" id="emailError"></small>
     </div>
-  </nav>
-</header>
 
-<!-- Hero Section -->
-<section class="flex flex-col items-center text-center py-20">
-  <h1 class="text-6xl font-bold">Home Internet Hero</h1>
-  <p class="text-xl text-gray-400 mt-4">A powerful system demonstrating practical applications of data structures and algorithms for efficient web content management and search functionalities.</p>
-  <div class="mt-6 relative">
-    <input type="text" id="searchInput" placeholder="Search for ISP plans..."
-           class="w-full max-w-md p-4 rounded-md border border-gray-700 bg-gray-800 text-white text-lg"
-           oninput="searchPlans()">
-    <button onclick="searchPlans()" class="mt-4 px-8 py-4 bg-blue-600 rounded-md hover:bg-blue-700 text-lg">
-      Search
-    </button>
-
-    <!-- Suggestion Box -->
-    <div id="suggestionBox" class="absolute bg-gray-800 border border-gray-700 w-full max-w-md mt-2 rounded-md shadow-lg hidden z-10">
-      <div id="didYouMean" class="p-2 text-gray-400 hidden">Did you mean: <span class="text-blue-400" id="suggestedWord"></span>?</div>
+    <div class="input-group">
+      <label for="password">Password</label>
+      <input type="password" id="password" placeholder="Enter your password" required>
+      <small class="error" id="passwordError"></small>
     </div>
-  </div>
-</section>
-<!--	&lt;!&ndash; create navigation bar ( header) &ndash;&gt;-->
-<!--	<nav class="navbar navbar-inverse navbar-fixed-top">-->
-<!--		<div class="container">-->
-<!--			<div class="navbar-header">-->
-<!--				<button type="button" class="navbar-toggle collapsed"-->
-<!--					data-toggle="collapse" data-target="#navbar" aria-expanded="false"-->
-<!--					aria-controls="navbar">-->
-<!--					<span class="sr-only">Toggle navigation</span> <span-->
-<!--						class="icon-bar"></span> <span class="icon-bar"></span> <span-->
-<!--						class="icon-bar"></span>-->
-<!--				</button>-->
-<!--				<a class="navbar-brand" href="#" th:href="@{/}">Registration and-->
-<!--					Login Module</a>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--	</nav>-->
 
-<br>
-<br>
-<div class = "container">
-  <div class = "row">
-    <div class = "col-md-6 col-md-offset-3">
-
-      <h1> User Login Page </h1>
-      <br>
-      <form th:action="@{/login}" method="post">
-
-        <!-- error message -->
-        <div th:if="${param.error}">
-          <div class="alert alert-danger">Invalid username or
-            password.</div>
-        </div>
-
-        <!-- logout message -->
-        <div th:if="${param.logout}">
-          <div class="alert alert-info">You have been logged out.</div>
-        </div>
-
-        <div class = "form-group">
-          <label for ="username"> Username </label> :
-          <input type="text" class = "form-control" id ="username" name = "username" placeholder="Enter Email ID" autofocus="autofocus">
-        </div>
-
-        <div class="form-group">
-          <label for="password">Password</label>: <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" />
-        </div>
-
-        <div class="form-group">
-          <div class="row">
-            <div class="col-sm-6 col-sm-offset-3">
-              <input type="submit" name="login-submit" id="login-submit"
-                     class="form-control btn btn-primary" value="Log In" />
-            </div>
-          </div>
-        </div>
-      </form>
-      <div class="form-group">
-        <span>New user? <a href="/" th:href="@{/registration}">Register here</a></span>
-      </div>
-
-      <!--				<h5>or</h5>-->
-      <!--				<a href="/login/oauth2/code/google" class="btn btn-primary">Sign-In with Google </a>-->
-      <!--				<h5>or</h5>-->
-      <!--				<a href="/login/oauth2/code/github" class="btn btn-primary">Sign-In with GitHub </a>-->
-    </div>
-  </div>
+    <button type="submit">Login</button>
+  </form>
+  <p class="register-link">Don't have an account? <a href="/register">Sign up</a></p>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script>
 
+  document.getElementById("loginForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    let email = document.getElementById("email").value.trim();
+    let password = document.getElementById("password").value.trim();
+
+    let emailError = document.getElementById("emailError");
+    let passwordError = document.getElementById("passwordError");
+
+    // Email Validation (simple pattern)
+    let emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(email)) {
+      emailError.textContent = "Invalid email format.";
+      emailError.style.display = "block";
+      return;
+    } else {
+      emailError.style.display = "none";
+    }
+
+    // Password Validation (8+ characters, at least 1 number)
+    let passwordRegex = /^(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      passwordError.textContent = "Password must be at least 8 characters with 1 number.";
+      passwordError.style.display = "block";
+      return;
+    } else {
+      passwordError.style.display = "none";
+    }
+
+    // Call sendData function
+    sendData(email, password);
+  });
+
+  function sendData(email,password){
+
+    // Send login request to backend
+    fetch("http://localhost:8082/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, password }),
+    })
+            .then(response => response.json())
+            .then(data => {
+              if (data.success) {
+                alert("Login successful!");
+                window.location.href = "/"; // Redirect after login
+              } else {
+                alert("Invalid credentials.");
+              }
+            })
+            .catch(error => console.error("Error:", error));
+  };
+
+</script>
 </body>
 </html>
