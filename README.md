@@ -34,12 +34,6 @@ The app listens on **port 8082** (see `src/main/resources/application.properties
 
 Open [http://localhost:8082](http://localhost:8082) in your browser.
 
-### H2 console (development)
-
-With the default configuration, the H2 console is enabled. Typical URL:
-
-[http://localhost:8082/h2-console](http://localhost:8082/h2-console)
-
 Use the JDBC URL, username, and password from `application.properties`.
 
 ### Tests
@@ -72,8 +66,6 @@ These endpoints drive the search / spell-check UI (`index` template):
 ### REST API
 
 - `POST /searchpattern` — JSON body `{ "query": "..." }` returns matching plans (used by pattern search over plan data). CORS is configured for `http://localhost:8082` in code; adjust if you change the port or origin.
-
-> **Note:** The commented `PlanController` under `/api/plans` is not active in the current codebase.
 
 **Home page CSV:** The bundled file is `src/main/resources/Plans.csv`, while `LoginController` loads `plans.csv`. On case-sensitive filesystems (common on Linux and in CI), either rename the file to `plans.csv` or change the resource name in code so they match.
 
