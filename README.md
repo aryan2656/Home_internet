@@ -83,7 +83,3 @@ These endpoints drive the search / spell-check UI (`index` template):
 - `src/main/resources/templates/` — Thymeleaf HTML (e.g. `home.html`, provider-specific pages)
 - `src/main/resources/*.csv` — Plan datasets loaded at runtime
 - `src/main/resources/url_file/` and `url_text/` — Cached HTML/text samples used for crawling and analysis experiments
-
-## License
-
-No license is specified in this repository. Add a `LICENSE` file if you intend to open-source the project on GitHub.
